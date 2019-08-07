@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="config.properties" />
+	<context id="mysql" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+		<!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<plugin type="${mapper.plugin}">
+			<property name="mappers" value="${mapper.Mapper}" />
+		</plugin>
+
+		<!-- lombok插件，不生成get、set方法 -->
+		<plugin type="plugins.LombokPlugin" />
+
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="${mysql.driver}"
+			connectionURL="${mysql.url}" userId="${mysql.username}"
+			password="${mysql.password}"></jdbcConnection>
+
+		<javaTypeResolver
+			type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator
+			targetPackage="${targetModelPackage}"
+			targetProject="${targetJavaProject}">
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="${targetXMLPackage}"
+			targetProject="${targetResourcesProject}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成Xml的包名和位置 -->
+		<javaClientGenerator
+			targetPackage="${targetMapperPackage}"
+			targetProject="${targetMapperProject}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 生成全部的表 -->
+		<table tableName="%"></table>
+	</context>
+</generatorConfiguration>

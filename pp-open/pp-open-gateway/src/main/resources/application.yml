@@ -1,0 +1,34 @@
+server:
+  port: 8769
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: pp-open-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# Feign/Ribbon第一次请求失败
+ribbon:
+  eager-load:
+    enabled: true
+
+# 配置输出日志
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    
+# mybatis
+mybatis-plus:
+  mapper-locations: com/project/dao/*/*.xml

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.user.UserRoleResourceDao">
+    <resultMap type="com.project.entity.tables.user.UserRoleResource" id="UserRoleResource">
+        <id column="id" property="id" />
+        <result column="uuid" property="uuid" />
+        <result column="create_time" property="createTime" />
+        <result column="user_uuid" property="userUuid" />
+        <result column="user_name" property="userName" />
+        <result column="role_uuid" property="roleUuid" />
+        <result column="role_name" property="roleName" />
+        <result column="parent_url" property="parentUrl" />
+        <result column="resource_url" property="resourceUrl" />
+        <result column="resource_name" property="resoutceName" />
+        <result column="enable" property="enable" />
+    </resultMap>
+
+    <select id="getUserRoleResourceByUser" resultMap="UserRoleResource">
+        select
+        id,
+        uuid,
+        role_uuid,
+        role_name,
+        parent_url,
+        resource_url,
+        resource_name
+        from user_role_resource where 1 = 1
+        and user_uuid = #{userUuid}
+    </select>
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PermissionMapper">
+    <!-- 根据 parentId查询权限 -->
+    <select id="findPermissionByParent" parameterType="java.lang.String" resultType="java.util.Map">
+        select
+        uuid,
+        parent_uuid,
+        name,
+        url,
+        is_parent,
+        create_time,
+        creator
+        from t_permission where parent_uuid = #{parentUuid}
+    </select>
+
+    <!-- 增加权限, 使用数组的形式可以进行批量插入，也可以进行单个数据的插入 -->
+    <insert id="addPermission" parameterType="java.util.List">
+        insert into t_permission
+        (
+        uuid,
+        parent_uuid,
+        name,
+        url,
+        is_parent,
+        create_time,
+        creator
+        )
+        values
+        <foreach collection="array" item="permission">
+            (
+            #{permission.uuid},
+            #{permission.parent_uuid},
+            #{permission.name},
+            #{permission.resource_url},
+            #{permission.is_parent},
+            #{permission.create_time},
+            #{permission.creator}
+            )
+        </foreach>
+    </insert>
+
+    <update id="modifyPermission" parameterType="java.util.Map">
+        update
+        t_permission
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="resource_url != null">resource_url=#{resource_url},</if>
+            <if test="parent_uuid != null">parent_uuid=#{parent_uuid},</if>
+            <if test="is_parent != null">is_parent=#{is_parent},</if>
+            <if test="create_time != null">create_time=#{create_time},</if>
+            <if test="creator != null">creator=#{creator},</if>
+        </set>
+        where uuid=#{uuid}
+    </update>
+
+    <delete id="deletePermission" parameterType="java.util.List">
+        delete from t_permission where uuid in
+        <foreach collection="array" item="uuid" open="(" close=")" separator=",">#{uuid}</foreach>
+    </delete>
+</mapper>
