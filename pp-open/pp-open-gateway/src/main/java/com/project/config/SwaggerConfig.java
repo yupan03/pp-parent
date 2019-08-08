@@ -26,11 +26,12 @@ public class SwaggerConfig implements SwaggerResourcesProvider {
 	public List<SwaggerResource> get() {
 		List<SwaggerResource> resources = new ArrayList<>();
 		// 结合配置的route-路径(Path)，和route过滤，只获取有效的route节点
-		routeDefinitionLocator.getRouteDefinitions().subscribe(routeDefinition -> routeDefinition.getPredicates()
-				.stream().filter(predicateDefinition -> ("Path").equalsIgnoreCase(predicateDefinition.getName()))
-				.filter(predicateDefinition -> !predicateDefinition.getArgs().containsKey("_rateLimit"))
-				.forEach(predicateDefinition -> resources.add(swaggerResource(predicateDefinition.getArgs().get("name"),
-						predicateDefinition.getArgs().get("pattern").replace("/**", API_URI)))));
+		routeDefinitionLocator.getRouteDefinitions()
+				.subscribe(routeDefinition -> routeDefinition.getPredicates().stream()
+						.filter(predicateDefinition -> ("Path").equalsIgnoreCase(predicateDefinition.getName()))
+						.filter(predicateDefinition -> !predicateDefinition.getArgs().containsKey("_rateLimit"))
+						.forEach(predicateDefinition -> resources.add(swaggerResource(routeDefinition.getId(),
+								predicateDefinition.getArgs().get("pattern").replace("/**", API_URI)))));
 		return resources;
 	}
 
