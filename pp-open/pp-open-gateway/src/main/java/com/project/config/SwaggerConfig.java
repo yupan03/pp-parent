@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import common.event.RefreshRoutListener;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
@@ -43,10 +41,5 @@ public class SwaggerConfig implements SwaggerResourcesProvider {
 		swaggerResource.setLocation(location);
 		swaggerResource.setSwaggerVersion("2.0");
 		return swaggerResource;
-	}
-
-	@Bean
-	public RefreshRoutListener routListener() {
-		return new RefreshRoutListener();
 	}
 }
