@@ -1,9 +1,10 @@
 package com.project.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.model.result.ResultObj;
+import common.model.result.Result;
 import common.model.result.StatusEnum;
 
 /**
@@ -18,8 +19,8 @@ public class GatewayController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/defaultFallback")
-	public ResultObj<?> defaultFallback() {
-		return new ResultObj<>(StatusEnum.ERROR, "服务器断开连接，请稍后重试！");
+	@RequestMapping(value = "/defaultFallback", method = RequestMethod.GET)
+	public Result defaultFallback(String serviceId) {
+		return new Result(StatusEnum.ERROR, "微服务(" + serviceId + ")断开连接，请稍后重试！");
 	}
 }
