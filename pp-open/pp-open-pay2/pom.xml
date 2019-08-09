@@ -7,7 +7,7 @@
 		<artifactId>pp-open</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>pp-open-pay</artifactId>
+	<artifactId>pp-open-pay2</artifactId>
 	<description>支付服务</description>
 
 	<dependencies>

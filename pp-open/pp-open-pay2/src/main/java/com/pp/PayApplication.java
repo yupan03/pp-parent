@@ -1,6 +1,5 @@
 package com.pp;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
@@ -9,7 +8,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import common.event.RefreshRoutEvent;
 
 @SpringBootApplication
-@MapperScan("com.pp.dao")
 @EnableDiscoveryClient
 @RemoteApplicationEventScan(basePackageClasses = RefreshRoutEvent.class)
 public class PayApplication {
