@@ -1,7 +1,6 @@
 package com.pp.config;
 
 import org.apache.ibatis.type.TypeHandlerRegistry;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +8,6 @@ import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.pp.constant.GeneralTypeHandler;
-
-import common.event.RefreshRoutEvent;
-import common.event.RefreshRoutListener;
 
 @Configuration
 public class Config {
@@ -45,17 +41,5 @@ public class Config {
 		// 设置方言类型
 		page.setDialectType("mysql");
 		return page;
-	}
-
-	@Bean
-	public RefreshRoutListener routListener() {
-		return new RefreshRoutListener();
-	}
-
-	@Bean
-	public RefreshRoutEvent refreshRoutEvent(ApplicationEventPublisher publish) {
-		RefreshRoutEvent refreshRoutEvent = new RefreshRoutEvent();
-		publish.publishEvent(refreshRoutEvent);
-		return refreshRoutEvent;
 	}
 }

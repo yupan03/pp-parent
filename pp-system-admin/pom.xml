@@ -10,9 +10,9 @@
 		<relativePath />
 	</parent>
 	<groupId>com.project</groupId>
-	<artifactId>pp-system</artifactId>
+	<artifactId>pp-system-admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pp-system</name>
+	<name>pp-system-admin</name>
 	<description>系统管理</description>
 
 	<properties>

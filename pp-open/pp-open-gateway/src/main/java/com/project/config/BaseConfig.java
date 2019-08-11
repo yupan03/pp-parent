@@ -1,14 +1,19 @@
 package com.project.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.context.annotation.Configuration;
 
-import common.event.RefreshRoutListener;
+import com.project.listener.ServerStartListener;
+
+import common.message.MessageConstant;
+import common.message.ServerStart;
 
 @Configuration
+@EnableBinding(value = { ServerStartListener.class })
 public class BaseConfig {
-	@Bean
-	public RefreshRoutListener routListener() {
-		return new RefreshRoutListener();
+	@StreamListener(MessageConstant.SERVER_START)
+	public void serverStart(ServerStart serverStart) {
+		System.out.println("收到消息:" + serverStart.getServiceId());
 	}
 }

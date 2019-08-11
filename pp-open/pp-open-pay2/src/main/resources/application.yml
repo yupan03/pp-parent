@@ -2,21 +2,14 @@ server:
   port: 8763
 
 spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
   profiles:
     active: dev
   application:
     name: pp-open-pay2
-  jackson:
-    serialization:
-      fail-on-empty-beans: false
-  mvc:
-    throw-exception-if-no-handler-found: true
-  resources:
-    add-mappings: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 # mybatis
 mybatis-plus:
@@ -24,4 +17,5 @@ mybatis-plus:
 
 logging:
   level:
+    com.alibaba.nacos.client.naming: error
     com.project.dao: DEBUG
