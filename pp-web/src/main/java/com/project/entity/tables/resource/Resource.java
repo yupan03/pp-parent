@@ -11,22 +11,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Resource {
-	@TableId
-	private Long id;
-	private String parentUrl;
-	private String resourceName;
-	private String resourceUrl;
-	private String resourceMethod;
-	private String resourceParam;
-	private String remark;
-	private String createTime;
+    @TableId
+    private Long id;
+    private String parentUrl;
+    private String resourceName;
+    private String resourceUrl;
+    private String resourceMethod;
+    private String resourceParam;
+    private String remark;
+    private String createTime;
 
-	@JsonInclude(JsonInclude.Include.NON_NULL)
-	private List<Resource> childrens;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Resource> childrens;
 
-	public Resource(String parentUrl, String resourceName, String resourceUrl) {
-		this.parentUrl = parentUrl;
-		this.resourceName = resourceName;
-		this.resourceUrl = resourceUrl;
-	}
+    public Resource(String parentUrl, String resourceName, String resourceUrl) {
+        this.parentUrl = parentUrl;
+        this.resourceName = resourceName;
+        this.resourceUrl = resourceUrl;
+    }
 }

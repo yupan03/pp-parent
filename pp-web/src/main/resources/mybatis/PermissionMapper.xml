@@ -11,7 +11,8 @@
         is_parent,
         create_time,
         creator
-        from t_permission where parent_uuid = #{parentUuid}
+        from t_permission where parent_uuid =
+        #{parentUuid}
     </select>
 
     <!-- 增加权限, 使用数组的形式可以进行批量插入，也可以进行单个数据的插入 -->

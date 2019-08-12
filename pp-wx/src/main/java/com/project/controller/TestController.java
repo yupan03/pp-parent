@@ -10,9 +10,9 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 public class TestController {
 
-	@ApiOperation(value = "第一个接口", notes = "测试接口")
-	@GetMapping(value = "/test")
-	public String test() {
-		return "test";
-	}
+    @ApiOperation(value = "第一个接口", notes = "测试接口")
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
+    }
 }

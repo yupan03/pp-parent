@@ -12,34 +12,34 @@ import com.project.constant.GeneralTypeHandler;
 @Configuration
 public class Config {
 
-	/**
-	 * 通过@Configuration使用MyBatis配置类 查看链接http://www.yyjjssnn.cn/articles/839.html
-	 * http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
-	 * 
-	 * @return
-	 */
-	@Bean
-	public ConfigurationCustomizer configurationCustomizer() {
-		return new ConfigurationCustomizer() {
-			@Override
-			public void customize(MybatisConfiguration configuration) {
-				TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
-				// 更改mybatis默认枚举处理
-				typeHandlerRegistry.setDefaultEnumTypeHandler(GeneralTypeHandler.class);
-			}
-		};
-	}
+    /**
+     * 通过@Configuration使用MyBatis配置类 查看链接http://www.yyjjssnn.cn/articles/839.html
+     * http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
+     * 
+     * @return
+     */
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer() {
+        return new ConfigurationCustomizer() {
+            @Override
+            public void customize(MybatisConfiguration configuration) {
+                TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+                // 更改mybatis默认枚举处理
+                typeHandlerRegistry.setDefaultEnumTypeHandler(GeneralTypeHandler.class);
+            }
+        };
+    }
 
-	/**
-	 * 开启分页
-	 * 
-	 * @return
-	 */
-	@Bean
-	public PaginationInterceptor paginationInterceptor() {
-		PaginationInterceptor page = new PaginationInterceptor();
-		// 设置方言类型
-		page.setDialectType("mysql");
-		return page;
-	}
+    /**
+     * 开启分页
+     * 
+     * @return
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor page = new PaginationInterceptor();
+        // 设置方言类型
+        page.setDialectType("mysql");
+        return page;
+    }
 }

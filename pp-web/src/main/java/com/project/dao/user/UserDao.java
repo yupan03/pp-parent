@@ -6,5 +6,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.project.entity.tables.user.User;
 
 public interface UserDao extends BaseMapper<User> {
-	User selectByAccount(@Param("account") String account);
+    User selectByAccount(@Param("account") String account);
 }

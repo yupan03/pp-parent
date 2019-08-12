@@ -7,6 +7,6 @@ package common.status;
  *
  * @param <E>
  */
-public interface BaseStatusEnum{
-	Integer getValue();
+public interface BaseStatusEnum {
+    Integer getValue();
 }

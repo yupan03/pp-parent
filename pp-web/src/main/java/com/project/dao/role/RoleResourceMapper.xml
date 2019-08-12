@@ -28,6 +28,6 @@
         and r.resource_url = rr.resource_url
         where role_uuid = #{roleUuid}
     </select>
-    
+
     <delete id="deleteByRole"></delete>
 </mapper>

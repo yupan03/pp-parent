@@ -11,13 +11,13 @@ import com.project.utils.ResourceTreeUtil;
 
 @Service
 public class ResourceService {
-	@Autowired
-	private ResourceDao resourceDao;
+    @Autowired
+    private ResourceDao resourceDao;
 
-	public List<Resource> pageList() {
-		// 取出所有资源数据然后封装成树的形式
-		List<Resource> resources = ResourceTreeUtil.buildByRecursive(resourceDao.selectList(null));
+    public List<Resource> pageList() {
+        // 取出所有资源数据然后封装成树的形式
+        List<Resource> resources = ResourceTreeUtil.buildByRecursive(resourceDao.selectList(null));
 
-		return resources;
-	}
+        return resources;
+    }
 }

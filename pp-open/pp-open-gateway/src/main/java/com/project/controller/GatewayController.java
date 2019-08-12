@@ -14,13 +14,13 @@ import common.model.result.StatusEnum;
  */
 @RestController
 public class GatewayController {
-	/**
-	 ** 熔断降级返回错误信息给前端
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/defaultFallback", method = RequestMethod.GET)
-	public Result defaultFallback(String serviceId) {
-		return new Result(StatusEnum.ERROR, "微服务(" + serviceId + ")断开连接，请稍后重试！");
-	}
+    /**
+     ** 熔断降级返回错误信息给前端
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/defaultFallback", method = RequestMethod.GET)
+    public Result defaultFallback(String serviceId) {
+        return new Result(StatusEnum.ERROR, "微服务(" + serviceId + ")断开连接，请稍后重试！");
+    }
 }

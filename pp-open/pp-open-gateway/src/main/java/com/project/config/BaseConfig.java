@@ -12,8 +12,8 @@ import common.message.ServerStart;
 @Configuration
 @EnableBinding(value = { ServerStartListener.class })
 public class BaseConfig {
-	@StreamListener(MessageConstant.SERVER_START)
-	public void serverStart(ServerStart serverStart) {
-		System.out.println("收到消息:" + serverStart.getServiceId());
-	}
+    @StreamListener(MessageConstant.SERVER_START)
+    public void serverStart(ServerStart serverStart) {
+        System.out.println("收到消息:" + serverStart.getServiceId());
+    }
 }

@@ -21,27 +21,27 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "User对象", description = "")
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String id;
+    private String id;
 
-	@ApiModelProperty(value = "账号")
-	private String account;
+    @ApiModelProperty(value = "账号")
+    private String account;
 
-	@ApiModelProperty(value = "名称")
-	private String name;
+    @ApiModelProperty(value = "名称")
+    private String name;
 
-	@ApiModelProperty(value = "密码")
-	private String password;
+    @ApiModelProperty(value = "密码")
+    private String password;
 
-	@ApiModelProperty(value = "邮箱")
-	private String email;
+    @ApiModelProperty(value = "邮箱")
+    private String email;
 
-	@ApiModelProperty(value = "状态: 0 停用  1 正常")
-	private Boolean enable;
+    @ApiModelProperty(value = "状态: 0 停用  1 正常")
+    private Boolean enable;
 
-	private Integer type;
+    private Integer type;
 
-	@ApiModelProperty(value = "创建时间")
-	private String createTime;
+    @ApiModelProperty(value = "创建时间")
+    private String createTime;
 }

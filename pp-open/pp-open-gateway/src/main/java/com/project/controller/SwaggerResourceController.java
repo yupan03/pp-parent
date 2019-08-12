@@ -19,25 +19,25 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 @RestController
 @RequestMapping("/swagger-resources")
 public class SwaggerResourceController {
-	@Autowired
-	private SwaggerConfig swaggerResourceProvider;
+    @Autowired
+    private SwaggerConfig swaggerResourceProvider;
 
-	public SwaggerResourceController(SwaggerConfig swaggerResourceProvider) {
-		this.swaggerResourceProvider = swaggerResourceProvider;
-	}
+    public SwaggerResourceController(SwaggerConfig swaggerResourceProvider) {
+        this.swaggerResourceProvider = swaggerResourceProvider;
+    }
 
-	@RequestMapping(value = "/configuration/security")
-	public ResponseEntity<SecurityConfiguration> securityConfiguration() {
-		return new ResponseEntity<>(SecurityConfigurationBuilder.builder().build(), HttpStatus.OK);
-	}
+    @RequestMapping(value = "/configuration/security")
+    public ResponseEntity<SecurityConfiguration> securityConfiguration() {
+        return new ResponseEntity<>(SecurityConfigurationBuilder.builder().build(), HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/configuration/ui")
-	public ResponseEntity<UiConfiguration> uiConfiguration() {
-		return new ResponseEntity<>(UiConfigurationBuilder.builder().build(), HttpStatus.OK);
-	}
+    @RequestMapping(value = "/configuration/ui")
+    public ResponseEntity<UiConfiguration> uiConfiguration() {
+        return new ResponseEntity<>(UiConfigurationBuilder.builder().build(), HttpStatus.OK);
+    }
 
-	@RequestMapping
-	public ResponseEntity<List<SwaggerResource>> swaggerResources() {
-		return new ResponseEntity<>(swaggerResourceProvider.get(), HttpStatus.OK);
-	}
+    @RequestMapping
+    public ResponseEntity<List<SwaggerResource>> swaggerResources() {
+        return new ResponseEntity<>(swaggerResourceProvider.get(), HttpStatus.OK);
+    }
 }

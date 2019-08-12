@@ -14,7 +14,7 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping(value = "/wx/pay")
 public class WxPayController {
-	/*
-	 * @Autowired private WxPayService wxPayService;
-	 */
+    /*
+     * @Autowired private WxPayService wxPayService;
+     */
 }

@@ -22,8 +22,8 @@
         u.enable,
         u.type,
         u.create_time
-        from user u 
-        left join user_role_resource urr on urr.user_uuid = u.uuid 
+        from user u
+        left join user_role_resource urr on urr.user_uuid = u.uuid
         where 1 = 1
         and u.account = #{account}
     </select>

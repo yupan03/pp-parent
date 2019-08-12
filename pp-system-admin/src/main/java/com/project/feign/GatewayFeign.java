@@ -10,30 +10,30 @@ import com.project.entity.table.GatewayRouteDefinition;
 @FeignClient(value = "pp-gateway")
 public interface GatewayFeign {
 
-	/**
-	 * 增加路由
-	 * 
-	 * @param gwdefinition
-	 * @return
-	 */
-	@PostMapping("/route/add")
-	boolean add(@RequestBody GatewayRouteDefinition gwdefinition);
+    /**
+     * 增加路由
+     * 
+     * @param gwdefinition
+     * @return
+     */
+    @PostMapping("/route/add")
+    boolean add(@RequestBody GatewayRouteDefinition gwdefinition);
 
-	/**
-	 * 更新路由
-	 * 
-	 * @param gwdefinition
-	 * @return
-	 */
-	@PostMapping("/route/update")
-	boolean update(@RequestBody GatewayRouteDefinition gwdefinition);
+    /**
+     * 更新路由
+     * 
+     * @param gwdefinition
+     * @return
+     */
+    @PostMapping("/route/update")
+    boolean update(@RequestBody GatewayRouteDefinition gwdefinition);
 
-	/**
-	 * 删除路由
-	 * 
-	 * @param name 路由服务名称
-	 * @return
-	 */
-	@PostMapping("/route/delete")
-	boolean delete(@RequestParam("id") String name);
+    /**
+     * 删除路由
+     * 
+     * @param name 路由服务名称
+     * @return
+     */
+    @PostMapping("/route/delete")
+    boolean delete(@RequestParam("id") String name);
 }

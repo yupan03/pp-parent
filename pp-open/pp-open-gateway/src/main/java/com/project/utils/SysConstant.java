@@ -9,6 +9,6 @@ import java.text.SimpleDateFormat;
  *
  */
 public class SysConstant {
-	// 系统日期默认格式
-	public static final SimpleDateFormat DATE_FORMAT_DEFAULT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    // 系统日期默认格式
+    public static final SimpleDateFormat DATE_FORMAT_DEFAULT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

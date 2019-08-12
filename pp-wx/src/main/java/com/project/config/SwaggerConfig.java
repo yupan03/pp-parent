@@ -22,20 +22,20 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @ConditionalOnExpression("${swagger.enable:true}")
 public class SwaggerConfig {
-	@Bean
-	public Docket createRestApi() {
-		ParameterBuilder tokenPar = new ParameterBuilder();
-		List<Parameter> pars = new ArrayList<>();
-		tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
-				.required(false).build();
-		pars.add(tokenPar.build());
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(true).select()
-				.apis(RequestHandlerSelectors.basePackage("com.project.controller")).paths(PathSelectors.any()).build()
-				.globalOperationParameters(pars);
-	}
+    @Bean
+    public Docket createRestApi() {
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).build();
+        pars.add(tokenPar.build());
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(true).select()
+                .apis(RequestHandlerSelectors.basePackage("com.project.controller")).paths(PathSelectors.any()).build()
+                .globalOperationParameters(pars);
+    }
 
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("小程序api文档").description("简单优雅的restfun风格，http://blog.csdn.net/saytime")
-				.termsOfServiceUrl("http://blog.csdn.net/saytime").version("1.0").build();
-	}
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("小程序api文档").description("简单优雅的restfun风格，http://blog.csdn.net/saytime")
+                .termsOfServiceUrl("http://blog.csdn.net/saytime").version("1.0").build();
+    }
 }

@@ -8,5 +8,6 @@ import java.util.Map;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 
 public class RouteRepositoryContext {
-	protected static Map<String, RouteDefinition> routes = synchronizedMap(new LinkedHashMap<String, RouteDefinition>());
+    protected static Map<String, RouteDefinition> routes = synchronizedMap(
+            new LinkedHashMap<String, RouteDefinition>());
 }

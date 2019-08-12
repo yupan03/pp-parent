@@ -15,28 +15,28 @@ import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 @ConditionalOnClass(WxPayService.class)
 @EnableConfigurationProperties(WxPayProperties.class)
 public class WxPayConfiguration {
-	@Autowired
-	private WxPayProperties properties;
+    @Autowired
+    private WxPayProperties properties;
 
-	@Bean
-	@ConditionalOnMissingBean
-	public WxPayConfig payConfig() {
-		WxPayConfig payConfig = new WxPayConfig();
+    @Bean
+    @ConditionalOnMissingBean
+    public WxPayConfig payConfig() {
+        WxPayConfig payConfig = new WxPayConfig();
 
-		payConfig.setAppId(this.properties.getAppId());
-		payConfig.setMchId(this.properties.getMchId());
-		payConfig.setMchKey(this.properties.getMchKey());
-		payConfig.setKeyPath(this.properties.getKeyPath());
-		payConfig.setNotifyUrl(this.properties.getNotifyUrl());
-		payConfig.setTradeType("JSAPI");
+        payConfig.setAppId(this.properties.getAppId());
+        payConfig.setMchId(this.properties.getMchId());
+        payConfig.setMchKey(this.properties.getMchKey());
+        payConfig.setKeyPath(this.properties.getKeyPath());
+        payConfig.setNotifyUrl(this.properties.getNotifyUrl());
+        payConfig.setTradeType("JSAPI");
 
-		return payConfig;
-	}
+        return payConfig;
+    }
 
-	@Bean
-	public WxPayService wxPayService(WxPayConfig payConfig) {
-		WxPayService wxPayService = new WxPayServiceImpl();
-		wxPayService.setConfig(payConfig);
-		return wxPayService;
-	}
+    @Bean
+    public WxPayService wxPayService(WxPayConfig payConfig) {
+        WxPayService wxPayService = new WxPayServiceImpl();
+        wxPayService.setConfig(payConfig);
+        return wxPayService;
+    }
 }

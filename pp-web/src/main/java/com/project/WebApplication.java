@@ -17,17 +17,17 @@ import feign.Retryer;
 @EnableFeignClients
 public class WebApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WebApplication.class, args);
+    }
 
-	/**
-	 * Feign重试
-	 * 
-	 * @return
-	 */
-	@Bean
-	public Retryer feignRetryer() {
-		return new Retryer.Default();
-	}
+    /**
+     * Feign重试
+     * 
+     * @return
+     */
+    @Bean
+    public Retryer feignRetryer() {
+        return new Retryer.Default();
+    }
 }

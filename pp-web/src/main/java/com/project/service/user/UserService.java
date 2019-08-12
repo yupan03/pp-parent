@@ -10,16 +10,16 @@ import com.project.entity.tables.user.User;
 
 @Service
 public class UserService {
-	@Autowired
-	private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-	public User getUserInfo(String account) {
-		User user = userDao.selectByAccount(account);
+    public User getUserInfo(String account) {
+        User user = userDao.selectByAccount(account);
 
-		return user;
-	}
+        return user;
+    }
 
-	public List<User> pageList() {
-		return null;
-	}
+    public List<User> pageList() {
+        return null;
+    }
 }

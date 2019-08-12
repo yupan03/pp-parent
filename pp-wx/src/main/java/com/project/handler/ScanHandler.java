@@ -13,10 +13,10 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 @Component
 public class ScanHandler extends AbstractHandler {
 
-	@Override
-	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map, WxMpService wxMpService,
-			WxSessionManager wxSessionManager) throws WxErrorException {
-		// 扫码事件处理
-		return null;
-	}
+    @Override
+    public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map, WxMpService wxMpService,
+            WxSessionManager wxSessionManager) throws WxErrorException {
+        // 扫码事件处理
+        return null;
+    }
 }

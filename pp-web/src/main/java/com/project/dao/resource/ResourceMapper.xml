@@ -39,6 +39,7 @@
         resource_name = values(resource_name),
         resource_method = values(resource_method),
         resource_param = values(resource_param),
-        remark = values(remark)
+        remark =
+        values(remark)
     </insert>
 </mapper>

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.model.StatusEnum;
-import common.model.result.ResultObj;
+import common.result.ResultObj;
+import common.result.ResultStatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,113 +23,113 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 @RestController
 @RequestMapping(value = "/wx/mp/service")
 public class WxMpServiceController {
-	@Autowired
-	private WxMpService wxMpService;
+    @Autowired
+    private WxMpService wxMpService;
 
-	/**
-	 ** 网页授权获取微信用户信息
-	 * 
-	 * @param code
-	 * @return
-	 */
-	@ApiOperation(value = "网页授权获取微信用户信息")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "code", value = "微信重定位code", required = true, dataType = "String", paramType = "query"),
-			@ApiImplicitParam(name = "state", value = "自定义校验参数", required = true, dataType = "String", paramType = "query") })
-	@PostMapping(value = "/getUserInfoByCode")
-	public ResultObj<?> getUserInfoByCode(String code, String state) {
-		if (StringUtils.isBlank(code)) {
-			return new ResultObj<>(StatusEnum.ERROR_PARAM, "code不能为空");
-		}
-		if (StringUtils.isBlank(state) && !"true".equals(state)) {
-			return new ResultObj<>(StatusEnum.ERROR_PARAM, "非法请求");
-		}
+    /**
+     ** 网页授权获取微信用户信息
+     * 
+     * @param code
+     * @return
+     */
+    @ApiOperation(value = "网页授权获取微信用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "code", value = "微信重定位code", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "state", value = "自定义校验参数", required = true, dataType = "String", paramType = "query") })
+    @PostMapping(value = "/getUserInfoByCode")
+    public ResultObj<?> getUserInfoByCode(String code, String state) {
+        if (StringUtils.isBlank(code)) {
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "code不能为空");
+        }
+        if (StringUtils.isBlank(state) && !"true".equals(state)) {
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "非法请求");
+        }
 
-		ResultObj<WxMpUser> responseResult = new ResultObj<>(StatusEnum.SUCCESS);
-		WxMpUser userInfo = null;
-		try {
-			// 网页授权code获取获取认证信息
-			WxMpOAuth2AccessToken oauth2getAccessToken = wxMpService.oauth2getAccessToken(code);
-			// 获取微信用户基本信息
-			userInfo = wxMpService.getUserService().userInfo(oauth2getAccessToken.getOpenId());
-			if (userInfo == null) {
-				return new ResultObj<>(StatusEnum.ERROR, "获取微信用户信息为空");
-			}
-			responseResult.setData(userInfo);
-		} catch (WxErrorException e) {
-			e.printStackTrace();
-			return new ResultObj<>(StatusEnum.ERROR, "获取微信用户信息错误");
-		}
+        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        WxMpUser userInfo = null;
+        try {
+            // 网页授权code获取获取认证信息
+            WxMpOAuth2AccessToken oauth2getAccessToken = wxMpService.oauth2getAccessToken(code);
+            // 获取微信用户基本信息
+            userInfo = wxMpService.getUserService().userInfo(oauth2getAccessToken.getOpenId());
+            if (userInfo == null) {
+                return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息为空");
+            }
+            responseResult.setData(userInfo);
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+            return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息错误");
+        }
 
-		return responseResult;
-	}
+        return responseResult;
+    }
 
-	/**
-	 ** 根据openid获取微信用户信息
-	 * 
-	 * @param openId
-	 * @return
-	 */
-	@ApiOperation(value = "根据openid获取微信用户信息")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "openId", value = "公众号openId", required = true, dataType = "String", paramType = "query") })
-	@PostMapping(value = "/getUserInfoByOpenId")
-	public ResultObj<?> getUserInfoByOpenId(String openId) {
-		if (StringUtils.isBlank(openId)) {
-			return new ResultObj<>(StatusEnum.ERROR_PARAM, "openId不能为空");
-		}
-		ResultObj<WxMpUser> responseResult = new ResultObj<>(StatusEnum.SUCCESS);
-		try {
-			// 获取微信用户基本信息
-			responseResult.setData(wxMpService.getUserService().userInfo(openId));
-		} catch (WxErrorException e) {
-			e.printStackTrace();
-			return new ResultObj<>(StatusEnum.ERROR, "获取微信用户信息错误");
-		}
+    /**
+     ** 根据openid获取微信用户信息
+     * 
+     * @param openId
+     * @return
+     */
+    @ApiOperation(value = "根据openid获取微信用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "openId", value = "公众号openId", required = true, dataType = "String", paramType = "query") })
+    @PostMapping(value = "/getUserInfoByOpenId")
+    public ResultObj<?> getUserInfoByOpenId(String openId) {
+        if (StringUtils.isBlank(openId)) {
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "openId不能为空");
+        }
+        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        try {
+            // 获取微信用户基本信息
+            responseResult.setData(wxMpService.getUserService().userInfo(openId));
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+            return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息错误");
+        }
 
-		return responseResult;
-	}
+        return responseResult;
+    }
 
-	/**
-	 ** 连接JSSDK的票据
-	 * 
-	 * @param url
-	 * @return
-	 */
-	@ApiOperation(value = "连接JSSDK的票据")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "url", value = "使用JSSDK的地址", required = true, dataType = "String", paramType = "query") })
-	@PostMapping(value = "/createJsapiSignature")
-	public ResultObj<?> createJsapiSignature(String url) {
-		if (StringUtils.isBlank(url)) {
-			return new ResultObj<>(StatusEnum.ERROR_PARAM, "url不能为空");
-		}
-		ResultObj<WxJsapiSignature> responseResult = new ResultObj<>(StatusEnum.SUCCESS);
-		try {
-			responseResult.setData(wxMpService.createJsapiSignature(url));
-		} catch (WxErrorException e) {
-			return new ResultObj<>(StatusEnum.ERROR, e.getMessage());
-		}
+    /**
+     ** 连接JSSDK的票据
+     * 
+     * @param url
+     * @return
+     */
+    @ApiOperation(value = "连接JSSDK的票据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "url", value = "使用JSSDK的地址", required = true, dataType = "String", paramType = "query") })
+    @PostMapping(value = "/createJsapiSignature")
+    public ResultObj<?> createJsapiSignature(String url) {
+        if (StringUtils.isBlank(url)) {
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "url不能为空");
+        }
+        ResultObj<WxJsapiSignature> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        try {
+            responseResult.setData(wxMpService.createJsapiSignature(url));
+        } catch (WxErrorException e) {
+            return new ResultObj<>(ResultStatusEnum.ERROR, e.getMessage());
+        }
 
-		return responseResult;
-	}
+        return responseResult;
+    }
 
-	/**
-	 * 获取带参数的永久二维码
-	 * 
-	 * @param secn
-	 */
-	@ApiOperation(value = "获取带参数的永久二维码")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "sceneStr", value = "二维码参数", required = true, dataType = "String", paramType = "query") })
-	@PostMapping(value = "/getQrCode")
-	public WxMpQrCodeTicket getQrCode(String sceneStr) {
-		WxMpQrCodeTicket qrCodeCreateLastTicket = null;
-		try {
-			qrCodeCreateLastTicket = wxMpService.getQrcodeService().qrCodeCreateLastTicket(sceneStr);
-		} catch (WxErrorException e) {
-			e.printStackTrace();
-		}
-		return qrCodeCreateLastTicket;
-	}
+    /**
+     * 获取带参数的永久二维码
+     * 
+     * @param secn
+     */
+    @ApiOperation(value = "获取带参数的永久二维码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sceneStr", value = "二维码参数", required = true, dataType = "String", paramType = "query") })
+    @PostMapping(value = "/getQrCode")
+    public WxMpQrCodeTicket getQrCode(String sceneStr) {
+        WxMpQrCodeTicket qrCodeCreateLastTicket = null;
+        try {
+            qrCodeCreateLastTicket = wxMpService.getQrcodeService().qrCodeCreateLastTicket(sceneStr);
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+        }
+        return qrCodeCreateLastTicket;
+    }
 }

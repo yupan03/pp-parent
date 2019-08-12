@@ -21,14 +21,14 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value = "/")
 public class TestController extends BaseController {
 
-	@ApiOperation(value = "/sayHello")
-	@PostMapping(value = "/sayHello")
-	@PassToken
-	public Map<String, Object> getMethodName(@RequestBody RequestParam<User> requestParam) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("key", "hello world!");
-		System.out.println(requestParam.getObj().getName());
-		map.put("requestParam", requestParam);
-		return map;
-	}
+    @ApiOperation(value = "/sayHello")
+    @PostMapping(value = "/sayHello")
+    @PassToken
+    public Map<String, Object> getMethodName(@RequestBody RequestParam<User> requestParam) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("key", "hello world!");
+        System.out.println(requestParam.getObj().getName());
+        map.put("requestParam", requestParam);
+        return map;
+    }
 }

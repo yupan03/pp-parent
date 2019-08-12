@@ -17,8 +17,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import common.annotation.PassToken;
 import common.jwt.JWTUtils;
-import common.model.CusException;
-import common.model.StatusEnum;
+import common.result.ResultException;
+import common.result.ResultStatusEnum;
 
 /**
  * Token前置增强
@@ -30,37 +30,37 @@ import common.model.StatusEnum;
 @Component
 public class TokenAspect {
 
-	/**
-	 ** 定义切面
-	 */
-	@Pointcut("execution(public * com.project.controller..*.*(..))")
-	public void tokenCut() {
-	}
+    /**
+     ** 定义切面
+     */
+    @Pointcut("execution(public * com.project.controller..*.*(..))")
+    public void tokenCut() {
+    }
 
-	@Before("tokenCut()")
-	public void around(JoinPoint point) {
-		MethodSignature signature = (MethodSignature) point.getSignature();
-		Method method = signature.getMethod();
+    @Before("tokenCut()")
+    public void around(JoinPoint point) {
+        MethodSignature signature = (MethodSignature) point.getSignature();
+        Method method = signature.getMethod();
 
-		if (method.isAnnotationPresent(PassToken.class)) {
-			PassToken passToken = method.getAnnotation(PassToken.class);
-			if (passToken.value()) {
-				return;
-			}
-		}
+        if (method.isAnnotationPresent(PassToken.class)) {
+            PassToken passToken = method.getAnnotation(PassToken.class);
+            if (passToken.value()) {
+                return;
+            }
+        }
 
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-				.getRequest();// 获取request
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                .getRequest();// 获取request
 
-		String token = request.getHeader(HttpHeaders.AUTHORIZATION);
+        String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-		if (StringUtils.isEmpty(token)) {
-			throw new CusException(StatusEnum.AUTH_FAIL, "请登录");
-		}
+        if (StringUtils.isEmpty(token)) {
+            throw new ResultException(ResultStatusEnum.AUTH_FAIL, "请登录");
+        }
 
-		// 检验token的失效性
-		if (!JWTUtils.isTokenExpired(token)) {
-			throw new CusException(StatusEnum.AUTH_FAIL, "token失效，请重新登录");
-		}
-	}
+        // 检验token的失效性
+        if (!JWTUtils.isTokenExpired(token)) {
+            throw new ResultException(ResultStatusEnum.AUTH_FAIL, "token失效，请重新登录");
+        }
+    }
 }

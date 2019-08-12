@@ -12,19 +12,19 @@ import lombok.Data;
 @Data
 @ConfigurationProperties(prefix = "wx.miniapp")
 public class WxMiniappProperties {
-	/**
-	 ** 设置微信小程序的appid
-	 */
-	private String appId;
+    /**
+     ** 设置微信小程序的appid
+     */
+    private String appId;
 
-	/**
-	 ** 设置微信小程序的app secret
-	 */
-	private String secret;
+    /**
+     ** 设置微信小程序的app secret
+     */
+    private String secret;
 
-	private String token;
+    private String token;
 
-	private String aesKey;
+    private String aesKey;
 
-	private String msgDataFormat;
+    private String msgDataFormat;
 }

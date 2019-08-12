@@ -17,27 +17,27 @@ import reactor.core.publisher.Mono;
 @Component
 public class RouteRepositoryCompent implements RouteDefinitionRepository {
 
-	@Override
-	public Mono<Void> save(Mono<RouteDefinition> route) {
-		return route.flatMap(r -> {
-			RouteRepositoryContext.routes.put(r.getId(), r);
-			return Mono.empty();
-		});
-	}
+    @Override
+    public Mono<Void> save(Mono<RouteDefinition> route) {
+        return route.flatMap(r -> {
+            RouteRepositoryContext.routes.put(r.getId(), r);
+            return Mono.empty();
+        });
+    }
 
-	@Override
-	public Mono<Void> delete(Mono<String> routeId) {
-		return routeId.flatMap(id -> {
-			if (RouteRepositoryContext.routes.containsKey(id)) {
-				RouteRepositoryContext.routes.remove(id);
-				return Mono.empty();
-			}
-			return Mono.defer(() -> Mono.error(new NotFoundException("RouteDefinition not found: " + routeId)));
-		});
-	}
+    @Override
+    public Mono<Void> delete(Mono<String> routeId) {
+        return routeId.flatMap(id -> {
+            if (RouteRepositoryContext.routes.containsKey(id)) {
+                RouteRepositoryContext.routes.remove(id);
+                return Mono.empty();
+            }
+            return Mono.defer(() -> Mono.error(new NotFoundException("RouteDefinition not found: " + routeId)));
+        });
+    }
 
-	@Override
-	public Flux<RouteDefinition> getRouteDefinitions() {
-		return Flux.fromIterable(RouteRepositoryContext.routes.values());
-	}
+    @Override
+    public Flux<RouteDefinition> getRouteDefinitions() {
+        return Flux.fromIterable(RouteRepositoryContext.routes.values());
+    }
 }

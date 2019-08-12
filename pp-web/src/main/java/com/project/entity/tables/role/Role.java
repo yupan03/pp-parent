@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class Role {
-	@TableId
-	private String id;
-	private String name;
-	private String createTime;
+    @TableId
+    private String id;
+    private String name;
+    private String createTime;
 }

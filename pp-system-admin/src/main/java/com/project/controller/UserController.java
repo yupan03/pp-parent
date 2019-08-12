@@ -1,6 +1,5 @@
 package com.project.controller;
 
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +7,7 @@ import com.project.controller.BaseController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author David
@@ -19,4 +18,3 @@ import com.project.controller.BaseController;
 public class UserController extends BaseController {
 
 }
-

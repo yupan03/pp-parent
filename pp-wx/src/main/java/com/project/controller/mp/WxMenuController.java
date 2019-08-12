@@ -20,20 +20,20 @@ import me.chanjar.weixin.mp.api.WxMpService;
 @RestController
 @RequestMapping(value = "/wx/mp/menu")
 public class WxMenuController {
-	@Autowired
-	private WxMpService wxMpService;
+    @Autowired
+    private WxMpService wxMpService;
 
-	@PostMapping(value = "/create")
-	public String menuCreate(@RequestBody WxMenu menu) {
+    @PostMapping(value = "/create")
+    public String menuCreate(@RequestBody WxMenu menu) {
 
-		String msg = "";
-		try {
-			msg = wxMpService.getMenuService().menuCreate(menu);
-		} catch (WxErrorException e) {
-			e.printStackTrace();
-			msg = "创建菜单失败，请重试！";
-		}
+        String msg = "";
+        try {
+            msg = wxMpService.getMenuService().menuCreate(menu);
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+            msg = "创建菜单失败，请重试！";
+        }
 
-		return msg;
-	}
+        return msg;
+    }
 }

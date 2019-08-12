@@ -14,7 +14,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableFeignClients
 public class PpSystemApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PpSystemApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PpSystemApplication.class, args);
+    }
 }
