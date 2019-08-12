@@ -1,6 +1,6 @@
-package common.model.result;
+package common.result;
 
-public enum StatusEnum {
+public enum ResultStatusEnum {
     SUCCESS(200, "请求成功"),
 
     ERROR(500, "服务器错误"),
@@ -26,7 +26,7 @@ public enum StatusEnum {
     public Integer status;
     public String message;
 
-    StatusEnum(int status, String message) {
+    ResultStatusEnum(int status, String message) {
         this.status = status;
         this.message = message;
     }

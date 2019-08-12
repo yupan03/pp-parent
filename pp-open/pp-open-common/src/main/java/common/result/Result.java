@@ -1,15 +1,15 @@
-package common.model.result;
+package common.result;
 
 public class Result {
     private int status;
     private String msg;
 
-    public Result(StatusEnum statusEnum) {
+    public Result(ResultStatusEnum statusEnum) {
         this.status = statusEnum.status;
         this.msg = statusEnum.message;
     }
 
-    public Result(StatusEnum statusEnum, String msg) {
+    public Result(ResultStatusEnum statusEnum, String msg) {
         this.status = statusEnum.status;
         this.msg = msg;
     }

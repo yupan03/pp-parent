@@ -1,8 +1,6 @@
-package common.model;
+package common.result;
 
 import java.util.List;
-
-import common.model.result.StatusEnum;
 
 /**
  * 自定义异常
@@ -10,25 +8,25 @@ import common.model.result.StatusEnum;
  * @author David
  *
  */
-public class CusException extends RuntimeException {
+public class ResultException extends RuntimeException {
     private static final long serialVersionUID = 8900977594896382046L;
 
-    private StatusEnum statusEnum;
+    private ResultStatusEnum statusEnum;
     private String msg;
     private Object data;
     private List<Object> dataList;
 
-    public CusException(StatusEnum statusEnum) {
+    public ResultException(ResultStatusEnum statusEnum) {
         this.statusEnum = statusEnum;
         this.msg = statusEnum.message;
     }
 
-    public CusException(StatusEnum statusEnum, String msg) {
+    public ResultException(ResultStatusEnum statusEnum, String msg) {
         this.statusEnum = statusEnum;
         this.msg = msg;
     }
 
-    public StatusEnum getStatusEnum() {
+    public ResultStatusEnum getStatusEnum() {
         return statusEnum;
     }
 
@@ -52,7 +50,7 @@ public class CusException extends RuntimeException {
         this.dataList = dataList;
     }
 
-    public void setStatusEnum(StatusEnum statusEnum) {
+    public void setStatusEnum(ResultStatusEnum statusEnum) {
         this.statusEnum = statusEnum;
     }
 

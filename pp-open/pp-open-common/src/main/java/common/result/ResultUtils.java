@@ -1,4 +1,4 @@
-package common.model.result;
+package common.result;
 
 import java.util.List;
 
@@ -10,23 +10,23 @@ import java.util.List;
  */
 public class ResultUtils {
     public static Result success() {
-        return new Result(StatusEnum.SUCCESS);
+        return new Result(ResultStatusEnum.SUCCESS);
     }
 
     public static <T> ResultObj<T> success(T object) {
-        ResultObj<T> result = new ResultObj<>(StatusEnum.SUCCESS);
+        ResultObj<T> result = new ResultObj<>(ResultStatusEnum.SUCCESS);
         result.setData(object);
         return result;
     }
 
     public static <T> ResultList<T> success(List<T> dataList) {
-        ResultList<T> result = new ResultList<>(StatusEnum.SUCCESS);
+        ResultList<T> result = new ResultList<>(ResultStatusEnum.SUCCESS);
         result.setDataList(dataList);
         return result;
     }
 
     public static <T> ResultPage<T> success(Long pageNum, Long pageSize, Long total, List<T> dataList) {
-        ResultPage<T> result = new ResultPage<>(StatusEnum.SUCCESS);
+        ResultPage<T> result = new ResultPage<>(ResultStatusEnum.SUCCESS);
         result.setDataList(dataList);
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);

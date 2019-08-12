@@ -1,13 +1,13 @@
-package common.model.result;
+package common.result;
 
 public class ResultObj<T> extends Result {
     private T data;
 
-    public ResultObj(StatusEnum statusEnum) {
+    public ResultObj(ResultStatusEnum statusEnum) {
         super(statusEnum);
     }
 
-    public ResultObj(StatusEnum statusEnum, String msg) {
+    public ResultObj(ResultStatusEnum statusEnum, String msg) {
         super(statusEnum, msg);
     }
 

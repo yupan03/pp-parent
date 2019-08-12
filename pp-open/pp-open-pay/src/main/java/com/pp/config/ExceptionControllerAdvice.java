@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import common.model.CusException;
-import common.model.result.Result;
-import common.model.result.StatusEnum;
+import common.result.Result;
+import common.result.ResultException;
+import common.result.ResultStatusEnum;
 
 /**
  * 统一异常处理
@@ -37,9 +37,9 @@ public class ExceptionControllerAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler(value = CusException.class)
+    @ExceptionHandler(value = ResultException.class)
     @ResponseBody
-    public Result handlerProjectException(CusException e) {
+    public Result handlerProjectException(ResultException e) {
         logger.info(e.getMsg());
         return new Result(e.getStatusEnum(), e.getMsg());
     }
@@ -55,12 +55,12 @@ public class ExceptionControllerAdvice {
     public Result handlerServletException(ServletException e) {
         if (e instanceof HttpRequestMethodNotSupportedException) {
             // 405请求方式错误
-            return new Result(StatusEnum.URL_METHOD_EOOR, e.getMessage());
+            return new Result(ResultStatusEnum.URL_METHOD_EOOR, e.getMessage());
         } else if (e instanceof NoHandlerFoundException) {
             // 404 请求未找到
-            return new Result(StatusEnum.URL_NOT_FOUND, e.getMessage());
+            return new Result(ResultStatusEnum.URL_NOT_FOUND, e.getMessage());
         } else {
-            return new Result(StatusEnum.ERROR, e.getMessage());
+            return new Result(ResultStatusEnum.ERROR, e.getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody
     public Result handlerSQLException(SQLException e) {
-        return new Result(StatusEnum.ERROR_SQL, e.getMessage());
+        return new Result(ResultStatusEnum.ERROR_SQL, e.getMessage());
     }
 
     /**
@@ -89,7 +89,7 @@ public class ExceptionControllerAdvice {
         for (ConstraintViolation<?> violation : violations) {
             strBuilder.append(violation.getMessage() + "\n");
         }
-        return new Result(StatusEnum.ERROR_PARAM, strBuilder.toString());
+        return new Result(ResultStatusEnum.ERROR_PARAM, strBuilder.toString());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -101,7 +101,7 @@ public class ExceptionControllerAdvice {
         String code = error.getDefaultMessage();
         String message = String.format("%s %s", field, code);
 
-        return new Result(StatusEnum.ERROR_PARAM, message);
+        return new Result(ResultStatusEnum.ERROR_PARAM, message);
     }
 
 }

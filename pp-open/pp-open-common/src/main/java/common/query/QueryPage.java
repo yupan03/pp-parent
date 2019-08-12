@@ -1,9 +1,9 @@
-package common.model.query;
+package common.query;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import common.model.result.ResultPage;
-import common.model.result.ResultUtils;
+import common.result.ResultPage;
+import common.result.ResultUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

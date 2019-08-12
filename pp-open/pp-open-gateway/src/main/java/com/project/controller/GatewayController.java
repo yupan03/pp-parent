@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.model.result.Result;
-import common.model.result.StatusEnum;
+import common.result.Result;
+import common.result.ResultStatusEnum;
 
 /**
  * 熔断（服务降级）
@@ -21,6 +21,6 @@ public class GatewayController {
      */
     @RequestMapping(value = "/defaultFallback", method = RequestMethod.GET)
     public Result defaultFallback(String serviceId) {
-        return new Result(StatusEnum.ERROR, "微服务(" + serviceId + ")断开连接，请稍后重试！");
+        return new Result(ResultStatusEnum.ERROR, "微服务(" + serviceId + ")断开连接，请稍后重试！");
     }
 }

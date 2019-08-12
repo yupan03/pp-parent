@@ -1,15 +1,15 @@
-package common.model.result;
+package common.result;
 
 import java.util.List;
 
 public class ResultList<T> extends Result {
     private List<T> dataList;
 
-    public ResultList(StatusEnum statusEnum) {
+    public ResultList(ResultStatusEnum statusEnum) {
         super(statusEnum);
     }
 
-    public ResultList(StatusEnum statusEnum, String msg) {
+    public ResultList(ResultStatusEnum statusEnum, String msg) {
         super(statusEnum, msg);
     }
 

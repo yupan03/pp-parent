@@ -1,15 +1,15 @@
-package common.model.result;
+package common.result;
 
 public class ResultPage<T> extends ResultList<T> {
     private Long pageSize;
     private Long pageNum;
     private Long total;
 
-    public ResultPage(StatusEnum statusEnum) {
+    public ResultPage(ResultStatusEnum statusEnum) {
         super(statusEnum);
     }
 
-    public ResultPage(StatusEnum statusEnum, String msg) {
+    public ResultPage(ResultStatusEnum statusEnum, String msg) {
         super(statusEnum, msg);
     }
 
