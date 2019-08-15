@@ -35,12 +35,6 @@
             <artifactId>weixin-java-mp</artifactId>
             <version>3.4.0</version>
         </dependency>
-        <!-- 微信支付第三方jar包 -->
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-pay</artifactId>
-            <version>3.4.0</version>
-        </dependency>
         <!-- 微信小程序第三方jar包 -->
         <dependency>
             <groupId>com.github.binarywang</groupId>

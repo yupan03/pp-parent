@@ -1,4 +1,4 @@
-package com.project.config;
+package com.pp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
