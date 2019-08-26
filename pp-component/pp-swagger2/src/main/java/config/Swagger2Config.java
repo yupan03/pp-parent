@@ -22,7 +22,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @author David
  *
  */
-public class SwaggerConfig {
+public class Swagger2Config {
     @Bean
     public Docket createRestApi() {
         ParameterBuilder tokenPar = new ParameterBuilder();
