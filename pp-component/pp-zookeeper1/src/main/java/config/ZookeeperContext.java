@@ -1,4 +1,4 @@
-package common.zookeeper;
+package config;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -19,16 +19,6 @@ import org.springframework.util.StringUtils;
  * @author David
  */
 public class ZookeeperContext {
-    /**
-     * zookeeper存放接口路由信息的根目录
-     */
-    public static final String SOP_SERVICE_ROUTE_PATH = "/com.gitee.sop.route";
-
-    /**
-     * 消息监听路径
-     */
-    public static final String SOP_MSG_CHANNEL_PATH = "/com.gitee.sop.channel";
-
     private static CuratorFramework client;
 
     private static Environment environment;
@@ -56,34 +46,6 @@ public class ZookeeperContext {
 
         client.start();
         return client;
-    }
-
-    public static String getRouteRootPath() {
-        return SOP_SERVICE_ROUTE_PATH;
-    }
-
-    public static String getIsvInfoChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/isvinfo";
-    }
-
-    public static String getServiceGrayChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/gray";
-    }
-
-    public static String getIsvRoutePermissionChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/isv-route-permission";
-    }
-
-    public static String getRouteConfigChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/route-conf";
-    }
-
-    public static String getLimitConfigChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/limit-conf";
-    }
-
-    public static String getIpBlacklistChannelPath() {
-        return SOP_MSG_CHANNEL_PATH + "/ipblacklist-conf";
     }
 
     public static CuratorFramework getClient() {
@@ -135,11 +97,6 @@ public class ZookeeperContext {
 
     /**
      * 监听一个节点
-     *
-     * @param path
-     * @param onChange 节点修改后触发
-     * @return 返回path
-     * @throws Exception
      */
     public static String listenPath(String path, Consumer<NodeCache> onChange) throws Exception {
         String ret = createOrUpdateData(path, "{}");
@@ -156,11 +113,6 @@ public class ZookeeperContext {
 
     /**
      * 获取子节点信息并监听子节点
-     *
-     * @param parentPath   父节点路径
-     * @param listConsumer 子节点数据
-     * @param listener     监听事件
-     * @throws Exception
      */
     public static void getChildrenAndListen(String parentPath, Consumer<List<ChildData>> listConsumer,
             PathChildrenCacheListener listener) throws Exception {
@@ -183,10 +135,6 @@ public class ZookeeperContext {
 
     /**
      * 获取子节点信息
-     *
-     * @param parentPath   父节点路径
-     * @param listConsumer 子节点数据
-     * @throws Exception
      */
     public static void getChildrenData(String parentPath, Consumer<List<ChildData>> listConsumer) throws Exception {
         // 为子节点添加watcher
@@ -207,10 +155,6 @@ public class ZookeeperContext {
 
     /**
      * 监听子节点的增删改
-     *
-     * @param parentPath 父节点路径
-     * @param listener
-     * @throws Exception
      */
     public static void listenChildren(String parentPath, PathChildrenCacheListener listener) throws Exception {
         // 为子节点添加watcher

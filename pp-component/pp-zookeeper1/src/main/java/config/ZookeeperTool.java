@@ -1,21 +1,17 @@
-package common.zookeeper;
+package config;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import java.io.Closeable;
+import java.io.IOException;
+
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
-import java.io.Closeable;
-import java.io.IOException;
-
 /**
- * @author tanghc
+ * @author David
  */
-@Slf4j
-@Getter
 public class ZookeeperTool implements Closeable {
 
     private CuratorFramework client;
@@ -26,6 +22,14 @@ public class ZookeeperTool implements Closeable {
         initZookeeperClient(environment);
     }
 
+    public CuratorFramework getClient() {
+        return client;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
     public void initZookeeperClient(Environment environment) {
         String zookeeperServerAddr = environment.getProperty("spring.cloud.zookeeper.connect-string");
         if (StringUtils.isEmpty(zookeeperServerAddr)) {
@@ -33,8 +37,6 @@ public class ZookeeperTool implements Closeable {
         }
         String baseSleepTimeMs = environment.getProperty("spring.cloud.zookeeper.baseSleepTimeMs");
         String maxRetries = environment.getProperty("spring.cloud.zookeeper.maxRetries");
-        log.info("初始化zookeeper客户端，zookeeperServerAddr:{}, baseSleepTimeMs:{}, maxRetries:{}", zookeeperServerAddr,
-                baseSleepTimeMs, maxRetries);
         CuratorFramework client = CuratorFrameworkFactory.builder().connectString(zookeeperServerAddr)
                 .retryPolicy(new ExponentialBackoffRetry(3000, 3)).build();
 
@@ -45,10 +47,6 @@ public class ZookeeperTool implements Closeable {
 
     /**
      * 获取节点内容
-     *
-     * @param path
-     * @return 返回节点内容
-     * @throws ZookeeperPathNotExistException 节点不存在，抛出异常
      */
     public String getData(String path) throws Exception {
         if (!isPathExist(path)) {
@@ -62,6 +60,9 @@ public class ZookeeperTool implements Closeable {
         }
     }
 
+    /**
+     * 判断路径是否存在
+     */
     public boolean isPathExist(String path) {
         try {
             return client.checkExists().forPath(path) != null;
@@ -72,11 +73,6 @@ public class ZookeeperTool implements Closeable {
 
     /**
      * 创建path，如果path存在不报错，静默返回path名称
-     *
-     * @param path
-     * @param data
-     * @return
-     * @throws Exception
      */
     public String createPath(String path, String data) throws Exception {
         if (isPathExist(path)) {
@@ -89,11 +85,6 @@ public class ZookeeperTool implements Closeable {
 
     /**
      * 新建或保存节点
-     *
-     * @param path
-     * @param data
-     * @return 返回path
-     * @throws Exception
      */
     public String createOrUpdateData(String path, String data) throws Exception {
         return getClient().create()

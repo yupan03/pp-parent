@@ -3,12 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.project</groupId>
     <artifactId>pp-wx</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
-        <relativePath />
+        <groupId>com.pp</groupId>
+        <artifactId>pp-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <properties>
