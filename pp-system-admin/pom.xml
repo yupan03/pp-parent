@@ -29,19 +29,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.4</version>
-        </dependency>
-        <dependency>
             <groupId>com.project</groupId>
             <artifactId>pp-common</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pp</groupId>
+            <artifactId>pp-swagger2</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

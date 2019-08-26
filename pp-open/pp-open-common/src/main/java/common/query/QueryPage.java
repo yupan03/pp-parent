@@ -20,8 +20,7 @@ public class QueryPage<T> {
     private Page<T> page = null;
 
     public Page<T> getPage() {
-        page = new Page<T>(pageNum, pageSize);
-        return page;
+        return new Page<T>(pageNum, pageSize);
     }
 
     @ApiModelProperty(hidden = true)
