@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import common.LoginUser;
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

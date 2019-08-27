@@ -12,6 +12,7 @@
         <module>pp-wx</module>
         <module>pp-web</module>
         <module>pp-component</module>
+        <module>pp-service-auth</module>
     </modules>
 
     <properties>

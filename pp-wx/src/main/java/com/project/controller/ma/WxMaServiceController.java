@@ -12,8 +12,8 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 import io.swagger.annotations.Api;
 import me.chanjar.weixin.common.error.WxErrorException;
 

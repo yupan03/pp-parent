@@ -17,8 +17,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import common.annotation.PassToken;
 import common.jwt.JWTUtils;
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 
 /**
  * Token前置增强

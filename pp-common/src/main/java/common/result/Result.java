@@ -1,5 +1,7 @@
 package common.result;
 
+import common.result.status.ResultStatusEnum;
+
 public class Result {
     private int status;
     private String msg;

@@ -2,6 +2,8 @@ package common.result;
 
 import java.util.List;
 
+import common.result.status.ResultStatusEnum;
+
 /**
  * 前端页面返回值封装（错误信息返回统一抛出自定义异常）
  * 

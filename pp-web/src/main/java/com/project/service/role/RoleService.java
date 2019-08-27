@@ -10,8 +10,8 @@ import com.project.dao.role.RoleResourceDao;
 import com.project.entity.tables.role.Role;
 import com.project.entity.tables.role.RoleResource;
 
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 import common.utils.SysUtils;
 
 @Service

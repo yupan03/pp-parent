@@ -11,8 +11,8 @@ import com.project.entity.QueryPage;
 import com.project.entity.table.GatewayRouteDefinition;
 import com.project.feign.GatewayFeign;
 
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 import common.utils.SysUtils;
 
 @Service

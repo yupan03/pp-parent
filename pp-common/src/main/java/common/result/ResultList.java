@@ -2,6 +2,8 @@ package common.result;
 
 import java.util.List;
 
+import common.result.status.ResultStatusEnum;
+
 public class ResultList<T> extends Result {
     private List<T> dataList;
 

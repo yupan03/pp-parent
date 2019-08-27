@@ -1,5 +1,7 @@
 package common.result;
 
+import common.result.status.ResultStatusEnum;
+
 public class ResultPage<T> extends ResultList<T> {
     private Long pageSize;
     private Long pageNum;

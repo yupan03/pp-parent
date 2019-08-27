@@ -1,5 +1,7 @@
 package common.result;
 
+import common.result.status.ResultStatusEnum;
+
 public class ResultObj<T> extends Result {
     private T data;
 

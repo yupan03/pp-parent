@@ -16,10 +16,10 @@ import common.LoginUser;
 import common.VerificationCode;
 import common.annotation.PassToken;
 import common.jwt.JWTUtils;
-import common.result.ResultException;
 import common.result.ResultObj;
 import common.result.ResultUtils;
-import common.result.ResultStatusEnum;
+import common.result.exception.ResultException;
+import common.result.status.ResultStatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

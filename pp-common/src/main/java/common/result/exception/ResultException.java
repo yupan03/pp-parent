@@ -1,6 +1,8 @@
-package common.result;
+package common.result.exception;
 
 import java.util.List;
+
+import common.result.status.ResultStatusEnum;
 
 /**
  * 自定义异常

@@ -1,4 +1,4 @@
-package common.result;
+package common.result.status;
 
 public enum ResultStatusEnum {
     SUCCESS(200, "请求成功"),
