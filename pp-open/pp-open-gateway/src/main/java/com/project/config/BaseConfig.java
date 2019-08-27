@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.project.listener.ServerStartListener;
 
-import common.message.MessageConstant;
-import common.message.ServerStart;
+import rabbit.config.MessageConstant;
+import rabbit.config.ServerStart;
 
 @Configuration
 @EnableBinding(value = { ServerStartListener.class })

@@ -3,7 +3,7 @@ package com.project.listener;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
-import common.message.MessageConstant;
+import rabbit.config.MessageConstant;
 
 /**
  * 服务启动监听
@@ -13,6 +13,6 @@ import common.message.MessageConstant;
  */
 public interface ServerStartListener {
 
-	@Input(MessageConstant.SERVER_START)
-	SubscribableChannel serverStart();
+    @Input(MessageConstant.SERVER_START)
+    SubscribableChannel serverStart();
 }

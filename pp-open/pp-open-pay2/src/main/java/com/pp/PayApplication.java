@@ -9,8 +9,8 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
-import common.message.ServerStart;
-import common.message.ServerStartSendMessage;
+import rabbit.config.ServerStart;
+import rabbit.config.ServerStartSendMessage;
 
 @SpringBootApplication
 @EnableDiscoveryClient

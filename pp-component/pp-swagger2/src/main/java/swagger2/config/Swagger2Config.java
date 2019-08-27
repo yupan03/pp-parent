@@ -1,9 +1,11 @@
-package config;
+package swagger2.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,6 +17,7 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger2配置
@@ -22,9 +25,13 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @author David
  *
  */
+@Configuration
+@EnableSwagger2
+@ConditionalOnExpression("${swagger.enable:true}")
 public class Swagger2Config {
     @Bean
     public Docket createRestApi() {
+        System.out.println("自动装配swagger2");
         ParameterBuilder tokenPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
         tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header")
