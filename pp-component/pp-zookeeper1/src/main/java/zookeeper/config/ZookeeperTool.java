@@ -1,4 +1,4 @@
-package config;
+package zookeeper.config;
 
 import java.io.Closeable;
 import java.io.IOException;

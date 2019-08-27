@@ -1,4 +1,4 @@
-package config;
+package zookeeper.config;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.springframework.core.env.Environment;
