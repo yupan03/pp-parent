@@ -16,7 +16,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import common.annotation.PassToken;
-import common.jwt.JWTUtils;
+//import common.jwt.JWTUtils;
 import common.result.exception.ResultException;
 import common.result.status.ResultStatusEnum;
 
@@ -59,8 +59,8 @@ public class TokenAspect {
         }
 
         // 检验token的失效性
-        if (!JWTUtils.isTokenExpired(token)) {
-            throw new ResultException(ResultStatusEnum.AUTH_FAIL, "token失效，请重新登录");
-        }
+//        if (!JWTUtils.isTokenExpired(token)) {
+//            throw new ResultException(ResultStatusEnum.AUTH_FAIL, "token失效，请重新登录");
+//        }
     }
 }

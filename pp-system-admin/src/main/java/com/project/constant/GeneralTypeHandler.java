@@ -10,7 +10,7 @@ import org.apache.ibatis.type.JdbcType;
 
 import common.status.BaseStatusEnum;
 
-public class GeneralTypeHandler<T extends BaseStatusEnum> extends BaseTypeHandler<BaseStatusEnum> {
+public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHandler<BaseStatusEnum<?>> {
     private Class<T> type;
     private T[] enums;
 
@@ -27,7 +27,7 @@ public class GeneralTypeHandler<T extends BaseStatusEnum> extends BaseTypeHandle
     }
 
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, BaseStatusEnum parameter, JdbcType jdbcType)
+    public void setNonNullParameter(PreparedStatement ps, int i, BaseStatusEnum<?> parameter, JdbcType jdbcType)
             throws SQLException {
         if (jdbcType == null) {
             // 当状态值等于全部的时为空
@@ -76,21 +76,9 @@ public class GeneralTypeHandler<T extends BaseStatusEnum> extends BaseTypeHandle
             throw new NullPointerException("the result code is null " + code);
         }
 
-        if (code instanceof Integer) {
-            for (T e : enums) {
-                if (e.getValue() == code) {
-                    return e;
-                }
-            }
-            throw new IllegalArgumentException(
-                    "Unknown enumeration type , please check the enumeration code :  " + code);
-        }
-
-        if (code instanceof String) {
-            for (T e : enums) {
-                if (code.equals(e.getValue())) {
-                    return e;
-                }
+        for (T e : enums) {
+            if (code.equals(e.getValue())) {
+                return e;
             }
 
             throw new IllegalArgumentException(

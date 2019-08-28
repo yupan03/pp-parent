@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.controller.BaseController;
 import com.project.entity.RequestParam;
 import com.project.entity.tables.user.User;
 
@@ -19,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "测试")
 @RestController
 @RequestMapping(value = "/")
-public class TestController extends BaseController {
+public class TestController {
 
     @ApiOperation(value = "/sayHello")
     @PostMapping(value = "/sayHello")

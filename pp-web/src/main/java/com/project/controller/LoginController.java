@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.LoginUser;
 import common.VerificationCode;
 import common.annotation.PassToken;
-import common.jwt.JWTUtils;
 import common.result.ResultObj;
 import common.result.ResultUtils;
 import common.result.exception.ResultException;
@@ -36,13 +34,7 @@ public class LoginController {
             throw new ResultException(ResultStatusEnum.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
-        LoginUser user = new LoginUser();
-
-        user.setAccount(username);
-
-        String token = JWTUtils.generateToken(user);
-
-        return ResultUtils.success(token);
+        return ResultUtils.success("");
     }
 
     @ApiOperation(value = "验证码")

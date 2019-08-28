@@ -7,14 +7,14 @@ import common.status.BaseStatusEnum;
 import lombok.Getter;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum State implements BaseStatusEnum {
+public enum State implements BaseStatusEnum<Integer> {
     All(-1, "全部"),
 
     NO(0, "停用"),
 
     YES(1, "正常");
 
-    private final int value;
+    private final Integer value;
     @Getter
     private final String desc;
 

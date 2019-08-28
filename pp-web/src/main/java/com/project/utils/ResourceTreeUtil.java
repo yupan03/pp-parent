@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.project.entity.tables.resource.Resource;
 
-import common.utils.JSONUtil;
-
 public class ResourceTreeUtil {
     /**
      ** 使用递归方法建树
@@ -59,6 +57,5 @@ public class ResourceTreeUtil {
         treeNodes.add(resource5);
         treeNodes.add(resource6);
 
-        System.out.println(JSONUtil.ObjectToJson(ResourceTreeUtil.buildByRecursive(treeNodes)));
     }
 }

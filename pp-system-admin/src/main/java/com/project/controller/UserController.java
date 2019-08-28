@@ -3,7 +3,6 @@ package com.project.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.project.controller.BaseController;
 
 /**
  * <p>
@@ -15,6 +14,6 @@ import com.project.controller.BaseController;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserController {
 
 }
