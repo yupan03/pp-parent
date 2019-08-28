@@ -20,6 +20,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         account.setUsername("yupan");
         account.setPassword("123456");
         return new User(account.getUsername(), account.getPassword(),
-                AuthorityUtils.createAuthorityList(account.getRoles()));
+                AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
     }
 }
