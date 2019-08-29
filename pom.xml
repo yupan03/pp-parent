@@ -12,7 +12,7 @@
         <module>pp-wx</module>
         <module>pp-web</module>
         <module>pp-component</module>
-        <module>pp-service-auth</module>
+        <module>pp-light-security</module>
     </modules>
 
     <properties>
