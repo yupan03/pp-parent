@@ -13,6 +13,7 @@
         <module>pp-web</module>
         <module>pp-component</module>
         <module>pp-light-security</module>
+        <module>pp-oauth2</module>
     </modules>
 
     <properties>
