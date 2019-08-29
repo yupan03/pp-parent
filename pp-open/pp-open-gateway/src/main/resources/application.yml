@@ -22,6 +22,7 @@ spring:
 logging:
   level:
     com.alibaba.nacos.client.naming: error
+
 # Feign/Ribbon第一次请求失败
 ribbon:
   eager-load:
@@ -30,17 +31,3 @@ ribbon:
 # mybatis
 mybatis-plus:
   mapper-locations: com/project/dao/*/*.xml
-
-light-security:
-  spec-list:
-    - http-method: ANY
-      path: /login
-      expression: "anon()"
-    - http-method: ANY
-      path: /**
-      expression: "hasLogin()"
-  jwt:
-    # jwt sign 算法
-    algorithm: hs512
-    secret: FlexiblePlatform!@#123456789QAZWSXEDC
-    expiration-in-second: 1209600
