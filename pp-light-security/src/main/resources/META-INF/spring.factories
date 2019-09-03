@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.itmuch.lightsecurity.autoconfigure.lightsecurity.ReactiveLightSecurityAutoConfiguration
