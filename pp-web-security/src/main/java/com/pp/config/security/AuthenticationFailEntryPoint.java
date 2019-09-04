@@ -13,13 +13,15 @@ import java.io.IOException;
 public class AuthenticationFailEntryPoint implements AuthenticationEntryPoint {
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response,
-            AuthenticationException authException) throws IOException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
+            throws IOException {
+
+        exception.printStackTrace();
         // 认证失败返回
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         response.setCharacterEncoding("UTF-8");
         response.resetBuffer();
-        response.getWriter().write("认证失败");
+        response.getWriter().write(exception.getMessage());
     }
 }

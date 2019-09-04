@@ -1,30 +1,48 @@
 package com.pp.config.security;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableAutoConfiguration
 public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
-    @Resource
+    @Autowired
     private JwtAuthenticationTokenFilter tokenFilter;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServive;
+    @Autowired
+    private AuthenticationFailEntryPoint authenticationFailEntryPoint;
+    @Autowired
+    private CusAccessDeniedhandler cusAccessDeniedhandler;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().exceptionHandling() // 配置401
+        httpSecurity
+
+                .csrf().disable()
+
+                .exceptionHandling()
+
+                .authenticationEntryPoint(authenticationFailEntryPoint)
+
+                .accessDeniedHandler(cusAccessDeniedhandler) // 配置401
 
                 .and().addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class).authorizeRequests()
 
                 .antMatchers("/swagger-ui.html").permitAll()
-                
+
                 .antMatchers("/swagger-resources/**").permitAll()
 
                 .antMatchers("/images/**").permitAll()
@@ -34,16 +52,9 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/*").permitAll()
 
                 .antMatchers("/configuration/*").permitAll()
-                
+
                 // 对于获取token的rest api要允许匿名访问
-                .antMatchers("/user/eLogin/**").permitAll()
-
-                .antMatchers("/user/login/**").permitAll()
-
-                // 下载文件
-                .antMatchers("/files/downLoadFile/**").permitAll()
-
-                .antMatchers("/files/downLoadUpFile/**").permitAll()
+                .antMatchers("/token").permitAll()
 
                 // 所有请求需要身份认证
                 .anyRequest().authenticated()
@@ -52,5 +63,21 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
         // 禁用缓存
         httpSecurity.headers().cacheControl();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsServive).passwordEncoder(passwordEncoder());
     }
 }

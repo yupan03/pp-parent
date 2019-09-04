@@ -12,6 +12,10 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  security:
+    user:
+      name: admin
+      password: 123456
 #    gateway:
 #      discovery:
 #        locator:
@@ -31,3 +35,4 @@ ribbon:
 # mybatis
 mybatis-plus:
   mapper-locations: com/project/dao/*/*.xml
+  

@@ -12,8 +12,6 @@
         <module>pp-wx</module>
         <module>pp-web</module>
         <module>pp-component</module>
-        <module>pp-light-security</module>
-        <module>pp-oauth2</module>
         <module>pp-web-security</module>
     </modules>
 

@@ -1,7 +1,14 @@
 package com.pp.config.security;
 
+import java.io.IOException;
+
+import javax.annotation.Resource;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,19 +19,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.annotation.Resource;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-    @Value("${jwt.header}")
-    private String tokenHeader;
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
+    private String tokenHeader = "Authorization";
+    private String tokenHead = "Bearer ";
     @Resource
     private JwtTokenUtil jwtTokenUtil;
     @Resource
@@ -48,6 +46,16 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 UserDetails userDetails;
                 try {
                     userDetails = userDetailsService.loadUserByUsername(username);
+                    if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                        // 将username仿佛请求头中
+                    }
                 } catch (Exception e) {
 
                     response.setStatus(HttpServletResponse.SC_OK);
@@ -57,18 +65,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                     response.getWriter().write("登录失败");
                     return;
                 }
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                    // 将username仿佛请求头中
-                }
+                
             }
-
         } else {
 
         }
