@@ -13,6 +13,7 @@
         <module>pp-web</module>
         <module>pp-component</module>
         <module>pp-web-security</module>
+        <module>pp-gateway-security</module>
     </modules>
 
     <properties>
