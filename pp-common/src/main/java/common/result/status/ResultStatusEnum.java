@@ -12,6 +12,8 @@ public enum ResultStatusEnum {
     WX_ERROR(5003, "数据库错误"),
 
     AUTH_FAIL(4001, "没有认证"),
+    
+    ACCESS_DENIED(403, "没有权限"),
 
     URL_NOT_FOUND(404, "请求不存在"),
 

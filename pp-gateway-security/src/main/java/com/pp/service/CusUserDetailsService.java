@@ -23,6 +23,7 @@ public class CusUserDetailsService implements ReactiveUserDetailsService {
     public Mono<UserDetails> findByUsername(String username) {
         // todo 预留调用数据库根据用户名获取用户
         if (StringUtils.equals(userName, username)) {
+            System.out.println("标志执行-----------------------------------------------------");
             UserDetails user = User.withUsername(userName).password("123456").roles("admin")
                     .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList("admin")).build();
             return Mono.just(user);

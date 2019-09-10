@@ -10,14 +10,13 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.context.NoOpServerSecurityContextRepository;
-import org.springframework.security.web.server.savedrequest.NoOpServerRequestCache;
 
 import com.pp.config.handler.AuthenticationFaillHandler;
 import com.pp.config.handler.AuthenticationSuccessHandler;
+import com.pp.config.handler.CusAccessDenieHandler;
 import com.pp.config.handler.CusAuthenticationManager;
-import com.pp.config.handler.CusServerSecurityContextRepository;
 import com.pp.config.handler.CusServerAuthenticationEntryPoint;
+import com.pp.config.handler.CusServerSecurityContextRepository;
 import com.pp.service.CusUserDetailsService;
 
 @EnableWebFluxSecurity
@@ -34,6 +33,8 @@ public class SecurityConfig {
     private CusServerAuthenticationEntryPoint customHttpBasicServerAuthenticationEntryPoint;
     @Autowired
     private CusServerSecurityContextRepository serverSecurityContextRepository;
+    @Autowired
+    private CusAccessDenieHandler accessDenieHandler;
 
     // security的鉴权排除列表
     private static final String[] excludedAuthPages = { "/auth/login", "/auth/logout", "/health", "/api/socket/**" };
@@ -50,7 +51,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
 
                 .authenticationManager(authenticationManager())
 
@@ -65,18 +66,21 @@ public class SecurityConfig {
                 .and().httpBasic().disable()
 
                 .formLogin().loginPage("/auth/login")
+
                 // 认证成功
                 .authenticationSuccessHandler(authenticationSuccessHandler)
                 // 登陆验证失败
                 .authenticationFailureHandler(authenticationFaillHandler)
 
-                .and().exceptionHandling().authenticationEntryPoint(customHttpBasicServerAuthenticationEntryPoint) // 基于http的接口请求鉴权失败
+                .and().exceptionHandling()
+
+                .authenticationEntryPoint(customHttpBasicServerAuthenticationEntryPoint) // 基于http的接口请求鉴权失败
+
+                .accessDeniedHandler(accessDenieHandler)
 
 //                .and().addFilterAt(webFilter, SecurityWebFiltersOrder.FIRST)
 
-                .and().csrf().disable()// 必须支持跨域
-
-                .logout().disable()
+                .and().logout().disable()
 
                 // 禁用session
                 .securityContextRepository(serverSecurityContextRepository)
