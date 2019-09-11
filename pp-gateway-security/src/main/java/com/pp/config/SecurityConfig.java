@@ -50,7 +50,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) throws Exception {
+    public SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) throws Exception {
         http.csrf().disable()
 
                 .authenticationManager(authenticationManager())

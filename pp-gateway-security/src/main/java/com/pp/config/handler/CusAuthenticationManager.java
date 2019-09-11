@@ -37,5 +37,4 @@ public class CusAuthenticationManager implements ReactiveAuthenticationManager {
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new BadCredentialsException("密码错误"))))
                 .map(u -> new UsernamePasswordAuthenticationToken(u, u.getPassword(), u.getAuthorities()));
     }
-
 }
