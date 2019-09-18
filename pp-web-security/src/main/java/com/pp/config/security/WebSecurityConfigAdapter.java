@@ -32,16 +32,20 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
         httpSecurity
 
                 .csrf().disable()
+                // 禁用httpBasic认证
+                .httpBasic().disable()
+                // 禁用表单认证
+                .formLogin().disable()
 
                 .exceptionHandling()
-
+                // 认证失败处理
                 .authenticationEntryPoint(authenticationFailEntryPoint)
-
-                .accessDeniedHandler(cusAccessDeniedhandler) // 配置401
+                // 权限不足处理
+                .accessDeniedHandler(cusAccessDeniedhandler)
 
                 .and().addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class).authorizeRequests()
 
-                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/doc.html").permitAll()
 
                 .antMatchers("/swagger-resources/**").permitAll()
 

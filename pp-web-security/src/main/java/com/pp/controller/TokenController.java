@@ -20,7 +20,14 @@ public class TokenController {
     @Resource
     private JwtTokenUtil jwtTokenUtil;
 
-    @RequestMapping(value = "token")
+    /**
+     * 自定义登录获取token
+     * 
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/token")
     public String getToken(String username, String password) {
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(upToken);

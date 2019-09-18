@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.VerificationCode;
-import common.annotation.PassToken;
 import common.result.ResultObj;
 import common.result.ResultUtils;
 import common.result.exception.ResultException;
@@ -28,7 +27,6 @@ public class LoginController {
 
     @ApiOperation(value = "登录")
     @PostMapping(value = "/login")
-    @PassToken
     public ResultObj<String> doLogin(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             throw new ResultException(ResultStatusEnum.LOGIN_FAIL, "账号或密码不能为空！");
@@ -38,7 +36,6 @@ public class LoginController {
     }
 
     @ApiOperation(value = "验证码")
-    @PassToken
     @RequestMapping(value = "/verificationCode.do", method = { RequestMethod.GET })
     public void verificationCode(HttpServletRequest request, HttpServletResponse response) {
         VerificationCode code = new VerificationCode(4);

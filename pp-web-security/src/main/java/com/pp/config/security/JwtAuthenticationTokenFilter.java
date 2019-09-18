@@ -48,16 +48,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                     userDetails = userDetailsService.loadUserByUsername(username);
                     if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                                userDetails, null, userDetails.getAuthorities());
+                                userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
 
                         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                        // 将username仿佛请求头中
                     }
                 } catch (Exception e) {
-
                     response.setStatus(HttpServletResponse.SC_OK);
                     response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
                     response.setCharacterEncoding("UTF-8");
@@ -65,7 +62,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                     response.getWriter().write("登录失败");
                     return;
                 }
-                
             }
         } else {
 

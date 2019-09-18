@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.entity.RequestParam;
 import com.project.entity.tables.user.User;
 
-import common.annotation.PassToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -22,7 +21,6 @@ public class TestController {
 
     @ApiOperation(value = "/sayHello")
     @PostMapping(value = "/sayHello")
-    @PassToken
     public Map<String, Object> getMethodName(@RequestBody RequestParam<User> requestParam) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("key", "hello world!");
