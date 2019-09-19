@@ -2,16 +2,18 @@ package jwt;
 
 import java.util.Date;
 
+import jwt.constant.TokenType;
+
 public class LoginAccount {
     // 账号
     private String username;
-    // IP地址
-    private String ip;
     // 登录时间
     private Date loginTime;
-
     // 类型
     private String type;
+
+    // token类型 0：正常 1：将过期 2：已过期
+    private TokenType tokenType;
 
     public String getUsername() {
         return username;
@@ -19,14 +21,6 @@ public class LoginAccount {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public Date getLoginTime() {
@@ -43,5 +37,13 @@ public class LoginAccount {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public TokenType getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(TokenType tokenType) {
+        this.tokenType = tokenType;
     }
 }
