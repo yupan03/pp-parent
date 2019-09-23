@@ -1,5 +1,7 @@
 package com.pp.config;
 
+import java.util.Map;
+
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -43,6 +45,9 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
         // 检验token
         String token = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+
+        Map<String, String> singleValueMap = request.getHeaders().toSingleValueMap();
+        System.out.println(singleValueMap);
 
         LoginAccount account = new JwtUtil().getAccountFromToken(token);
 
