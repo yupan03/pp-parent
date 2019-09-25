@@ -1,7 +1,9 @@
 package com.pp.config;
 
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -10,10 +12,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pp.entity.FilterApi;
+import com.pp.service.FilterApiService;
 
 import common.result.Result;
 import common.result.status.ResultStatusEnum;
@@ -28,20 +33,48 @@ import reactor.core.publisher.Mono;
  * @author David
  *
  */
+@Component
 public class TokenFilter implements GlobalFilter, Ordered {
+    @Autowired
+    private FilterApiService filterApiService;
 
     @Override
     public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE;
+        return 0;
     }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+
+        System.out.println("------------------------");
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 
         System.out.println(path);
         // 将不需要token校验的URL进行过滤
+        List<FilterApi> apis = filterApiService.list();
+
+        for (FilterApi api : apis) {
+            switch (api.getType()) {
+            case 0:
+                // 正常匹配
+                if (path.equals(api.getUrl()))
+                    return chain.filter(exchange);
+                break;
+            case 1:
+                // 前缀
+                if (path.startsWith(api.getUrl()))
+                    return chain.filter(exchange);
+                break;
+            case 2:
+                // 后缀
+                if (path.endsWith(api.getUrl()))
+                    return chain.filter(exchange);
+                break;
+            default:
+                break;
+            }
+        }
 
         // 检验token
         String token = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);

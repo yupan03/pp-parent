@@ -44,15 +44,19 @@ public class JwtUtil {
     }
 
     public LoginAccount getAccountFromToken(String token) {
-        try {
+        String bearer = "Bearer ";
+        if (token.startsWith(bearer)) {
+            token = token.substring(bearer.length());
+        }
 
+        try {
             Claims claims = getClaimsFromToken(token);
 
             LoginAccount account = new LoginAccount();
 
-            account.setUsername((String) claims.get(CLAIM_KEY_ACCOUNT));
-            account.setLoginTime((Date) claims.get(CLAIM_KEY_LOGIN_TIME));
-            account.setType((String) claims.get(CLAIM_KEY_TYPE));
+            account.setUsername(claims.get(CLAIM_KEY_ACCOUNT).toString());
+            account.setLoginTime(claims.get(CLAIM_KEY_LOGIN_TIME).toString());
+            account.setType(claims.get(CLAIM_KEY_TYPE).toString());
 
             // 比较过期时间和当前时间的差
             long expiration = getClaimsFromToken(token).getExpiration().getTime();
@@ -70,6 +74,7 @@ public class JwtUtil {
 
             return account;
         } catch (Exception e) {
+            e.printStackTrace();
             // 非法token
             return null;
         }

@@ -1,14 +1,12 @@
 package jwt;
 
-import java.util.Date;
-
 import jwt.constant.TokenType;
 
 public class LoginAccount {
     // 账号
     private String username;
     // 登录时间
-    private Date loginTime;
+    private String loginTime;
     // 类型
     private String type;
 
@@ -23,11 +21,11 @@ public class LoginAccount {
         this.username = username;
     }
 
-    public Date getLoginTime() {
+    public String getLoginTime() {
         return loginTime;
     }
 
-    public void setLoginTime(Date loginTime) {
+    public void setLoginTime(String loginTime) {
         this.loginTime = loginTime;
     }
 
