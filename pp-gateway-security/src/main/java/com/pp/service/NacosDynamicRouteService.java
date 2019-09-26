@@ -64,6 +64,7 @@ public class NacosDynamicRouteService implements ApplicationEventPublisherAware 
                     try {
                         List<RouteDefinition> gatewayRouteDefinitions = JSONObject.parseArray(configInfo,
                                 RouteDefinition.class);
+                        System.out.println("-----------------------------" + gatewayRouteDefinitions.size());
                         for (RouteDefinition routeDefinition : gatewayRouteDefinitions) {
                             addRoute(routeDefinition);
                         }

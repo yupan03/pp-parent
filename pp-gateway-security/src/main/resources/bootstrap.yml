@@ -1,12 +1,20 @@
 # 配置中心文件只能放在boostrap.yml文件中
 # 所有配置都是从nacos配置中心取
+server:
+  port: 8090
+  
 spring:
   application:
     name: pp-gateway-security
   cloud:
     nacos:
+      discovery:        server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         prefix: gateway-security
         group: DEFAULT_GROUP
+  profiles:    active: dev
+# mybatis
+mybatis-plus: 
+  mapper-locations: com/project/dao/*/*.xml
