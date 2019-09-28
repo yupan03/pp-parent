@@ -15,6 +15,8 @@ spring:
         prefix: gateway-security
         group: DEFAULT_GROUP
   profiles:    active: dev
+management:  endpoints:    web:      exposure:        include: '*'
+
 # mybatis
 mybatis-plus: 
   mapper-locations: com/project/dao/*/*.xml

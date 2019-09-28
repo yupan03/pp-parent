@@ -2,6 +2,7 @@ package com.pp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.Executor;
 
 import javax.annotation.PostConstruct;
@@ -13,10 +14,11 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionWriter;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.api.NacosFactory;
+import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
@@ -29,10 +31,10 @@ import reactor.core.publisher.Mono;
  * @author David
  *
  */
-@Component
+@Service
 public class NacosDynamicRouteService implements ApplicationEventPublisherAware {
 
-    private String dataId = "gateway-routers";
+    private String dataId = "gateway-rounts";
 
     private String group = "DEFAULT_GROUP";
 
@@ -53,10 +55,17 @@ public class NacosDynamicRouteService implements ApplicationEventPublisherAware 
 
     @PostConstruct
     public void dynamicRouteByNacosListener() {
-        try {
-            ConfigService configService = NacosFactory.createConfigService(serverAddr);
 
-            configService.getConfig(dataId, group, 5000);
+        System.out.println("监听动态配置：" + serverAddr);
+        try {
+            Properties properties = new Properties();
+
+            properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
+
+            ConfigService configService = NacosFactory.createConfigService(properties);
+            String config = configService.getConfig(dataId, group, 5000);
+
+            System.out.println(config);
             configService.addListener(dataId, group, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
