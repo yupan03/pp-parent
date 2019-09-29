@@ -17,6 +17,9 @@ spring:
   profiles:    active: dev
 management:  endpoints:    web:      exposure:        include: '*'
 
+swagger:
+  enable: false
+
 # mybatis
 mybatis-plus: 
   mapper-locations: com/project/dao/*/*.xml

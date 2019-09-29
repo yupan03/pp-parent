@@ -1,34 +1,28 @@
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = { NacosTest.class })
 public class NacosTest {
-    private String dataId = "gateway-rounts";
 
-    private String group = "DEFAULT_GROUP";
+    public static void main(String[] args) {
+        String dataId = "gateway-rounts";
 
-    private String serverAddr = "localhost:8848";
+        String group = "DEFAULT_GROUP";
 
-    @Test
-    public void test1() {
+        String serverAddr = "localhost";
         try {
             Properties properties = new Properties();
 
             properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
 
             ConfigService configService = NacosFactory.createConfigService(properties);
+
+            System.out.println(configService.getConfig(dataId, group, 5000));
 
             configService.addListener(dataId, group, new Listener() {
                 @Override

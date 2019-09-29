@@ -15,6 +15,11 @@
         </dependency>
         <dependency>
             <groupId>com.pp</groupId>
+            <artifactId>pp-swagger2</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pp</groupId>
             <artifactId>pp-jwt</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>

@@ -1,4 +1,4 @@
-package com.project.config;
+package com.pp.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Primary;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
+/**
+ * 网关聚合各个系统的接口文档 正式环境应该屏蔽，其他环境应该显示出来
+ * 
+ * @author David
+ */
 @Primary
 @Configuration
 public class SwaggerConfig implements SwaggerResourcesProvider {

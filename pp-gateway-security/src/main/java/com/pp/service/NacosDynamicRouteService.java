@@ -55,17 +55,13 @@ public class NacosDynamicRouteService implements ApplicationEventPublisherAware 
 
     @PostConstruct
     public void dynamicRouteByNacosListener() {
-
-        System.out.println("监听动态配置：" + serverAddr);
         try {
             Properties properties = new Properties();
 
             properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
 
             ConfigService configService = NacosFactory.createConfigService(properties);
-            String config = configService.getConfig(dataId, group, 5000);
 
-            System.out.println(config);
             configService.addListener(dataId, group, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
@@ -73,7 +69,6 @@ public class NacosDynamicRouteService implements ApplicationEventPublisherAware 
                     try {
                         List<RouteDefinition> gatewayRouteDefinitions = JSONObject.parseArray(configInfo,
                                 RouteDefinition.class);
-                        System.out.println("-----------------------------" + gatewayRouteDefinitions.size());
                         for (RouteDefinition routeDefinition : gatewayRouteDefinitions) {
                             addRoute(routeDefinition);
                         }
