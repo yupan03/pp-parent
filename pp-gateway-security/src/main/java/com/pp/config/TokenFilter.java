@@ -96,7 +96,7 @@ public class TokenFilter implements GlobalFilter, Ordered {
             exchange = exchange.mutate().request(addHeader).build();
         }
 
-        // 权限验证
+        // TODO 权限验证
 
         return chain.filter(exchange);
     }

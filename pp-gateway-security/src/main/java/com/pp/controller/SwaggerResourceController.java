@@ -1,4 +1,4 @@
-package com.project.controller;
+package com.pp.controller;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.config.SwaggerConfig;
+import com.pp.config.SwaggerConfig;
 
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
