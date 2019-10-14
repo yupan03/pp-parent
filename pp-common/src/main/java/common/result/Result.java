@@ -1,18 +1,15 @@
 package common.result;
 
-import common.result.status.ResultStatusEnum;
-
 public class Result {
     private int status;
     private String msg;
 
-    public Result(ResultStatusEnum statusEnum) {
-        this.status = statusEnum.status;
-        this.msg = statusEnum.message;
+    public Result(int status) {
+        this.status = status;
     }
 
-    public Result(ResultStatusEnum statusEnum, String msg) {
-        this.status = statusEnum.status;
+    public Result(int status, String msg) {
+        this.status = status;
         this.msg = msg;
     }
 

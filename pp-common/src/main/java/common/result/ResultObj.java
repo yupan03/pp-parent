@@ -1,16 +1,14 @@
 package common.result;
 
-import common.result.status.ResultStatusEnum;
-
 public class ResultObj<T> extends Result {
     private T data;
 
-    public ResultObj(ResultStatusEnum statusEnum) {
-        super(statusEnum);
+    public ResultObj(int status) {
+        super(status);
     }
 
-    public ResultObj(ResultStatusEnum statusEnum, String msg) {
-        super(statusEnum, msg);
+    public ResultObj(int status, String msg) {
+        super(status, msg);
     }
 
     public T getData() {

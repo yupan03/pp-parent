@@ -47,7 +47,7 @@ public class RoleController {
     @PostMapping(value = "/roleResourceList")
     public Object roleResourceList(String roleId) {
         if (StringUtils.isEmpty(roleId)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR, "参数不能为空");
+            return new ResultObj<>(ResultStatusEnum.ERROR.status, "参数不能为空");
         }
 
         return roleService.roleResourceList(roleId);

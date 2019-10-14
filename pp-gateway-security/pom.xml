@@ -15,11 +15,6 @@
         </dependency>
         <dependency>
             <groupId>com.pp</groupId>
-            <artifactId>pp-swagger2</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pp</groupId>
             <artifactId>pp-jwt</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>
@@ -62,6 +57,15 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.9.4</version>
+        </dependency>
     </dependencies>
-
 </project>

@@ -39,13 +39,13 @@ public class WxMpServiceController {
     @PostMapping(value = "/getUserInfoByCode")
     public ResultObj<?> getUserInfoByCode(String code, String state) {
         if (StringUtils.isBlank(code)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "code不能为空");
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM.status, "code不能为空");
         }
         if (StringUtils.isBlank(state) && !"true".equals(state)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "非法请求");
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM.status, "非法请求");
         }
 
-        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS.status);
         WxMpUser userInfo = null;
         try {
             // 网页授权code获取获取认证信息
@@ -53,12 +53,12 @@ public class WxMpServiceController {
             // 获取微信用户基本信息
             userInfo = wxMpService.getUserService().userInfo(oauth2getAccessToken.getOpenId());
             if (userInfo == null) {
-                return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息为空");
+                return new ResultObj<>(ResultStatusEnum.ERROR.status, "获取微信用户信息为空");
             }
             responseResult.setData(userInfo);
         } catch (WxErrorException e) {
             e.printStackTrace();
-            return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息错误");
+            return new ResultObj<>(ResultStatusEnum.ERROR.status, "获取微信用户信息错误");
         }
 
         return responseResult;
@@ -76,15 +76,15 @@ public class WxMpServiceController {
     @PostMapping(value = "/getUserInfoByOpenId")
     public ResultObj<?> getUserInfoByOpenId(String openId) {
         if (StringUtils.isBlank(openId)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "openId不能为空");
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM.status, "openId不能为空");
         }
-        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        ResultObj<WxMpUser> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS.status);
         try {
             // 获取微信用户基本信息
             responseResult.setData(wxMpService.getUserService().userInfo(openId));
         } catch (WxErrorException e) {
             e.printStackTrace();
-            return new ResultObj<>(ResultStatusEnum.ERROR, "获取微信用户信息错误");
+            return new ResultObj<>(ResultStatusEnum.ERROR.status, "获取微信用户信息错误");
         }
 
         return responseResult;
@@ -102,13 +102,13 @@ public class WxMpServiceController {
     @PostMapping(value = "/createJsapiSignature")
     public ResultObj<?> createJsapiSignature(String url) {
         if (StringUtils.isBlank(url)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM, "url不能为空");
+            return new ResultObj<>(ResultStatusEnum.ERROR_PARAM.status, "url不能为空");
         }
-        ResultObj<WxJsapiSignature> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS);
+        ResultObj<WxJsapiSignature> responseResult = new ResultObj<>(ResultStatusEnum.SUCCESS.status);
         try {
             responseResult.setData(wxMpService.createJsapiSignature(url));
         } catch (WxErrorException e) {
-            return new ResultObj<>(ResultStatusEnum.ERROR, e.getMessage());
+            return new ResultObj<>(ResultStatusEnum.ERROR.status, e.getMessage());
         }
 
         return responseResult;

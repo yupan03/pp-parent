@@ -35,7 +35,7 @@ public class ExceptionControllerAdvice {
     @ResponseBody
     public ResultObj<?> handlerProjectException(ResultException e) {
         logger.info(e.getMsg());
-        return new ResultObj<>(e.getStatusEnum(), e.getMsg());
+        return new ResultObj<>(e.getStatusEnum().status, e.getMsg());
     }
 
     /**
@@ -49,12 +49,12 @@ public class ExceptionControllerAdvice {
     public ResultObj<?> handlerServletException(ServletException e) {
         if (e instanceof HttpRequestMethodNotSupportedException) {
             // 405请求方式错误
-            return new ResultObj<>(ResultStatusEnum.URL_METHOD_EOOR, e.getMessage());
+            return new ResultObj<>(ResultStatusEnum.URL_METHOD_EOOR.status, e.getMessage());
         } else if (e instanceof NoHandlerFoundException) {
             // 404 请求未找到
-            return new ResultObj<>(ResultStatusEnum.URL_NOT_FOUND, e.getMessage());
+            return new ResultObj<>(ResultStatusEnum.URL_NOT_FOUND.status, e.getMessage());
         } else {
-            return new ResultObj<>(ResultStatusEnum.ERROR, e.getMessage());
+            return new ResultObj<>(ResultStatusEnum.ERROR.status, e.getMessage());
         }
     }
 
@@ -67,6 +67,6 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody
     public ResultObj<?> handlerSQLException(SQLException e) {
-        return new ResultObj<>(ResultStatusEnum.ERROR_SQL, e.getMessage());
+        return new ResultObj<>(ResultStatusEnum.ERROR_SQL.status, e.getMessage());
     }
 }

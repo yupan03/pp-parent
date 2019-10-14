@@ -21,7 +21,6 @@ import com.pp.entity.FilterApi;
 import com.pp.service.FilterApiService;
 
 import common.result.Result;
-import common.result.status.ResultStatusEnum;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import jwt.constant.TokenType;
@@ -85,9 +84,9 @@ public class TokenFilter implements GlobalFilter, Ordered {
         LoginAccount account = new JwtUtil().getAccountFromToken(token);
 
         if (account == null) {
-            return sendMessage(exchange, new Result(ResultStatusEnum.AUTH_FAIL, "非法token"));
+            return sendMessage(exchange, new Result(HttpStatus.UNAUTHORIZED.value(), "非法token"));
         } else if (account.getTokenType() == TokenType.OVERDUE) {
-            return sendMessage(exchange, new Result(ResultStatusEnum.AUTH_FAIL, "token失效，请重新登录"));
+            return sendMessage(exchange, new Result(HttpStatus.UNAUTHORIZED.value(), "token失效，请重新登录"));
         } else if (account.getTokenType() == TokenType.WILL_EXPIRE) {
             // 重新获取token放入请求头中
             // 隐患（当请求头中含有其他信息是是否把这些信息也放入新的请求头中）

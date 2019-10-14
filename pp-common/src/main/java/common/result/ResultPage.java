@@ -1,18 +1,16 @@
 package common.result;
 
-import common.result.status.ResultStatusEnum;
-
 public class ResultPage<T> extends ResultList<T> {
     private Long pageSize;
     private Long pageNum;
     private Long total;
 
-    public ResultPage(ResultStatusEnum statusEnum) {
-        super(statusEnum);
+    public ResultPage(int status) {
+        super(status);
     }
 
-    public ResultPage(ResultStatusEnum statusEnum, String msg) {
-        super(statusEnum, msg);
+    public ResultPage(int status, String msg) {
+        super(status, msg);
     }
 
     public Long getPageSize() {

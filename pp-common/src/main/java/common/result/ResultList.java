@@ -2,17 +2,15 @@ package common.result;
 
 import java.util.List;
 
-import common.result.status.ResultStatusEnum;
-
 public class ResultList<T> extends Result {
     private List<T> dataList;
 
-    public ResultList(ResultStatusEnum statusEnum) {
-        super(statusEnum);
+    public ResultList(int status) {
+        super(status);
     }
 
-    public ResultList(ResultStatusEnum statusEnum, String msg) {
-        super(statusEnum, msg);
+    public ResultList(int status, String msg) {
+        super(status, msg);
     }
 
     public List<T> getDataList() {
