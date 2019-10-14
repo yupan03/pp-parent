@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.VerificationCode;
 import common.result.ResultObj;
-import common.result.ResultUtils;
 import common.result.exception.ResultException;
 import common.result.status.ResultStatusEnum;
 import io.swagger.annotations.Api;
@@ -32,7 +32,7 @@ public class LoginController {
             throw new ResultException(ResultStatusEnum.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
-        return ResultUtils.success("");
+        return new ResultObj<String>(HttpStatus.OK.value());
     }
 
     @ApiOperation(value = "验证码")

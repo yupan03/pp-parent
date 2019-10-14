@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,6 @@ import com.project.entity.tables.resource.Resource;
 import com.project.service.resource.ResourceService;
 
 import common.result.ResultList;
-import common.result.ResultUtils;
 
 @RestController
 @RequestMapping(value = "/resource")
@@ -19,6 +19,6 @@ public class ResourceController {
 
     @PostMapping(value = "/pageList")
     public ResultList<Resource> pageList() {
-        return ResultUtils.success(resourceService.pageList());
+        return new ResultList<Resource>(HttpStatus.OK.value(), resourceService.pageList());
     }
 }

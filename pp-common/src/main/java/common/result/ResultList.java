@@ -13,6 +13,11 @@ public class ResultList<T> extends Result {
         super(status, msg);
     }
 
+    public ResultList(int status, List<T> dataList) {
+        super(status);
+        this.dataList = dataList;
+    }
+
     public List<T> getDataList() {
         return dataList;
     }

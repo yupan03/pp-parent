@@ -11,6 +11,11 @@ public class ResultObj<T> extends Result {
         super(status, msg);
     }
 
+    public ResultObj(int status, T data) {
+        super(status);
+        this.data = data;
+    }
+
     public T getData() {
         return data;
     }

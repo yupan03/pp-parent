@@ -1,9 +1,10 @@
 package com.project.entity;
 
+import org.springframework.http.HttpStatus;
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import common.result.ResultPage;
-import common.result.ResultUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -26,6 +27,7 @@ public class QueryPage<T> {
 
     @ApiModelProperty(hidden = true)
     public ResultPage<T> getResultPage() {
-        return ResultUtils.success(page.getCurrent(), page.getSize(), page.getTotal(), page.getRecords());
+        return new ResultPage<T>(HttpStatus.OK.value(), page.getRecords(), page.getSize(), page.getCurrent(),
+                page.getTotal());
     }
 }
