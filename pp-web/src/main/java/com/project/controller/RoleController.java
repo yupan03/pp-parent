@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.tables.role.Role;
 import com.project.entity.tables.role.RoleResource;
+import com.project.exception.BusinessStatus;
 import com.project.service.role.RoleService;
 
 import common.result.ResultObj;
-import common.result.status.ResultStatusEnum;
 import io.swagger.annotations.Api;
 
 @Api(value = "角色管理")
@@ -47,7 +47,7 @@ public class RoleController {
     @PostMapping(value = "/roleResourceList")
     public Object roleResourceList(String roleId) {
         if (StringUtils.isEmpty(roleId)) {
-            return new ResultObj<>(ResultStatusEnum.ERROR.status, "参数不能为空");
+            return new ResultObj<>(BusinessStatus.ERROR.status, "参数不能为空");
         }
 
         return roleService.roleResourceList(roleId);

@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.project.constant.BusinessStatus;
+
+import common.exception.BusinessException;
 import common.result.ResultObj;
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
 
 /**
  * 统一异常处理
@@ -31,11 +32,11 @@ public class ExceptionControllerAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler(value = ResultException.class)
+    @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
-    public ResultObj<?> handlerProjectException(ResultException e) {
+    public ResultObj<?> handlerProjectException(BusinessException e) {
         logger.info(e.getMsg());
-        return new ResultObj<>(e.getStatusEnum().status, e.getMsg());
+        return new ResultObj<>(e.getStatus(), e.getMsg());
     }
 
     /**
@@ -49,12 +50,12 @@ public class ExceptionControllerAdvice {
     public ResultObj<?> handlerServletException(ServletException e) {
         if (e instanceof HttpRequestMethodNotSupportedException) {
             // 405请求方式错误
-            return new ResultObj<>(ResultStatusEnum.URL_METHOD_EOOR.status, e.getMessage());
+            return new ResultObj<>(BusinessStatus.URL_METHOD_EOOR.status, e.getMessage());
         } else if (e instanceof NoHandlerFoundException) {
             // 404 请求未找到
-            return new ResultObj<>(ResultStatusEnum.URL_NOT_FOUND.status, e.getMessage());
+            return new ResultObj<>(BusinessStatus.URL_NOT_FOUND.status, e.getMessage());
         } else {
-            return new ResultObj<>(ResultStatusEnum.ERROR.status, e.getMessage());
+            return new ResultObj<>(BusinessStatus.ERROR.status, e.getMessage());
         }
     }
 
@@ -67,6 +68,6 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody
     public ResultObj<?> handlerSQLException(SQLException e) {
-        return new ResultObj<>(ResultStatusEnum.ERROR_SQL.status, e.getMessage());
+        return new ResultObj<>(BusinessStatus.ERROR_SQL.status, e.getMessage());
     }
 }

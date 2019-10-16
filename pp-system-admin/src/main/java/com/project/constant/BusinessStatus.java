@@ -1,4 +1,4 @@
-package common.result.status;
+package com.project.constant;
 
 /**
  * 错误业务状态码
@@ -6,7 +6,7 @@ package common.result.status;
  * @author David
  *
  */
-public enum ResultStatusEnum {
+public enum BusinessStatus {
     SUCCESS(200, "请求成功"),
 
     ERROR(500, "服务器错误"),
@@ -34,7 +34,7 @@ public enum ResultStatusEnum {
     public int status;
     public String message;
 
-    ResultStatusEnum(int status, String message) {
+    BusinessStatus(int status, String message) {
         this.status = status;
         this.message = message;
     }

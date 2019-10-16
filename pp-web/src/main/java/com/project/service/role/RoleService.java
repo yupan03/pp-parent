@@ -9,9 +9,9 @@ import com.project.dao.role.RoleDao;
 import com.project.dao.role.RoleResourceDao;
 import com.project.entity.tables.role.Role;
 import com.project.entity.tables.role.RoleResource;
+import com.project.exception.BusinessException;
+import com.project.exception.BusinessStatus;
 
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
 import common.utils.SysUtils;
 
 @Service
@@ -45,7 +45,7 @@ public class RoleService {
         // 先判断角色是否存在
         Role role = roleDao.selectById(roleId);
         if (role == null) {
-            throw new ResultException(ResultStatusEnum.ERROR, "角色不存在");
+            throw new BusinessException(BusinessStatus.ERROR, "角色不存在");
         }
 
         List<RoleResource> resources = resourceDao.findByRole(role.getId(), role.getName());

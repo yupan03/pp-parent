@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.constant.BusinessStatus;
+
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
+import common.exception.BusinessException;
 import io.swagger.annotations.Api;
 import me.chanjar.weixin.common.error.WxErrorException;
 
@@ -31,7 +32,7 @@ public class WxMaServiceController {
     @GetMapping(value = "/login")
     public WxMaJscode2SessionResult login(String code) {
         if (StringUtils.isBlank(code)) {
-            throw new ResultException(ResultStatusEnum.ERROR, "code不能为空");
+            throw new BusinessException(BusinessStatus.ERROR.status, "code不能为空");
         }
         try {
             WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(code);
@@ -52,7 +53,7 @@ public class WxMaServiceController {
 
         // 用户信息校验
         if (!wxMaService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {
-            throw new ResultException(ResultStatusEnum.ERROR, "用户信息校验失败");
+            throw new BusinessException(BusinessStatus.ERROR.status, "用户信息校验失败");
         }
 
         // 解密用户信息
@@ -70,7 +71,7 @@ public class WxMaServiceController {
 
         // 用户信息校验
         if (!wxMaService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {
-            throw new ResultException(ResultStatusEnum.ERROR, "用户信息校验失败");
+            throw new BusinessException(BusinessStatus.ERROR.status, "用户信息校验失败");
         }
 
         // 解密

@@ -6,13 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.project.constant.BusinessStatus;
 import com.project.dao.GatewayRouteDefinitionDao;
 import com.project.entity.QueryPage;
 import com.project.entity.table.GatewayRouteDefinition;
 import com.project.feign.GatewayFeign;
 
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
+import common.exception.BusinessException;
 import common.utils.SysUtils;
 
 @Service
@@ -40,7 +40,7 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
         gatewayRouteDefinitionDao.updateById(routeDefinition);
         boolean flage = gatewayFeign.update(routeDefinition);
         if (!flage) {
-            throw new ResultException(ResultStatusEnum.ERROR, "更新路由失败");
+            throw new BusinessException(BusinessStatus.ERROR.status, "更新路由失败");
         }
 
         return 1;
@@ -54,7 +54,7 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
 
         boolean flage = gatewayFeign.delete(routeDefinition.getName());
         if (!flage) {
-            throw new ResultException(ResultStatusEnum.ERROR, "删除路由失败");
+            throw new BusinessException(BusinessStatus.ERROR.status, "删除路由失败");
         }
 
         return 1;

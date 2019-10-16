@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.project.constant.BusinessStatus;
+
+import common.exception.BusinessException;
 import common.result.Result;
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
 
 /**
  * 统一异常处理
@@ -37,11 +38,11 @@ public class ExceptionControllerAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler(value = ResultException.class)
+    @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
-    public Result handlerProjectException(ResultException e) {
+    public Result handlerProjectException(BusinessException e) {
         logger.info(e.getMsg());
-        return new Result(e.getStatusEnum().status, e.getMsg());
+        return new Result(e.getStatus(), e.getMsg());
     }
 
     /**
@@ -55,12 +56,12 @@ public class ExceptionControllerAdvice {
     public Result handlerServletException(ServletException e) {
         if (e instanceof HttpRequestMethodNotSupportedException) {
             // 405请求方式错误
-            return new Result(ResultStatusEnum.URL_METHOD_EOOR.status, e.getMessage());
+            return new Result(BusinessStatus.URL_METHOD_EOOR.status, e.getMessage());
         } else if (e instanceof NoHandlerFoundException) {
             // 404 请求未找到
-            return new Result(ResultStatusEnum.URL_NOT_FOUND.status, e.getMessage());
+            return new Result(BusinessStatus.URL_NOT_FOUND.status, e.getMessage());
         } else {
-            return new Result(ResultStatusEnum.ERROR.status, e.getMessage());
+            return new Result(BusinessStatus.ERROR.status, e.getMessage());
         }
     }
 
@@ -73,7 +74,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody
     public Result handlerSQLException(SQLException e) {
-        return new Result(ResultStatusEnum.ERROR_SQL.status, e.getMessage());
+        return new Result(BusinessStatus.ERROR_SQL.status, e.getMessage());
     }
 
     /**
@@ -89,7 +90,7 @@ public class ExceptionControllerAdvice {
         for (ConstraintViolation<?> violation : violations) {
             strBuilder.append(violation.getMessage() + "\n");
         }
-        return new Result(ResultStatusEnum.ERROR_PARAM.status, strBuilder.toString());
+        return new Result(BusinessStatus.ERROR_PARAM.status, strBuilder.toString());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -101,7 +102,7 @@ public class ExceptionControllerAdvice {
         String code = error.getDefaultMessage();
         String message = String.format("%s %s", field, code);
 
-        return new Result(ResultStatusEnum.ERROR_PARAM.status, message);
+        return new Result(BusinessStatus.ERROR_PARAM.status, message);
     }
 
 }

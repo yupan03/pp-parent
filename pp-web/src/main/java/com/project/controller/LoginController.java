@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.exception.BusinessException;
+import com.project.exception.BusinessStatus;
+
 import common.VerificationCode;
 import common.result.ResultObj;
-import common.result.exception.ResultException;
-import common.result.status.ResultStatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -29,7 +30,7 @@ public class LoginController {
     @PostMapping(value = "/login")
     public ResultObj<String> doLogin(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-            throw new ResultException(ResultStatusEnum.LOGIN_FAIL, "账号或密码不能为空！");
+            throw new BusinessException(BusinessStatus.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
         return new ResultObj<String>(HttpStatus.OK.value());
