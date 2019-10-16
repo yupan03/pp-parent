@@ -3,8 +3,8 @@ package common.result;
 import java.util.List;
 
 public class ResultPage<T> extends ResultList<T> {
-    private Long pageSize;
-    private Long pageNum;
+    private Integer pageSize;
+    private Integer pageNum;
     private Long total;
 
     public ResultPage(int status) {
@@ -15,26 +15,26 @@ public class ResultPage<T> extends ResultList<T> {
         super(status, msg);
     }
 
-    public ResultPage(int status, List<T> dataList, Long pageSize, Long pageNum, Long total) {
+    public ResultPage(int status, List<T> dataList, Integer pageSize, Integer pageNum, Long total) {
         super(status, dataList);
         this.pageSize = pageSize;
         this.pageNum = pageNum;
         this.total = total;
     }
 
-    public Long getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public Long getPageNum() {
+    public Integer getPageNum() {
         return pageNum;
     }
 
-    public void setPageNum(Long pageNum) {
+    public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
     }
 

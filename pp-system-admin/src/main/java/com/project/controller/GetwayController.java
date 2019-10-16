@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/getway")
 @Validated
-public class GetwayController {
+public class GetwayController extends CommonController {
 
     @Autowired
     private GetwayServiceImpl getwayService;
@@ -49,8 +49,7 @@ public class GetwayController {
 
     @ApiOperation(value = "getway服务获取所有路由信息")
     @PostMapping(value = "/getAll")
-    public ResultPage<GatewayRouteDefinition> getAll(@RequestBody QueryPage<GatewayRouteDefinition> page) {
-        getwayService.getAll(page);
-        return page.getResultPage();
+    public ResultPage<GatewayRouteDefinition> getAll(@RequestBody QueryPage page) {
+        return super.pageList(HttpStatus.OK.value(), null);
     }
 }

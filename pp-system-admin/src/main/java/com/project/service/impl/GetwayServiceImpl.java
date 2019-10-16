@@ -60,9 +60,9 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
         return 1;
     }
 
-    public Page<GatewayRouteDefinition> getAll(QueryPage<GatewayRouteDefinition> query) {
-        Page<GatewayRouteDefinition> page = query.getPage();
-        gatewayRouteDefinitionDao.selectPage(page, null);
-        return page;
+    public Page<GatewayRouteDefinition> getAll(QueryPage query) {
+        query.startPage(true);
+        gatewayRouteDefinitionDao.selectList(null);
+        return null;
     }
 }
