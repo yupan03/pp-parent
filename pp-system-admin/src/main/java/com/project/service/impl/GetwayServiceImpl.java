@@ -27,11 +27,6 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
         geRouteDefinition.setCreateTime(SysUtils.getCurrentTime());
         gatewayRouteDefinitionDao.insert(geRouteDefinition);
 
-//		boolean flage = gatewayFeign.add(routeDefinition);
-//		if (!flage) {
-//			throw new ProjectException(StatusEnum.ERROR, "新增路由失败");
-//		}
-
         return 1;
     }
 
@@ -40,7 +35,7 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
         gatewayRouteDefinitionDao.updateById(routeDefinition);
         boolean flage = gatewayFeign.update(routeDefinition);
         if (!flage) {
-            throw new BusinessException(BusinessStatus.ERROR.status, "更新路由失败");
+            throw new BusinessException(BusinessStatus.ERROR_PARAM.status, "更新路由失败");
         }
 
         return 1;
@@ -54,7 +49,7 @@ public class GetwayServiceImpl extends ServiceImpl<GatewayRouteDefinitionDao, Ga
 
         boolean flage = gatewayFeign.delete(routeDefinition.getName());
         if (!flage) {
-            throw new BusinessException(BusinessStatus.ERROR.status, "删除路由失败");
+            throw new BusinessException(BusinessStatus.ERROR_PARAM.status, "删除路由失败");
         }
 
         return 1;
