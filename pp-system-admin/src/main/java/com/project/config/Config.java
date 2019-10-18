@@ -12,20 +12,21 @@ import com.project.constant.GeneralTypeHandler;
 public class Config {
 
     /**
-     * 通过@Configuration使用MyBatis配置类 查看链接http://www.yyjjssnn.cn/articles/839.html
+     * 自定义mybatis枚举处理类 （通过@Configuration使用MyBatis配置类）
+     * 查看链接http://www.yyjjssnn.cn/articles/839.html
      * http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
      * 
      * @return
      */
-//    @Bean
-//    public ConfigurationCustomizer configurationCustomizer() {
-//        return new ConfigurationCustomizer() {
-//            @Override
-//            public void customize(MybatisConfiguration configuration) {
-//                TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
-//                // 更改mybatis默认枚举处理
-//                typeHandlerRegistry.setDefaultEnumTypeHandler(GeneralTypeHandler.class);
-//            }
-//        };
-//    }
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer() {
+        return new ConfigurationCustomizer() {
+            @Override
+            public void customize(MybatisConfiguration configuration) {
+                TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+                // 更改mybatis默认枚举处理
+                typeHandlerRegistry.setDefaultEnumTypeHandler(GeneralTypeHandler.class);
+            }
+        };
+    }
 }
