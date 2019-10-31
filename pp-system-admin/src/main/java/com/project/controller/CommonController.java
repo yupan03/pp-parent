@@ -10,7 +10,6 @@ import common.result.ResultPage;
  * controller层公共类
  * 
  * @author David
- *
  */
 public class CommonController {
     /**
