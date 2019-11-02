@@ -13,7 +13,6 @@
         <module>pp-wx</module>
         <module>pp-web</module>
         <module>pp-component</module>
-        <module>pp-web-security</module>
         <module>pp-gateway-security</module>
         <module>pp-jwt</module>
     </modules>

@@ -10,6 +10,12 @@ import org.apache.ibatis.type.JdbcType;
 
 import common.status.BaseStatusEnum;
 
+/**
+ * 统一枚举类处理
+ * @author David
+ *
+ * @param <T>
+ */
 public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHandler<BaseStatusEnum<?>> {
     private Class<T> type;
     private T[] enums;
