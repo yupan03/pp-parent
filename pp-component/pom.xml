@@ -12,7 +12,6 @@
     </parent>
     <modules>
         <module>pp-redis</module>
-        <module>pp-zookeeper1</module>
         <module>pp-swagger2</module>
         <module>pp-rabbit</module>
         <module>pp-feign</module>
