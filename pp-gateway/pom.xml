@@ -6,7 +6,8 @@
         <artifactId>pp-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>pp-gateway-security</artifactId>
+    <artifactId>pp-gateway</artifactId>
+    <description>统一网关处理</description>
     <dependencies>
         <dependency>
             <groupId>com.project</groupId>
