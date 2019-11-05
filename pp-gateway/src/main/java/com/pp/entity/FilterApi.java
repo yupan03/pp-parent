@@ -7,10 +7,14 @@ package com.pp.entity;
  */
 public class FilterApi {
     private Integer id;
+    // 路由名称
     private String url;
-    private Integer type;// 完全匹配、前缀、后缀
-    private String remark; // 描述
-    private String createTime;// 创建时间
+    // 完全匹配、前缀、后缀
+    private Integer type;
+    // 描述
+    private String remark;
+    // 创建时间
+    private String createTime;
 
     public Integer getId() {
         return id;

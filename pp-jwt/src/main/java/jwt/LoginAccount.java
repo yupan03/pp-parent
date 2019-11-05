@@ -7,7 +7,7 @@ public class LoginAccount {
     private String username;
     // 登录时间
     private String loginTime;
-    // 类型
+    // 登录类型
     private String type;
 
     // token类型 0：正常 1：将过期 2：已过期

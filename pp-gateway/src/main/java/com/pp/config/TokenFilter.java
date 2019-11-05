@@ -44,8 +44,6 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
-        System.out.println("------------------------");
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 

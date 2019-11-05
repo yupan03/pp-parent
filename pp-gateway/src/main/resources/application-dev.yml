@@ -15,7 +15,3 @@ spring:
       minimum-idle: 10
       idle-timeout: 50000
       max-lifetime: 540000
-
-# mybatis
-mybatis-plus: 
-  mapper-locations: com/project/dao/*/*.xml

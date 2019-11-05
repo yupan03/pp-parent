@@ -35,10 +35,10 @@ public class JwtUtil {
         return Jwts.builder()
 
                 .setClaims(claims)
-
-                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000)) // 设置过期时间
-
-                .signWith(signatureAlgorithm, secret)// 加密
+                // 设置过期时间
+                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
+                // 加密
+                .signWith(signatureAlgorithm, secret)
 
                 .compact();
     }
