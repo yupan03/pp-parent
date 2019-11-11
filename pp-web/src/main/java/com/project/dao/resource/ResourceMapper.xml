@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.resource.ResourceDao">
-    <resultMap type="com.project.entity.tables.resource.Resource" id="Resource">
-        <id column="parent_url" property="parentUrl" />
-        <result column="resource_name" property="resourceName" />
-        <result column="resource_url" property="resourceUrl" />
-        <result column="resource_method" property="resourceMethod" />
-        <result column="resource_param" property="resourceParam" />
-        <result column="remark" property="remark" />
-        <result column="create_time" property="createTime" />
-    </resultMap>
+	<resultMap type="com.project.entity.tables.resource.Resource"
+		id="Resource">
+		<id column="parent_url" property="parentUrl" />
+		<result column="resource_name" property="resourceName" />
+		<result column="resource_url" property="resourceUrl" />
+		<result column="resource_method" property="resourceMethod" />
+		<result column="resource_param" property="resourceParam" />
+		<result column="remark" property="remark" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
 
-    <insert id="insertList" parameterType="java.util.List">
-        insert INTO resource
-        (
-        parent_url,
-        resource_name,
-        resource_url,
-        resource_method,
-        resource_param,
-        remark,
-        create_time
-        )
-        VALUES
-        <foreach collection="list" index="index" item="item" separator=",">
-            (
-            #{item.parentUrl},
-            #{item.resourceName},
-            #{item.resourceUrl},
-            #{item.resourceMethod},
-            #{item.resourceParam},
-            #{item.remark},
-            #{item.createTime}
-            )
-        </foreach>
-        on duplicate key update
-        parent_url = values(parent_url),
-        resource_name = values(resource_name),
-        resource_method = values(resource_method),
-        resource_param = values(resource_param),
-        remark =
-        values(remark)
-    </insert>
+	<insert id="insertList" parameterType="java.util.List">
+		insert INTO resource
+		(
+		parent_url,
+		resource_name,
+		resource_url,
+		resource_method,
+		resource_param,
+		remark,
+		create_time
+		)
+		VALUES
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(
+			#{item.parentUrl},
+			#{item.resourceName},
+			#{item.resourceUrl},
+			#{item.resourceMethod},
+			#{item.resourceParam},
+			#{item.remark},
+			#{item.createTime}
+			)
+		</foreach>
+		on duplicate key update
+		parent_url = values(parent_url),
+		resource_name = values(resource_name),
+		resource_method = values(resource_method),
+		resource_param = values(resource_param),
+		remark =
+		values(remark)
+	</insert>
 </mapper>

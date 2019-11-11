@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.user.UserDao">
-    <resultMap type="com.project.entity.tables.user.User" id="user">
-        <id column="uuid" property="uuid" />
-        <result column="create_time" property="createTime" />
-        <result column="account" property="account" />
-        <result column="name" property="name" />
-        <result column="password" property="password" />
-        <result column="email" property="email" />
-        <result column="enable" property="enable" />
-        <result column="type" property="type" />
-    </resultMap>
+	<resultMap type="com.project.entity.tables.user.User"
+		id="user">
+		<id column="uuid" property="uuid" />
+		<result column="create_time" property="createTime" />
+		<result column="account" property="account" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="enable" property="enable" />
+		<result column="type" property="type" />
+	</resultMap>
 
-    <select id="selectByAccount" resultMap="user">
-        select
-        u.uuid,
-        u.account,
-        u.name,
-        u.password,
-        u.email,
-        u.enable,
-        u.type,
-        u.create_time
-        from user u
-        left join user_role_resource urr on urr.user_uuid = u.uuid
-        where 1 = 1
-        and u.account = #{account}
-    </select>
+	<select id="selectByAccount" resultMap="user">
+		select
+		u.uuid,
+		u.account,
+		u.name,
+		u.password,
+		u.email,
+		u.enable,
+		u.type,
+		u.create_time
+		from user u
+		left join user_role_resource urr on urr.user_uuid = u.uuid
+		where 1 = 1
+		and u.account = #{account}
+	</select>
 </mapper>
