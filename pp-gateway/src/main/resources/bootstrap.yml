@@ -8,14 +8,21 @@ spring:
     name: pp-gateway-security
   cloud:
     nacos:
-      discovery:        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         prefix: gateway-security
         group: DEFAULT_GROUP
-  profiles:    active: dev
-management:  endpoints:    web:      exposure:        include: '*'
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 swagger:
   enable: false

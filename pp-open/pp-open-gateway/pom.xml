@@ -8,8 +8,8 @@
 		<artifactId>pp-open</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>pp-open-getway</artifactId>
-	<name>pp-open-getway</name>
+	<artifactId>pp-open-gateway</artifactId>
+	<name>pp-open-gateway</name>
 	<description>开放平台的路由网关</description>
 
 	<dependencies>

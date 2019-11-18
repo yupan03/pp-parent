@@ -2,7 +2,7 @@ package com.pp.entity;
 
 /**
  * 网关不需要token验证的api
- * 
+ *
  * @author David
  */
 public class FilterApi {
