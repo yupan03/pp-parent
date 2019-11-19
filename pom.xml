@@ -15,6 +15,7 @@
 		<module>pp-web</module>
 		<module>pp-component</module>
 		<module>pp-jwt</module>
+		<module>pp-gateway</module>
 	</modules>
 
 	<properties>

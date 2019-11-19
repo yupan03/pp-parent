@@ -26,9 +26,8 @@ import java.util.Map;
 
 /**
  * token拦截器
- * 
- * @author David
  *
+ * @author David
  */
 @Component
 public class TokenFilter implements GlobalFilter, Ordered {
@@ -51,23 +50,23 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
         for (FilterApi api : apis) {
             switch (api.getType()) {
-            case 0:
-                // 正常匹配
-                if (path.equals(api.getUrl()))
-                    return chain.filter(exchange);
-                break;
-            case 1:
-                // 前缀
-                if (path.startsWith(api.getUrl()))
-                    return chain.filter(exchange);
-                break;
-            case 2:
-                // 后缀
-                if (path.endsWith(api.getUrl()))
-                    return chain.filter(exchange);
-                break;
-            default:
-                break;
+                case 0:
+                    // 正常匹配
+                    if (path.equals(api.getUrl()))
+                        return chain.filter(exchange);
+                    break;
+                case 1:
+                    // 前缀
+                    if (path.startsWith(api.getUrl()))
+                        return chain.filter(exchange);
+                    break;
+                case 2:
+                    // 后缀
+                    if (path.endsWith(api.getUrl()))
+                        return chain.filter(exchange);
+                    break;
+                default:
+                    break;
             }
         }
 
