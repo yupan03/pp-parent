@@ -16,7 +16,7 @@ public class ResourceService {
 
     public List<Resource> pageList() {
         // 取出所有资源数据然后封装成树的形式
-        List<Resource> resources = ResourceTreeUtil.buildByRecursive(resourceDao.selectList(null));
+        List<Resource> resources = ResourceTreeUtil.buildByRecursive(null);
 
         return resources;
     }

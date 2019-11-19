@@ -1,12 +1,9 @@
 package com.project.entity.tables.role;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-
 import lombok.Data;
 
 @Data
 public class RoleResource {
-    @TableId
     private Long id;
     private String uuid;
     private String roleUuid; // 角色uuid

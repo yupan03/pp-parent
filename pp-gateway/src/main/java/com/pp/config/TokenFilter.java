@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
         System.out.println(path);
         // 将不需要token校验的URL进行过滤
-        List<FilterApi> apis = filterApiService.list();
+        List<FilterApi> apis = new ArrayList<>();
 
         for (FilterApi api : apis) {
             switch (api.getType()) {

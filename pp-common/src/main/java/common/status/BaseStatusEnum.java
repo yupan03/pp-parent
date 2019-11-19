@@ -5,7 +5,7 @@ package common.status;
  * 
  * @author David
  *
- * @param <E>
+ * @param <T>
  */
 public interface BaseStatusEnum<T> {
     T getValue();

@@ -31,7 +31,7 @@ public class NumberService {
             newNumber.setNumber(String.format("U%06d", Integer.valueOf(no) + 1));// 自动补齐六位
         }
 
-        numberDao.insert(newNumber);
+//        numberDao.insert(newNumber);
 
         return newNumber.getNumber();
     }

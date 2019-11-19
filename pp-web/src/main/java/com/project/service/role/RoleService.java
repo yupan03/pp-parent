@@ -23,18 +23,17 @@ public class RoleService {
 
     public Object add(Role role) {
         role.setCreateTime(SysUtils.getCurrentTime());
-        roleDao.insert(role);
+//        roleDao.insert(role);
         // TODO 判断这个角色是否已经存在
         return role.getId();
     }
 
     public Object update(Role role) {
-        return roleDao.updateById(role);
+        return 0;
     }
 
     public Object delete(String id) {
-
-        return roleDao.deleteById(id);
+        return 0;
     }
 
     public Object pageList() {
@@ -43,7 +42,7 @@ public class RoleService {
 
     public List<RoleResource> roleResourceList(String roleId) {
         // 先判断角色是否存在
-        Role role = roleDao.selectById(roleId);
+        Role role = null;
         if (role == null) {
             throw new BusinessException(BusinessStatus.ERROR, "角色不存在");
         }
