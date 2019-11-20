@@ -1,10 +1,9 @@
 package com.pp.config;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import lombok.Data;
 
 /**
  ** 微信支付商户号配置

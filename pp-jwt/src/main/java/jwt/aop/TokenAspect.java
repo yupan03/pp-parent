@@ -1,9 +1,10 @@
 package jwt.aop;
 
-import java.lang.reflect.Method;
-
-import javax.servlet.http.HttpServletRequest;
-
+import common.exception.BusinessException;
+import jwt.JwtUtil;
+import jwt.LoginAccount;
+import jwt.annotaion.TokenCheck;
+import jwt.constant.TokenType;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,11 +16,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import common.exception.BusinessException;
-import jwt.JwtUtil;
-import jwt.LoginAccount;
-import jwt.annotaion.TokenCheck;
-import jwt.constant.TokenType;
+import java.lang.reflect.Method;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Token前置增强

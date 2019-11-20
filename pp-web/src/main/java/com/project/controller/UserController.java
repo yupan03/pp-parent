@@ -1,12 +1,10 @@
 package com.project.controller;
 
+import com.project.entity.tables.user.User;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.project.entity.tables.user.User;
-
-import io.swagger.annotations.Api;
 
 @RestController
 @Api(tags = "用户管理")

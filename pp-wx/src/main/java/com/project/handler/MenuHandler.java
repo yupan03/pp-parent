@@ -1,14 +1,13 @@
 package com.project.handler;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
 import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  ** 菜单处理类

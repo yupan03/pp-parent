@@ -1,14 +1,13 @@
 package com.project.constant;
 
+import common.status.BaseStatusEnum;
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-
-import common.status.BaseStatusEnum;
 
 /**
  * 统一枚举类处理

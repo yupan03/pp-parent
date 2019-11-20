@@ -1,16 +1,15 @@
 package com.project.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
-import lombok.Data;
 
 /**
  ** 请求参数统一封装

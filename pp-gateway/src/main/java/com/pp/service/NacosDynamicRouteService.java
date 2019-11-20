@@ -16,11 +16,11 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+import javax.annotation.PostConstruct;
 
 /**
  * nocos 动态路由

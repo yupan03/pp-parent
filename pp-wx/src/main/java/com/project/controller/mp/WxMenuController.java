@@ -1,15 +1,14 @@
 package com.project.controller.mp;
 
+import io.swagger.annotations.Api;
+import me.chanjar.weixin.common.bean.menu.WxMenu;
+import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.annotations.Api;
-import me.chanjar.weixin.common.bean.menu.WxMenu;
-import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.mp.api.WxMpService;
 
 /**
  * 微信公众号菜单

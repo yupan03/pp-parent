@@ -1,10 +1,9 @@
 package com.project.controller;
 
-import java.util.List;
-
 import com.github.pagehelper.PageInfo;
-
 import common.result.ResultPage;
+
+import java.util.List;
 
 /**
  * controller层公共类
@@ -15,14 +14,14 @@ public class CommonController {
     /**
      * PageHelper数据封装
      * 
-     * @param <T>
-     * @param status
-     * @param list
-     * @return
+     * @param <T> 实体对象
+     * @param status 返回状态
+     * @param list 列表数据
+     * @return 返回分页数据
      */
     protected <T> ResultPage<T> pageList(int status, List<T> list) {
-        PageInfo<T> pageInfo = new PageInfo<T>(list);
-        return new ResultPage<T>(status, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        return new ResultPage<>(status, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
                 pageInfo.getTotal());
     }
 }

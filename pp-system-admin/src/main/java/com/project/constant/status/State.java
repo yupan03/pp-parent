@@ -2,7 +2,6 @@ package com.project.constant.status;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import common.status.BaseStatusEnum;
 import lombok.Getter;
 

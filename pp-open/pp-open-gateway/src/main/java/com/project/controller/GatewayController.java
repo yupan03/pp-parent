@@ -1,11 +1,10 @@
 package com.project.controller;
 
+import common.result.Result;
+import common.result.ResultStatusEnum;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import common.result.Result;
-import common.result.ResultStatusEnum;
 
 /**
  * 熔断（服务降级）

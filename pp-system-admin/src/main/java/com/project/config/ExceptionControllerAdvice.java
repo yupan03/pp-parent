@@ -1,12 +1,8 @@
 package com.project.config;
 
-import java.sql.SQLException;
-import java.util.Set;
-
-import javax.servlet.ServletException;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-
+import com.project.constant.BusinessStatus;
+import common.exception.BusinessException;
+import common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -19,14 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.project.constant.BusinessStatus;
-
-import common.exception.BusinessException;
-import common.result.Result;
+import java.sql.SQLException;
+import java.util.Set;
+import javax.servlet.ServletException;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  * 统一异常处理
- * 
+ *
  * @author David
  */
 @RestControllerAdvice
@@ -34,8 +31,8 @@ public class ExceptionControllerAdvice {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     ** 自定义系统业务异常处理
-     * 
+     * * 自定义系统业务异常处理
+     *
      * @param e
      * @return
      */
@@ -47,8 +44,8 @@ public class ExceptionControllerAdvice {
     }
 
     /**
-     ** 请求异常处理 配置文件增加 spring:mvc:throw-exception-if-no-handler-found: true
-     * 
+     * * 请求异常处理 配置文件增加 spring:mvc:throw-exception-if-no-handler-found: true
+     *
      * @param e
      * @return
      */
@@ -67,8 +64,8 @@ public class ExceptionControllerAdvice {
     }
 
     /**
-     ** 数据库异常处理
-     * 
+     * * 数据库异常处理
+     *
      * @param e
      * @return
      */
@@ -80,12 +77,12 @@ public class ExceptionControllerAdvice {
 
     /**
      * 验证框架异常
-     * 
+     *
      * @param e
      * @return
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
-    public Result handleVilolationException(ConstraintViolationException e) {
+    public Result handleViolationException(ConstraintViolationException e) {
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         StringBuilder strBuilder = new StringBuilder();
         for (ConstraintViolation<?> violation : violations) {
@@ -95,7 +92,7 @@ public class ExceptionControllerAdvice {
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public Result handMethodAraumentException(MethodArgumentNotValidException e) {
+    public Result handMethodArgumentException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
 
         FieldError error = result.getFieldError();
@@ -105,5 +102,4 @@ public class ExceptionControllerAdvice {
 
         return new Result(BusinessStatus.ERROR_PARAM.status, message);
     }
-
 }

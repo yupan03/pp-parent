@@ -1,24 +1,5 @@
 package com.project.config;
 
-import java.io.File;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import com.google.common.collect.Lists;
-import com.project.handler.KfSessionHandler;
-import com.project.handler.LocationHandler;
-import com.project.handler.LogHandler;
-import com.project.handler.MenuHandler;
-import com.project.handler.MsgHandler;
-import com.project.handler.NullHandler;
-import com.project.handler.ScanHandler;
-import com.project.handler.StoreCheckNotifyHandler;
-import com.project.handler.SubscribeHandler;
-import com.project.handler.UnsubscribeHandler;
-
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.bean.WxMaKefuMessage;
@@ -27,6 +8,8 @@ import cn.binarywang.wx.miniapp.bean.WxMaTemplateMessage;
 import cn.binarywang.wx.miniapp.config.WxMaInMemoryConfig;
 import cn.binarywang.wx.miniapp.message.WxMaMessageHandler;
 import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
+import com.google.common.collect.Lists;
+import com.project.handler.*;
 import me.chanjar.weixin.common.api.WxConsts.EventType;
 import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
@@ -37,6 +20,12 @@ import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.constant.WxMpEventConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.File;
 
 @Configuration
 @EnableConfigurationProperties({ WxMpProperties.class, WxMiniappProperties.class })

@@ -1,9 +1,8 @@
 package com.project.config;
 
-import java.sql.SQLException;
-
-import javax.servlet.ServletException;
-
+import com.project.exception.BusinessException;
+import com.project.exception.BusinessStatus;
+import common.result.ResultObj;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.project.exception.BusinessException;
-import com.project.exception.BusinessStatus;
-
-import common.result.ResultObj;
+import java.sql.SQLException;
+import javax.servlet.ServletException;
 
 /**
  * 统一异常处理

@@ -1,20 +1,14 @@
 package com.project.controller;
 
-import java.util.List;
-
+import com.project.config.SwaggerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.swagger.web.*;
 
-import com.project.config.SwaggerConfig;
-
-import springfox.documentation.swagger.web.SecurityConfiguration;
-import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
-import springfox.documentation.swagger.web.SwaggerResource;
-import springfox.documentation.swagger.web.UiConfiguration;
-import springfox.documentation.swagger.web.UiConfigurationBuilder;
+import java.util.List;
 
 @RestController
 @RequestMapping("/swagger-resources")

@@ -1,7 +1,11 @@
 package com.project.controller;
 
-import java.util.List;
-
+import com.project.entity.tables.role.Role;
+import com.project.entity.tables.role.RoleResource;
+import com.project.exception.BusinessStatus;
+import com.project.service.role.RoleService;
+import common.result.ResultObj;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,13 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.entity.tables.role.Role;
-import com.project.entity.tables.role.RoleResource;
-import com.project.exception.BusinessStatus;
-import com.project.service.role.RoleService;
-
-import common.result.ResultObj;
-import io.swagger.annotations.Api;
+import java.util.List;
 
 @Api(value = "角色管理")
 @RestController

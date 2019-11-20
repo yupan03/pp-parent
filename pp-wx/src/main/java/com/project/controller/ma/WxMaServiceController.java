@@ -1,5 +1,13 @@
 package com.project.controller.ma;
 
+import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
+import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
+import com.project.constant.BusinessStatus;
+import common.exception.BusinessException;
+import io.swagger.annotations.Api;
+import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,16 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.project.constant.BusinessStatus;
-
-import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
-import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import common.exception.BusinessException;
-import io.swagger.annotations.Api;
-import me.chanjar.weixin.common.error.WxErrorException;
 
 @Api(tags = "微信小程序服务")
 @RestController

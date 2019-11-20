@@ -1,11 +1,11 @@
 package com.project.controller;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.project.exception.BusinessException;
+import com.project.exception.BusinessStatus;
+import common.VerificationCode;
+import common.result.ResultObj;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.exception.BusinessException;
-import com.project.exception.BusinessStatus;
-
-import common.VerificationCode;
-import common.result.ResultObj;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Api(tags = "登录")
 @RestController

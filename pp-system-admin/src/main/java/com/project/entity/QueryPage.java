@@ -1,7 +1,6 @@
 package com.project.entity;
 
 import com.github.pagehelper.PageHelper;
-
 import io.swagger.annotations.ApiModelProperty;
 
 public class QueryPage {

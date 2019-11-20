@@ -1,10 +1,9 @@
 package com.project.dao.role;
 
-import java.util.List;
-
+import com.project.entity.tables.role.RoleResource;
 import org.apache.ibatis.annotations.Param;
 
-import com.project.entity.tables.role.RoleResource;
+import java.util.List;
 
 public interface RoleResourceDao {
     List<RoleResource> findByRole(@Param("roleUuid") String roleUuid, @Param("roleName") String roleName);

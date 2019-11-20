@@ -1,7 +1,5 @@
 package com.project.dao;
 
-import com.project.entity.table.User;
-
 /**
  * Mapper 接口
  *

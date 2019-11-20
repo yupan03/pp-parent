@@ -1,18 +1,16 @@
 package com.project.handler;
 
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-
 import com.project.builder.TextBuilder;
-
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Component
 public class MsgHandler extends AbstractHandler {

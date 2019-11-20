@@ -1,9 +1,9 @@
 package com.project.utils;
 
+import com.project.entity.tables.resource.Resource;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.project.entity.tables.resource.Resource;
 
 public class ResourceTreeUtil {
     /**

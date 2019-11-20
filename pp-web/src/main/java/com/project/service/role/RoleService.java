@@ -1,18 +1,16 @@
 package com.project.service.role;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.project.dao.role.RoleDao;
 import com.project.dao.role.RoleResourceDao;
 import com.project.entity.tables.role.Role;
 import com.project.entity.tables.role.RoleResource;
 import com.project.exception.BusinessException;
 import com.project.exception.BusinessStatus;
-
 import common.utils.SysUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RoleService {

@@ -1,12 +1,8 @@
 package com.pp.config;
 
-import java.sql.SQLException;
-import java.util.Set;
-
-import javax.servlet.ServletException;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-
+import common.result.Result;
+import common.result.ResultException;
+import common.result.ResultStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
@@ -18,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import common.result.Result;
-import common.result.ResultException;
-import common.result.ResultStatusEnum;
+import java.sql.SQLException;
+import java.util.Set;
+import javax.servlet.ServletException;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  * 统一异常处理

@@ -1,14 +1,14 @@
 package jwt;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jwt.constant.JwtConstant;
 import jwt.constant.TokenType;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JwtUtil {
     private final String CLAIM_KEY_ACCOUNT = "account";
