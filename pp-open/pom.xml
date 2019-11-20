@@ -16,7 +16,6 @@
 		<module>pp-open-gateway</module>
 		<module>pp-open-common</module>
 		<module>pp-open-pay</module>
-		<module>pp-open-pay2</module>
 	</modules>
 
 </project>
