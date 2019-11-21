@@ -3,7 +3,7 @@ package jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import jwt.constant.JwtConstant;
+import jwt.config.JwtProperties;
 import jwt.constant.TokenType;
 
 import java.util.Date;
@@ -15,11 +15,11 @@ public class JwtUtil {
     private final String CLAIM_KEY_LOGIN_TIME = "loginTime";
     private final String CLAIM_KEY_TYPE = "type";
 
-    private final String secret = JwtConstant.SECRET;
+    private JwtProperties jwtProperties;
 
-    private Long expiration = JwtConstant.EXPIRATION;
-
-    private SignatureAlgorithm signatureAlgorithm = JwtConstant.SIGNATUREALGORITHM;
+    public JwtUtil(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     /**
      * 用户数据转换成token
@@ -40,20 +40,19 @@ public class JwtUtil {
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
-                // 设置过期时间
-                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-                // 加密
-                .signWith(signatureAlgorithm, secret)
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getExpiration() * 1000))
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())
                 .compact();
     }
 
     /**
      * 根据token获取登录用户
+     *
      * @param token 字符串
      * @return 登录用户
      */
     public LoginAccount getAccountFromToken(String token) {
-        String bearer = "Bearer ";
+        String bearer = jwtProperties.getHead();
         if (token.startsWith(bearer)) {
             token = token.substring(bearer.length());
         }
@@ -90,6 +89,6 @@ public class JwtUtil {
     }
 
     private Claims getClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(jwtProperties.getSecret()).parseClaimsJws(token).getBody();
     }
 }
