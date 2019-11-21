@@ -2,13 +2,10 @@ package com.pp.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pp.entity.FilterApi;
-import com.pp.service.FilterApiService;
 import common.result.Result;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import jwt.constant.TokenType;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -18,11 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,8 +28,6 @@ import java.util.Map;
  */
 @Component
 public class TokenFilter implements GlobalFilter, Ordered {
-    @Autowired
-    private FilterApiService filterApiService;
 
     @Override
     public int getOrder() {
@@ -43,36 +37,16 @@ public class TokenFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        String path = request.getURI().getPath();
-
-        System.out.println(path);
-        // 将不需要token校验的URL进行过滤
-        List<FilterApi> apis = new ArrayList<>();
-
-        for (FilterApi api : apis) {
-            switch (api.getType()) {
-                case 0:
-                    // 正常匹配
-                    if (path.equals(api.getUrl()))
-                        return chain.filter(exchange);
-                    break;
-                case 1:
-                    // 前缀
-                    if (path.startsWith(api.getUrl()))
-                        return chain.filter(exchange);
-                    break;
-                case 2:
-                    // 后缀
-                    if (path.endsWith(api.getUrl()))
-                        return chain.filter(exchange);
-                    break;
-                default:
-                    break;
-            }
-        }
 
         // 检验token
         String token = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+
+        System.out.println("请求前token:" + token);
+
+        // 当token为空是就不校验token
+        if (StringUtils.isEmpty(token)) {
+            return chain.filter(exchange);
+        }
 
         Map<String, String> singleValueMap = request.getHeaders().toSingleValueMap();
         System.out.println(singleValueMap);
@@ -86,9 +60,12 @@ public class TokenFilter implements GlobalFilter, Ordered {
         } else if (account.getTokenType() == TokenType.WILL_EXPIRE) {
             // 重新获取token放入请求头中
             // 隐患（当请求头中含有其他信息是是否把这些信息也放入新的请求头中）
-            ServerHttpRequest addHeader = exchange.getRequest().mutate()
-                    .header(HttpHeaders.AUTHORIZATION, new JwtUtil().generateToken(account)).build();
+            ServerHttpRequest addHeader = request.mutate()
+                    .header(HttpHeaders.AUTHORIZATION, new JwtUtil().generateToken(account))
+                    .build();
             exchange = exchange.mutate().request(addHeader).build();
+
+            System.out.println("请求变更后后token：" + addHeader.getHeaders().getFirst(HttpHeaders.AUTHORIZATION));
         }
 
         return chain.filter(exchange);

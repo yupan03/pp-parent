@@ -216,9 +216,9 @@ public class IDCardUtil {
             return null;
         }
 
-        String provinceid = idcard.substring(0, 2);
+        String provinceId = idcard.substring(0, 2);
         // 校验省份
-        if (!checkProvinceid(provinceid)) {
+        if (!checkProvinceid(provinceId)) {
             return null;
         }
 

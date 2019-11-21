@@ -21,6 +21,12 @@ public class JwtUtil {
 
     private SignatureAlgorithm signatureAlgorithm = JwtConstant.SIGNATUREALGORITHM;
 
+    /**
+     * 用户数据转换成token
+     *
+     * @param account 用户
+     * @return token字符串
+     */
     public String generateToken(LoginAccount account) {
         Map<String, Object> claims = new HashMap<>();
 
@@ -33,16 +39,19 @@ public class JwtUtil {
 
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
-
                 .setClaims(claims)
                 // 设置过期时间
                 .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
                 // 加密
                 .signWith(signatureAlgorithm, secret)
-
                 .compact();
     }
 
+    /**
+     * 根据token获取登录用户
+     * @param token 字符串
+     * @return 登录用户
+     */
     public LoginAccount getAccountFromToken(String token) {
         String bearer = "Bearer ";
         if (token.startsWith(bearer)) {
@@ -61,7 +70,7 @@ public class JwtUtil {
             // 比较过期时间和当前时间的差
             long expiration = getClaimsFromToken(token).getExpiration().getTime();
 
-            Long now = new Date().getTime();
+            long now = new Date().getTime();
 
             if (now >= expiration) {
                 account.setTokenType(TokenType.OVERDUE);
