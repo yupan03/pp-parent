@@ -51,7 +51,7 @@ public class NacosDynamicRouteService implements ApplicationEventPublisherAware 
     }
 
     @PostConstruct
-    public void dynamicRouteByNacosListener() {
+    public void dynamicRouteByListener() {
         try {
             Properties properties = new Properties();
 
