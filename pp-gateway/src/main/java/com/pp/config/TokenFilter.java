@@ -6,6 +6,7 @@ import common.result.Result;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import jwt.constant.TokenType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -28,6 +29,8 @@ import java.util.Map;
  */
 @Component
 public class TokenFilter implements GlobalFilter, Ordered {
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Override
     public int getOrder() {
@@ -48,10 +51,7 @@ public class TokenFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
 
-        Map<String, String> singleValueMap = request.getHeaders().toSingleValueMap();
-        System.out.println(singleValueMap);
-
-        LoginAccount account = new JwtUtil().getAccountFromToken(token);
+        LoginAccount account = jwtUtil.getAccountFromToken(token);
 
         if (account == null) {
             return sendMessage(exchange, new Result(HttpStatus.UNAUTHORIZED.value(), "非法token"));
@@ -59,9 +59,8 @@ public class TokenFilter implements GlobalFilter, Ordered {
             return sendMessage(exchange, new Result(HttpStatus.UNAUTHORIZED.value(), "token失效，请重新登录"));
         } else if (account.getTokenType() == TokenType.WILL_EXPIRE) {
             // 重新获取token放入请求头中
-            // 隐患（当请求头中含有其他信息是是否把这些信息也放入新的请求头中）
             ServerHttpRequest addHeader = request.mutate()
-                    .header(HttpHeaders.AUTHORIZATION, new JwtUtil().generateToken(account))
+                    .header(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(account))
                     .build();
             exchange = exchange.mutate().request(addHeader).build();
 

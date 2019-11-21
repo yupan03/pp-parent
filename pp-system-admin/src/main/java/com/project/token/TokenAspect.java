@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Aspect
 public class TokenAspect {
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      ** 定义切面
@@ -52,7 +55,7 @@ public class TokenAspect {
             }
 
             // 检验token的失效性
-            LoginAccount account = new JwtUtil().getAccountFromToken(token);
+            LoginAccount account = jwtUtil.getAccountFromToken(token);
             if (account == null) {
                 throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "非法token");
             } else if (account.getTokenType() == TokenType.OVERDUE) {
