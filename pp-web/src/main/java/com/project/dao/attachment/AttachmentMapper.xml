@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.attachment.AttachmentDao">
-	<resultMap type="com.project.entity.tables.Attachment"
-		id="attachment">
-		<id column="uuid" property="uuid" />
-		<result column="create_time" property="createTime" />
-		<result column="relation_uuid" property="relationUuid" />
-		<result column="relation_table" property="relationTable" />
-		<result column="file_type" property="fileType" />
-		<result column="file_name" property="fileName" />
-		<result column="attachment_name" property="attachmentName" />
-		<result column="attachment_path" property="attachmentPath" />
-		<result column="attachment_status" property="attachmentStatus" />
-		<result column="uploader" property="uploader" />
-		<result column="upload_time" property="uploadTime" />
-	</resultMap>
+    <resultMap type="com.project.entity.tables.Attachment" id="attachment">
+        <id column="uuid" property="uuid"/>
+        <result column="create_time" property="createTime"/>
+        <result column="relation_uuid" property="relationUuid"/>
+        <result column="relation_table" property="relationTable"/>
+        <result column="file_type" property="fileType"/>
+        <result column="file_name" property="fileName"/>
+        <result column="attachment_name" property="attachmentName"/>
+        <result column="attachment_path" property="attachmentPath"/>
+        <result column="attachment_status" property="attachmentStatus"/>
+        <result column="uploader" property="uploader"/>
+        <result column="upload_time" property="uploadTime"/>
+    </resultMap>
 
-	<select id="findAttachment" parameterType="java.util.Map"
-		resultMap="attachment">
-		select
-		ta.uuid,
-		ta.file_name
-		from t_attachment ta
-		where 1=1
-		<if test="uuid != null">and ta.uuid = #{uuid}</if>
-		<if test="relation_uuid != null">and ta.relation_uuid = #{relation_uuid}</if>
-		<if test="relation_table != null">and ta.relation_table = #{relation_table}</if>
-		<if test="attachment_status != null">and ta.attachment_status = #{attachment_status}</if>
-		order by ta.upload_time desc
-	</select>
+    <select id="findAttachment" parameterType="java.util.Map"
+            resultMap="attachment">
+        select
+        ta.uuid,
+        ta.file_name
+        from t_attachment ta
+        where 1=1
+        <if test="uuid != null">and ta.uuid = #{uuid}</if>
+        <if test="relation_uuid != null">and ta.relation_uuid = #{relation_uuid}</if>
+        <if test="relation_table != null">and ta.relation_table = #{relation_table}</if>
+        <if test="attachment_status != null">and ta.attachment_status = #{attachment_status}</if>
+        order by ta.upload_time desc
+    </select>
 </mapper>
