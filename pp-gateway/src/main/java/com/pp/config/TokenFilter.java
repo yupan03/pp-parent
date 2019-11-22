@@ -13,6 +13,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -63,6 +64,13 @@ public class TokenFilter implements GlobalFilter, Ordered {
                     .header(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(account))
                     .build();
             exchange = exchange.mutate().request(addHeader).build();
+
+            ServerHttpResponse response = exchange.getResponse();
+
+            // 新的token放在response头中返回给前端
+            response.getHeaders().add(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(account));
+
+            exchange = exchange.mutate().response(response).build();
 
             System.out.println("请求变更后后token：" + addHeader.getHeaders().getFirst(HttpHeaders.AUTHORIZATION));
         }

@@ -5,17 +5,20 @@ spring:
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
-    hikari:      pool-name: KevinHikariPool
+    hikari:
+      pool-name: KevinHikariPool
       maximum-pool-size: 12
       connection-timeout: 60000
       minimum-idle: 10
       idle-timeout: 50000
       max-lifetime: 540000
   redis:
-    host: localhost
-    #password: 123456
+    host: 47.95.14.140
+    password: yupan03
     database: 0
-    jedis:      pool:        max-idle: 1
+    jedis:
+      pool:
+        max-idle: 1
         max-active: 8
         min-idle: 1
         max-wait: -1
