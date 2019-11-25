@@ -22,6 +22,9 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 
+jwt:
+  secret: yupan03sdife
+
 logging:
   level:
     com.project.dao: DEBUG

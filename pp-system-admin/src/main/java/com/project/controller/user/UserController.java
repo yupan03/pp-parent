@@ -1,12 +1,15 @@
 package com.project.controller.user;
 
 import com.project.controller.CommonController;
+import com.project.controller.user.param.LoginUser;
+import com.project.token.TokenCheck;
+import jwt.JwtUtil;
+import jwt.LoginAccount;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 前端控制器
@@ -17,9 +20,20 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends CommonController {
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @PostMapping(value = "login")
+    public String getToken(@RequestBody LoginUser user) {
+        LoginAccount account = new LoginAccount();
+        account.setUsername(user.getUsername());
+        return jwtUtil.generateToken(account);
+    }
+
+
     @RequestMapping(value = "/say")
-    public String sayHello(HttpServletResponse response) {
-        response.setHeader("token", "token");
+    @TokenCheck
+    public String sayHello() {
         return "Hello world!";
     }
 }

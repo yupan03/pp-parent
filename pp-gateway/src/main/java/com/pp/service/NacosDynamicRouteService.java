@@ -31,9 +31,9 @@ import javax.annotation.PostConstruct;
 @Service
 public class NacosDynamicRouteService implements ApplicationEventPublisherAware {
 
-    private String dataId = "gateway-rounts";
+    private final String dataId = "gateway-rounts";
 
-    private String group = "DEFAULT_GROUP";
+    private final String group = "DEFAULT_GROUP";
 
     @Value("${spring.cloud.nacos.config.server-addr}")
     private String serverAddr;
