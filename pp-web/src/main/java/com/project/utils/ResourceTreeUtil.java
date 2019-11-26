@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ResourceTreeUtil {
     /**
-     ** 使用递归方法建树
-     * 
+     * * 使用递归方法建树
+     *
      * @param treeNodes
      * @return
      */
@@ -24,8 +24,8 @@ public class ResourceTreeUtil {
     }
 
     /**
-     ** 递归查找子节点
-     * 
+     * * 递归查找子节点
+     *
      * @param treeNodes
      * @return
      */

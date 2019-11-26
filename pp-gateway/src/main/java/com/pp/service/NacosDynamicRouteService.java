@@ -24,9 +24,8 @@ import javax.annotation.PostConstruct;
 
 /**
  * nocos 动态路由
- * 
- * @author David
  *
+ * @author David
  */
 @Service
 public class NacosDynamicRouteService implements ApplicationEventPublisherAware {

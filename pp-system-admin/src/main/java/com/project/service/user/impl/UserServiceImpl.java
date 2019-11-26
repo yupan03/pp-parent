@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private CommonService commonService;
+
     public void test() {
         commonService.getUserDao();
     }

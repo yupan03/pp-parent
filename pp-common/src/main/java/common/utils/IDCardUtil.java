@@ -7,14 +7,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- ** 身份证校验工具
- * 
+ * * 身份证校验工具
+ *
  * @author David
  */
 public class IDCardUtil {
     /**
      * <pre>
-     ** 省直辖市代码表：
+     * * 省直辖市代码表：
      *     11 : 北京  12 : 天津  13 : 河北       14 : 山西  15 : 内蒙古
      *     21 : 辽宁  22 : 吉林  23 : 黑龙江     31 : 上海  32 : 江苏
      *     33 : 浙江  34 : 安徽  35 : 福建       36 : 江西  37 : 山东
@@ -24,17 +24,17 @@ public class IDCardUtil {
      *     65 : 新疆  71 : 台湾  81 : 香港       82 : 澳门  91 : 国外
      * </pre>
      */
-    private static String cityCode[] = { "11", "12", "13", "14", "15", "21", "22", "23", "31", "32", "33", "34", "35",
+    private static String cityCode[] = {"11", "12", "13", "14", "15", "21", "22", "23", "31", "32", "33", "34", "35",
             "36", "37", "41", "42", "43", "44", "45", "46", "50", "51", "52", "53", "54", "61", "62", "63", "64", "65",
-            "71", "81", "82", "91" };
+            "71", "81", "82", "91"};
 
     /**
-     ** 每位加权因子
+     * * 每位加权因子
      */
-    private static int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+    private static int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
 
     /**
-     ** 验证所有的身份证的合法性
+     * * 验证所有的身份证的合法性
      *
      * @param idcard 身份证
      * @return 合法返回true，否则返回false
@@ -51,12 +51,12 @@ public class IDCardUtil {
 
     /**
      * <p>
-     ** 判断18位身份证的合法性
-     ** </p>
-     ** 根据〖中华人民共和国国家标准GB11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。
-     ** 排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。
-     ** <p>
-     ** 顺序码: 表示在同一地址码所标识的区域范围内，对同年、同月、同 日出生的人编定的顺序号，顺序码的奇数分配给男性，偶数分配 给女性。
+     * * 判断18位身份证的合法性
+     * * </p>
+     * * 根据〖中华人民共和国国家标准GB11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。
+     * * 排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。
+     * * <p>
+     * * 顺序码: 表示在同一地址码所标识的区域范围内，对同年、同月、同 日出生的人编定的顺序号，顺序码的奇数分配给男性，偶数分配 给女性。
      * </p>
      * <p>
      * 1.前1、2位数字表示：所在省份的代码； 2.第3、4位数字表示：所在城市的代码； 3.第5、6位数字表示：所在区县的代码；
@@ -64,7 +64,7 @@ public class IDCardUtil {
      * 7.第18位数字是校检码：也有的说是个人信息码，一般是随计算机的随机产生，用来检验身份证的正确性。校检码可以是0~9的数字，有时也用x表示。
      * </p>
      * <p>
-     ** 第十八位数字(校验码)的计算方法为： 1.将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7 9 10 5 8 4 2 1
+     * * 第十八位数字(校验码)的计算方法为： 1.将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7 9 10 5 8 4 2 1
      * 6 3 7 9 10 5 8 4 2
      * </p>
      * <p>
@@ -146,11 +146,11 @@ public class IDCardUtil {
     }
 
     /**
-     ** 校验15位身份证
+     * * 校验15位身份证
      * <p>
-     * 
+     *
      * <pre>
-     ** 只校验省份和出生年月日
+     * * 只校验省份和出生年月日
      * </pre>
      *
      * @param idcard
@@ -323,39 +323,39 @@ public class IDCardUtil {
     private static String getCheckCodeBySum(int sum17) {
         String checkCode = null;
         switch (sum17 % 11) {
-        case 10:
-            checkCode = "2";
-            break;
-        case 9:
-            checkCode = "3";
-            break;
-        case 8:
-            checkCode = "4";
-            break;
-        case 7:
-            checkCode = "5";
-            break;
-        case 6:
-            checkCode = "6";
-            break;
-        case 5:
-            checkCode = "7";
-            break;
-        case 4:
-            checkCode = "8";
-            break;
-        case 3:
-            checkCode = "9";
-            break;
-        case 2:
-            checkCode = "x";
-            break;
-        case 1:
-            checkCode = "0";
-            break;
-        case 0:
-            checkCode = "1";
-            break;
+            case 10:
+                checkCode = "2";
+                break;
+            case 9:
+                checkCode = "3";
+                break;
+            case 8:
+                checkCode = "4";
+                break;
+            case 7:
+                checkCode = "5";
+                break;
+            case 6:
+                checkCode = "6";
+                break;
+            case 5:
+                checkCode = "7";
+                break;
+            case 4:
+                checkCode = "8";
+                break;
+            case 3:
+                checkCode = "9";
+                break;
+            case 2:
+                checkCode = "x";
+                break;
+            case 1:
+                checkCode = "0";
+                break;
+            case 0:
+                checkCode = "1";
+                break;
         }
         return checkCode;
     }
@@ -406,7 +406,7 @@ public class IDCardUtil {
     }
 
     /**
-     ** 根据身份编号获取生日
+     * * 根据身份编号获取生日
      *
      * @param idCard 身份编号
      * @return 生日(yyyyMMdd)
@@ -416,7 +416,7 @@ public class IDCardUtil {
     }
 
     /**
-     ** 根据身份编号获取生日年
+     * * 根据身份编号获取生日年
      *
      * @param idCard 身份编号
      * @return 生日(yyyy)
@@ -426,7 +426,7 @@ public class IDCardUtil {
     }
 
     /**
-     ** 根据身份编号获取生日月
+     * * 根据身份编号获取生日月
      *
      * @param idCard 身份编号
      * @return 生日(MM)
@@ -436,7 +436,7 @@ public class IDCardUtil {
     }
 
     /**
-     ** 根据身份编号获取生日天
+     * * 根据身份编号获取生日天
      *
      * @param idCard 身份编号
      * @return 生日(dd)
@@ -446,10 +446,10 @@ public class IDCardUtil {
     }
 
     /**
-     ** 根据身份编号获取性别
+     * * 根据身份编号获取性别
      *
      * @param idCard 身份编号
-     * @return 性别(M-男，F-女，N-未知)
+     * @return 性别(M - 男 ， F - 女 ， N - 未知)
      */
     public static String getSexByIdCard(String idCard) {
         String sGender = "未知";

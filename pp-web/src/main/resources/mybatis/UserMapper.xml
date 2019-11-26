@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
-	<!-- 获取所有的用户,放入缓存 -->
-	<select id="getUser" parameterType="java.util.Map"
-		resultType="java.util.Map">
-		select * from t_user
-	</select>
+    <!-- 获取所有的用户,放入缓存 -->
+    <select id="getUser" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select * from t_user
+    </select>
 
-	<!-- 根据用户名查询用户,不放入缓存 -->
-	<select id="getUserByUsername" parameterType="java.lang.String"
-		resultType="java.util.Map">
-		select * from t_user where name = #{userName}
-	</select>
+    <!-- 根据用户名查询用户,不放入缓存 -->
+    <select id="getUserByUsername" parameterType="java.lang.String"
+            resultType="java.util.Map">
+        select * from t_user where name = #{userName}
+    </select>
 
-	<insert id="addNewUser" parameterType="java.util.Map">
-		insert into
-	</insert>
+    <insert id="addNewUser" parameterType="java.util.Map">
+        insert into
+    </insert>
 </mapper>

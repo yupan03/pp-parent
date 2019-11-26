@@ -17,7 +17,7 @@ public class MsgHandler extends AbstractHandler {
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService weixinService,
-            WxSessionManager sessionManager) {
+                                    WxSessionManager sessionManager) {
 
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             // 可以选择将消息保存到本地

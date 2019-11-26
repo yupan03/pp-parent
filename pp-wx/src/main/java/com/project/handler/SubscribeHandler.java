@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- ** 关注公众号处理
- * 
+ * * 关注公众号处理
+ *
  * @author yupan
  */
 @Component
@@ -21,7 +21,7 @@ public class SubscribeHandler extends AbstractHandler {
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService weixinService,
-            WxSessionManager sessionManager) throws WxErrorException {
+                                    WxSessionManager sessionManager) throws WxErrorException {
 
         this.logger.info("新关注用户 OPENID: " + wxMessage.getFromUser());
 

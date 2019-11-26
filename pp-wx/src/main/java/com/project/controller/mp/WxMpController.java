@@ -30,9 +30,9 @@ public class WxMpController {
     @ApiOperation(value = "公众号接入", notes = "公众号接入")
     @GetMapping
     public void authGet(@RequestParam(name = "signature", required = false) String signature,
-            @RequestParam(name = "timestamp", required = false) String timestamp,
-            @RequestParam(name = "nonce", required = false) String nonce,
-            @RequestParam(name = "echostr", required = false) String echostr, HttpServletResponse response)
+                        @RequestParam(name = "timestamp", required = false) String timestamp,
+                        @RequestParam(name = "nonce", required = false) String nonce,
+                        @RequestParam(name = "echostr", required = false) String echostr, HttpServletResponse response)
             throws IOException {
 
         this.logger.info("\n接收到来自微信服务器的认证消息：[{}, {}, {}, {}]", signature, timestamp, nonce, echostr);
@@ -48,10 +48,10 @@ public class WxMpController {
     @ApiOperation(value = "公众号消息", notes = "后台接收消息并处理消息")
     @PostMapping
     public void post(@RequestBody String requestBody, @RequestParam("signature") String signature,
-            @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce,
-            @RequestParam("openid") String openid,
-            @RequestParam(name = "encrypt_type", required = false) String encType,
-            @RequestParam(name = "msg_signature", required = false) String msgSignature, HttpServletResponse response)
+                     @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce,
+                     @RequestParam("openid") String openid,
+                     @RequestParam(name = "encrypt_type", required = false) String encType,
+                     @RequestParam(name = "msg_signature", required = false) String msgSignature, HttpServletResponse response)
             throws IOException {
         response.setCharacterEncoding("UTF-8");
         this.logger.info(

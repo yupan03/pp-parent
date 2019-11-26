@@ -29,7 +29,7 @@ public class QueryPage {
 
     /**
      * 手动设置是否开始分页（Excel导出和列表能够使用同一个service,增加代码的复用性）
-     * 
+     *
      * @param flag
      */
     @ApiModelProperty(hidden = true)

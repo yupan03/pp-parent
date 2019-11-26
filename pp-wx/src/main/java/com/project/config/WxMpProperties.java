@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 微信公众号配置
- * 
+ *
  * @author David
  */
 @ConfigurationProperties(prefix = "wx.mp")

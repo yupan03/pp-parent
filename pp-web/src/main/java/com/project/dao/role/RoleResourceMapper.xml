@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.role.RoleResourceDao">
-	<resultMap type="com.project.entity.tables.role.RoleResource"
-		id="RoleResource">
-		<id column="id" property="id" />
-		<result column="uuid" property="uuid" />
-		<result column="role_uuid" property="role_uuid" />
-		<result column="role_name" property="role_name" />
-		<result column="parent_url" property="parentUrl" />
-		<result column="resource_name" property="resourceName" />
-		<result column="resource_url" property="resourceUrl" />
-		<result column="enable" property="enable" />
-		<result column="create_time" property="createTime" />
-	</resultMap>
+    <resultMap type="com.project.entity.tables.role.RoleResource"
+               id="RoleResource">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="role_uuid" property="role_uuid"/>
+        <result column="role_name" property="role_name"/>
+        <result column="parent_url" property="parentUrl"/>
+        <result column="resource_name" property="resourceName"/>
+        <result column="resource_url" property="resourceUrl"/>
+        <result column="enable" property="enable"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
 
-	<select id="findByRole" resultMap="RoleResource">
-		select
-		#{roleUuid} role_uuid,
-		#{roleName} role_name,
-		r.parent_url,
-		r.resource_name,
-		r.resource_url,
-		rr.id,
-		(case when rr.id is null then 0 else 1 end) as enable,
-		rr.resource_url
-		from resource r
-		left join role_resource rr on r.parent_url = rr.parent_url
-		and r.resource_url = rr.resource_url
-		where role_uuid = #{roleUuid}
-	</select>
+    <select id="findByRole" resultMap="RoleResource">
+        select
+        #{roleUuid} role_uuid,
+        #{roleName} role_name,
+        r.parent_url,
+        r.resource_name,
+        r.resource_url,
+        rr.id,
+        (case when rr.id is null then 0 else 1 end) as enable,
+        rr.resource_url
+        from resource r
+        left join role_resource rr on r.parent_url = rr.parent_url
+        and r.resource_url = rr.resource_url
+        where role_uuid = #{roleUuid}
+    </select>
 
-	<delete id="deleteByRole"></delete>
+    <delete id="deleteByRole"></delete>
 </mapper>

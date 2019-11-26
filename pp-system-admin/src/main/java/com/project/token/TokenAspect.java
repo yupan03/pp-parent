@@ -21,9 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Token前置增强
- * 
- * @author David
  *
+ * @author David
  */
 @Aspect
 public class TokenAspect {
@@ -31,7 +30,7 @@ public class TokenAspect {
     private JwtUtil jwtUtil;
 
     /**
-     ** 定义切面
+     * * 定义切面
      */
     @Pointcut("@annotation(jwt.annotaion.TokenCheck)")
     public void tokenCut() {

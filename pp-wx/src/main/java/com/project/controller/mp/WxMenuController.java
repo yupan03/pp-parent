@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 微信公众号菜单
- * 
+ *
  * @author David
  */
 @Api(tags = "微信公众号菜单")

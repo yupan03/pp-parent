@@ -20,7 +20,7 @@ public class WebApplication {
 
     /**
      * Feign重试
-     * 
+     *
      * @return
      */
     @Bean

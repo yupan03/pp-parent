@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- ** 菜单处理类
- * 
+ * * 菜单处理类
+ *
  * @author yupan
  */
 @Component
 public class MenuHandler extends AbstractHandler {
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService weixinService,
-            WxSessionManager sessionManager) {
+                                    WxSessionManager sessionManager) {
 
         String msg = String.format("type:%s, event:%s, key:%s", wxMessage.getMsgType(), wxMessage.getEvent(),
                 wxMessage.getEventKey());

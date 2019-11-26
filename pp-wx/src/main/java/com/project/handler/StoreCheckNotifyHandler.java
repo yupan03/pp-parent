@@ -9,15 +9,14 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- ** 门店审核事件处理
- *
+ * * 门店审核事件处理
  */
 @Component
 public class StoreCheckNotifyHandler extends AbstractHandler {
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService wxMpService,
-            WxSessionManager sessionManager) {
+                                    WxSessionManager sessionManager) {
         // TODO 处理门店审核事件
         return null;
     }

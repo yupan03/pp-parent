@@ -25,7 +25,7 @@ public class WxMaServiceController {
     private WxMaService wxMaService;
 
     /**
-     ** 登陆接口
+     * * 登陆接口
      */
     @GetMapping(value = "/login")
     public WxMaJscode2SessionResult login(String code) {
@@ -44,7 +44,7 @@ public class WxMaServiceController {
     }
 
     /**
-     ** 获取用户信息接口
+     * * 获取用户信息接口
      */
     @GetMapping("/info")
     public WxMaUserInfo info(String sessionKey, String signature, String rawData, String encryptedData, String iv) {
@@ -61,11 +61,11 @@ public class WxMaServiceController {
     }
 
     /**
-     ** 获取用户绑定手机号信息
+     * * 获取用户绑定手机号信息
      */
     @GetMapping("/phone")
     public WxMaPhoneNumberInfo phone(String sessionKey, String signature, String rawData, String encryptedData,
-            String iv) {
+                                     String iv) {
 
         // 用户信息校验
         if (!wxMaService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {

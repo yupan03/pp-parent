@@ -26,15 +26,15 @@ public class WxMpServiceController {
     private WxMpService wxMpService;
 
     /**
-     ** 网页授权获取微信用户信息
-     * 
+     * * 网页授权获取微信用户信息
+     *
      * @param code
      * @return
      */
     @ApiOperation(value = "网页授权获取微信用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "code", value = "微信重定位code", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "state", value = "自定义校验参数", required = true, dataType = "String", paramType = "query") })
+            @ApiImplicitParam(name = "state", value = "自定义校验参数", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getUserInfoByCode")
     public ResultObj<?> getUserInfoByCode(String code, String state) {
         if (StringUtils.isBlank(code)) {
@@ -64,14 +64,14 @@ public class WxMpServiceController {
     }
 
     /**
-     ** 根据openid获取微信用户信息
-     * 
+     * * 根据openid获取微信用户信息
+     *
      * @param openId
      * @return
      */
     @ApiOperation(value = "根据openid获取微信用户信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "openId", value = "公众号openId", required = true, dataType = "String", paramType = "query") })
+            @ApiImplicitParam(name = "openId", value = "公众号openId", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getUserInfoByOpenId")
     public ResultObj<?> getUserInfoByOpenId(String openId) {
         if (StringUtils.isBlank(openId)) {
@@ -90,14 +90,14 @@ public class WxMpServiceController {
     }
 
     /**
-     ** 连接JSSDK的票据
-     * 
+     * * 连接JSSDK的票据
+     *
      * @param url
      * @return
      */
     @ApiOperation(value = "连接JSSDK的票据")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "url", value = "使用JSSDK的地址", required = true, dataType = "String", paramType = "query") })
+            @ApiImplicitParam(name = "url", value = "使用JSSDK的地址", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/createJsapiSignature")
     public ResultObj<?> createJsapiSignature(String url) {
         if (StringUtils.isBlank(url)) {
@@ -115,12 +115,12 @@ public class WxMpServiceController {
 
     /**
      * 获取带参数的永久二维码
-     * 
+     *
      * @param secn
      */
     @ApiOperation(value = "获取带参数的永久二维码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "sceneStr", value = "二维码参数", required = true, dataType = "String", paramType = "query") })
+            @ApiImplicitParam(name = "sceneStr", value = "二维码参数", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getQrCode")
     public WxMpQrCodeTicket getQrCode(String sceneStr) {
         WxMpQrCodeTicket qrCodeCreateLastTicket = null;

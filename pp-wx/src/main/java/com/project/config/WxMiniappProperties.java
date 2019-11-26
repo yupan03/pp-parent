@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 微信小程序配置
- * 
+ *
  * @author David
  */
 @ConfigurationProperties(prefix = "wx.miniapp")

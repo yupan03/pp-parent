@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.File;
 
 @Configuration
-@EnableConfigurationProperties({ WxMpProperties.class, WxMiniappProperties.class })
+@EnableConfigurationProperties({WxMpProperties.class, WxMiniappProperties.class})
 public class WxConfiguration {
     @Autowired
     private WxMpProperties wxMpProperties;

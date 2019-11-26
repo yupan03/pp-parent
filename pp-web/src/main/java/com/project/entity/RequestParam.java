@@ -12,8 +12,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 /**
- ** 请求参数统一封装
- * 
+ * * 请求参数统一封装
+ *
  * @author yupan
  */
 @Data
@@ -30,8 +30,8 @@ public class RequestParam<T> implements Serializable {
     private List<T> objs;
 
     /**
-     ** 验证参数合法性
-     * 
+     * * 验证参数合法性
+     *
      * @return
      */
     public List<String> validateObj() {

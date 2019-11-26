@@ -2,9 +2,8 @@ package com.project.constant;
 
 /**
  * 错误业务状态码
- * 
- * @author David
  *
+ * @author David
  */
 public enum BusinessStatus {
     SUCCESS(200, "请求成功"),

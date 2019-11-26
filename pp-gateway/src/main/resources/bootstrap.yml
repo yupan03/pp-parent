@@ -2,7 +2,7 @@
 # 所有配置都是从nacos配置中心取
 server:
   port: 8090
-  
+
 spring:
   application:
     name: pp-gateway

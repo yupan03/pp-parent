@@ -11,9 +11,9 @@ import java.sql.SQLException;
 
 /**
  * 统一枚举类处理
- * @author David
  *
  * @param <T>
+ * @author David
  */
 public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHandler<BaseStatusEnum<?>> {
     private Class<T> type;

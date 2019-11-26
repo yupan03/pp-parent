@@ -9,5 +9,5 @@ public interface RoleResourceDao {
     List<RoleResource> findByRole(@Param("roleUuid") String roleUuid, @Param("roleName") String roleName);
 
     int deleteByRole(@Param("roleUuid") String roleUuid, @Param("parentUrl") String parentUrl,
-            @Param("resourceUrl") String resourceUrl);
+                     @Param("resourceUrl") String resourceUrl);
 }

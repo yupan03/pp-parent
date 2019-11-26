@@ -34,7 +34,7 @@ public class LoginController {
     }
 
     @ApiOperation(value = "验证码")
-    @RequestMapping(value = "/verificationCode.do", method = { RequestMethod.GET })
+    @RequestMapping(value = "/verificationCode.do", method = {RequestMethod.GET})
     public void verificationCode(HttpServletRequest request, HttpServletResponse response) {
         VerificationCode code = new VerificationCode(4);
 

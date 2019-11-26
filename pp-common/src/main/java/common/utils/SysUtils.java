@@ -12,6 +12,7 @@ public class SysUtils {
 
     /**
      * 获取当前时间
+     *
      * @return 字符串时间
      */
     public static String getCurrentTime() {
@@ -21,6 +22,7 @@ public class SysUtils {
 
     /**
      * 获取当前时间
+     *
      * @param pattern 日期格式
      * @return 字符串时间
      */

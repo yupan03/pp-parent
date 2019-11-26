@@ -5,6 +5,6 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface ServerStartSendMessage {
 
-	@Output(MessageConstant.SERVER_START)
-	SubscribableChannel sendServerStart();
+    @Output(MessageConstant.SERVER_START)
+    SubscribableChannel sendServerStart();
 }

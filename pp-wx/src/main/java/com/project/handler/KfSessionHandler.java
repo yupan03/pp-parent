@@ -12,7 +12,7 @@ import java.util.Map;
 public class KfSessionHandler extends AbstractHandler {
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService wxMpService,
-            WxSessionManager sessionManager) {
+                                    WxSessionManager sessionManager) {
         return null;
     }
 }

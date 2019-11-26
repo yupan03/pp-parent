@@ -15,9 +15,8 @@ import java.util.Objects;
 
 /**
  * 主要是针对微信小程序消息推送服务
- * 
- * @author David
  *
+ * @author David
  */
 @Api(tags = "微信小程序")
 @RestController
@@ -31,9 +30,9 @@ public class WxMaController {
 
     @GetMapping(produces = "text/plain;charset=utf-8")
     public String authGet(@RequestParam(name = "signature", required = false) String signature,
-            @RequestParam(name = "timestamp", required = false) String timestamp,
-            @RequestParam(name = "nonce", required = false) String nonce,
-            @RequestParam(name = "echostr", required = false) String echostr) {
+                          @RequestParam(name = "timestamp", required = false) String timestamp,
+                          @RequestParam(name = "nonce", required = false) String nonce,
+                          @RequestParam(name = "echostr", required = false) String echostr) {
         this.logger.info("\n接收到来自微信服务器的认证消息：signature = [{}], timestamp = [{}], nonce = [{}], echostr = [{}]",
                 signature, timestamp, nonce, echostr);
 
@@ -50,10 +49,10 @@ public class WxMaController {
 
     @PostMapping(produces = "application/xml; charset=UTF-8")
     public String post(@PathVariable String appid, @RequestBody String requestBody,
-            @RequestParam(name = "msg_signature", required = false) String msgSignature,
-            @RequestParam(name = "encrypt_type", required = false) String encryptType,
-            @RequestParam(name = "signature", required = false) String signature,
-            @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
+                       @RequestParam(name = "msg_signature", required = false) String msgSignature,
+                       @RequestParam(name = "encrypt_type", required = false) String encryptType,
+                       @RequestParam(name = "signature", required = false) String signature,
+                       @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
         this.logger.info(
                 "\n接收微信请求：[msg_signature=[{}], encrypt_type=[{}], signature=[{}],"
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
