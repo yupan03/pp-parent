@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.pp</groupId>
-        <artifactId>pp-parent</artifactId>
+        <artifactId>pp-component</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>pp-jwt</artifactId>
