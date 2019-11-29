@@ -10,12 +10,11 @@
     <modules>
         <module>pp-system-admin</module>
         <module>pp-common</module>
-        <module>pp-wx</module>
-        <module>pp-web</module>
         <module>pp-component</module>
-        <module>pp-jwt</module>
         <module>pp-gateway</module>
         <module>pp-gateway-open</module>
+        <module>pp-wx</module>
+        <module>pp-web</module>
         <module>pp-pay</module>
     </modules>
 
