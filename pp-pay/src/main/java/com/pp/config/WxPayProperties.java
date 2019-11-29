@@ -74,9 +74,4 @@ public class WxPayProperties {
     public void setKeyPath(String keyPath) {
         this.keyPath = keyPath;
     }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
 }

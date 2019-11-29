@@ -8,14 +8,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>pp-system-admin</module>
         <module>pp-common</module>
         <module>pp-component</module>
         <module>pp-gateway</module>
-        <module>pp-gateway-open</module>
-        <module>pp-wx</module>
-        <module>pp-web</module>
         <module>pp-pay</module>
+        <module>pp-system-admin</module>
+        <module>pp-web</module>
+        <module>pp-wx</module>
     </modules>
 
     <properties>
@@ -51,12 +50,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

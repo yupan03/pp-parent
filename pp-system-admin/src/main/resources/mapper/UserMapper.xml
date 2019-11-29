@@ -3,8 +3,7 @@
 <mapper namespace="com.project.dao.UserDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap"
-               type="com.project.entity.table.User">
+    <resultMap id="BaseResultMap" type="com.project.entity.table.User">
         <id column="id" property="id"/>
         <result column="account" property="account"/>
         <result column="name" property="name"/>

@@ -12,10 +12,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modules>
+        <module>pp-feign</module>
         <module>pp-jwt</module>
+        <module>pp-rabbit</module>
         <module>pp-redis</module>
         <module>pp-swagger2</module>
-        <module>pp-rabbit</module>
-        <module>pp-feign</module>
     </modules>
 </project>
