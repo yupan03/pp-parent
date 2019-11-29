@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.number.NumberDao">
     <resultMap type="com.project.entity.tables.Number" id="number">
-        <id column="id" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-        <result column="type" property="type" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="number" property="number" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="create_time" property="createTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="number" property="number"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
     <insert id="insert" parameterType="java.util.List">
@@ -16,9 +16,9 @@
         create_time
         ) values
         (
-        #{type, jdbcType=VARCHAR},
-        #{number, jdbcType=VARCHAR},
-        #{createTime, jdbcType=VARCHAR}
+        #{type},
+        #{number},
+        #{createTime}
         )
     </insert>
 

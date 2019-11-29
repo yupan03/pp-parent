@@ -19,7 +19,7 @@ public class Resource {
     private String createTime;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<Resource> childrens;
+    private List<Resource> children;
 
     public Resource(String parentUrl, String resourceName, String resourceUrl) {
         this.parentUrl = parentUrl;

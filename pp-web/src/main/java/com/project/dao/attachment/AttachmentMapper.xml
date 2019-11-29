@@ -15,8 +15,7 @@
         <result column="upload_time" property="uploadTime"/>
     </resultMap>
 
-    <select id="findAttachment" parameterType="java.util.Map"
-            resultMap="attachment">
+    <select id="findAttachment" parameterType="java.util.Map" resultMap="attachment">
         select
         ta.uuid,
         ta.file_name

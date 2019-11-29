@@ -32,10 +32,10 @@ public class ResourceTreeUtil {
     private static Resource findChildren(Resource treeNode, List<Resource> treeNodes) {
         for (Resource it : treeNodes) {
             if (treeNode.getResourceUrl().equals(it.getParentUrl())) {
-                if (treeNode.getChildrens() == null) {
-                    treeNode.setChildrens(new ArrayList<Resource>());
+                if (treeNode.getChildren() == null) {
+                    treeNode.setChildren(new ArrayList<Resource>());
                 }
-                treeNode.getChildrens().add(findChildren(it, treeNodes));
+                treeNode.getChildren().add(findChildren(it, treeNodes));
             }
         }
         return treeNode;
