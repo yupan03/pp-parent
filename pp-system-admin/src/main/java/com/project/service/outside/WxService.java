@@ -7,13 +7,13 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.locks.Lock;
+
 @Service
 public class WxService {
-    // url 常量，不可变
     @Autowired
     private RestTemplate restTemplate;
-    // token存储器
-    private TokenStorage tokenStorage;
+    private TokenStorage tokenStorage = new TokenStorage();
 
     private int maxRetryTimes = 5; // 最大重试次数
 
@@ -23,12 +23,14 @@ public class WxService {
      * @return
      */
     private String getToken() {
-        if (tokenStorage == null) {
-            tokenStorage = new TokenStorage();
-
+        Lock lock = tokenStorage.getTokenLock();
+        lock.lock();
+        if (tokenStorage.isTokenExpired()) {
             String token = this.execute("", String.class, null);
             tokenStorage.setToken(token);
         }
+
+        lock.unlock();
         return tokenStorage.getToken();
     }
 

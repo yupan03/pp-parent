@@ -21,6 +21,8 @@ public class TokenStorage {
 
     public void setToken(String token) {
         this.token = token;
+        // 两小时少4分钟过期时间
+        this.expiresTime = System.currentTimeMillis() + (2 * 60 * 60 - 4 * 60) * 1000;
     }
 
     public Lock getTokenLock() {

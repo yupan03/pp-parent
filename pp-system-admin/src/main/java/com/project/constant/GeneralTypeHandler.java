@@ -36,12 +36,9 @@ public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHan
             throws SQLException {
         if (jdbcType == null) {
             // 当状态值等于全部的时为空
-            ps.setObject(i,
-                    parameter.getValue() == null || parameter.getValue().equals(-1) ? null : parameter.getValue());
+            ps.setObject(i, parameter.getValue() == null || parameter.getValue().equals(-1) ? null : parameter.getValue());
         } else {
-            ps.setObject(i,
-                    parameter.getValue() == null || parameter.getValue().equals(-1) ? null : parameter.getValue(),
-                    jdbcType.TYPE_CODE);
+            ps.setObject(i, parameter.getValue() == null || parameter.getValue().equals(-1) ? null : parameter.getValue(), jdbcType.TYPE_CODE);
         }
     }
 
@@ -86,8 +83,7 @@ public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHan
                 return e;
             }
 
-            throw new IllegalArgumentException(
-                    "Unknown enumeration type , please check the enumeration code :  " + code);
+            throw new IllegalArgumentException("Unknown enumeration type , please check the enumeration code :  " + code);
         }
 
         throw new IllegalArgumentException("Unknown enumeration type , please check the enumeration code :  " + code);
