@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 认证拦截器
+ * 对权限和资源的统一处理
+ *
  * @Author David
  */
 public class AuthInterceptor implements HandlerInterceptor {
     private Object object;
 
 
-    public AuthInterceptor(Object object){
+    public AuthInterceptor(Object object) {
         this.object = object;
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         request.getHeader("appId");
         request.getHeader("secert");
 
