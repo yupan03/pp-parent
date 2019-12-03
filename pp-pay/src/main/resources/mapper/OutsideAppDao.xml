@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pp.dao.OutsideAppDao">
+
+    <resultMap id="BaseResultMap" type="com.pp.entity.table.OutsideApp">
+        <id column="id" property="id"/>
+        <result column="app" property="app"/>
+        <result column="secret" property="secret"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="selectByAppAndSecret" resultMap="BaseResultMap">
+        select
+        id,
+        app,
+        secret,
+        create_time
+        from outside_app
+        where app = #{app}
+        and secret = #{secret}
+    </select>
+</mapper>

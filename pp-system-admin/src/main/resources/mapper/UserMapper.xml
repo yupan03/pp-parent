@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.UserDao">
 
-    <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.project.entity.table.User">
         <id column="id" property="id"/>
         <result column="account" property="account"/>
