@@ -30,7 +30,7 @@ public class LoginController {
             throw new BusinessException(BusinessStatus.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
-        return new ResultObj<String>(HttpStatus.OK.value());
+        return new ResultObj<>(HttpStatus.OK.value());
     }
 
     @ApiOperation(value = "验证码")

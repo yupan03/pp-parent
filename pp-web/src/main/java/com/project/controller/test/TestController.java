@@ -20,7 +20,7 @@ public class TestController {
     @ApiOperation(value = "/sayHello")
     @PostMapping(value = "/sayHello")
     public Map<String, Object> getMethodName(@RequestBody RequestParam<User> requestParam) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("key", "hello world!");
         System.out.println(requestParam.getObj().getName());
         map.put("requestParam", requestParam);

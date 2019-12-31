@@ -24,10 +24,7 @@ public class ExceptionControllerAdvice {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * * 自定义系统业务异常处理
-     *
-     * @param e
-     * @return
+     * 自定义系统业务异常处理
      */
     @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
@@ -37,10 +34,7 @@ public class ExceptionControllerAdvice {
     }
 
     /**
-     * * 请求异常处理 配置文件增加 spring:mvc:throw-exception-if-no-handler-found: true
-     *
-     * @param e
-     * @return
+     * 请求异常处理 配置文件增加 spring:mvc:throw-exception-if-no-handler-found: true
      */
     @ExceptionHandler(value = ServletException.class)
     @ResponseBody
@@ -57,10 +51,7 @@ public class ExceptionControllerAdvice {
     }
 
     /**
-     * * 数据库异常处理
-     *
-     * @param e
-     * @return
+     * 数据库异常处理
      */
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody

@@ -17,6 +17,6 @@ public class ResourceController {
 
     @PostMapping(value = "/pageList")
     public ResultList<Resource> pageList() {
-        return new ResultList<Resource>(HttpStatus.OK.value(), resourceService.pageList());
+        return new ResultList<>(HttpStatus.OK.value(), resourceService.pageList());
     }
 }
