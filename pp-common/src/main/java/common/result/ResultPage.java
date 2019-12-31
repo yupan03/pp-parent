@@ -7,14 +7,6 @@ public class ResultPage<T> extends ResultList<T> {
     private Integer pageNum;
     private Long total;
 
-    public ResultPage(int status) {
-        super(status);
-    }
-
-    public ResultPage(int status, String msg) {
-        super(status, msg);
-    }
-
     public ResultPage(int status, List<T> dataList, Integer pageSize, Integer pageNum, Long total) {
         super(status, dataList);
         this.pageSize = pageSize;
