@@ -18,7 +18,7 @@ public enum State implements BaseStatusEnum<Integer> {
     private final String desc;
 
     @JsonCreator
-    public static State getItem(Integer value) {
+    public State getItem(Integer value) {
         for (State state : values()) {
             if (state.getValue().equals(value)) {
                 return state;

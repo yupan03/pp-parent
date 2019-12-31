@@ -11,9 +11,8 @@ public enum BusinessStatus {
 
     ERROR_PARAM(6002, "参数错误"),
 
-    LOGIN_FAIL(6003, "登录失败"),
+    LOGIN_FAIL(6003, "登录失败");
 
-    ;
     public int status;
     public String message;
 

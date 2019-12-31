@@ -6,6 +6,6 @@ package common.status;
  * @param <T>
  * @author David
  */
-public interface BaseStatusEnum<T> {
+public interface BaseStatusEnum<T extends Comparable> {
     T getValue();
 }
