@@ -1,6 +1,6 @@
 package com.project.constant;
 
-import common.status.BaseStatusEnum;
+import common.status.BaseEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
@@ -11,12 +11,8 @@ import java.sql.SQLException;
 
 /**
  * 统一枚举类处理
- *
- * @param <T>
- * @author David
  */
-public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHandler<BaseStatusEnum<?>> {
-    private Class<T> type;
+public class GeneralTypeHandler<T extends BaseEnum<?>> extends BaseTypeHandler<T> {
     private T[] enums;
 
     public GeneralTypeHandler(Class<T> type) {
@@ -24,15 +20,14 @@ public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHan
             throw new IllegalArgumentException("Type argument cannot be null");
         }
 
-        this.type = type;
-        this.enums = this.type.getEnumConstants();
+        this.enums = type.getEnumConstants();
         if (this.enums == null) {
             throw new IllegalArgumentException(type.getSimpleName() + " does not represent an enum type.");
         }
     }
 
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, BaseStatusEnum<?> parameter, JdbcType jdbcType)
+    public void setNonNullParameter(PreparedStatement ps, int i, BaseEnum parameter, JdbcType jdbcType)
             throws SQLException {
         if (jdbcType == null) {
             // 当状态值等于全部的时为空
@@ -75,15 +70,13 @@ public class GeneralTypeHandler<T extends BaseStatusEnum<?>> extends BaseTypeHan
 
     private T getEnmByCode(Object code) {
         if (code == null) {
-            throw new NullPointerException("the result code is null " + code);
+            throw new NullPointerException("the result code is null");
         }
 
         for (T e : enums) {
             if (code.equals(e.getValue())) {
                 return e;
             }
-
-            throw new IllegalArgumentException("Unknown enumeration type , please check the enumeration code :  " + code);
         }
 
         throw new IllegalArgumentException("Unknown enumeration type , please check the enumeration code :  " + code);

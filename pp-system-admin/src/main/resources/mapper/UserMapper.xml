@@ -2,15 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.UserDao">
 
-    <resultMap id="BaseResultMap" type="com.project.entity.table.User">
+    <!-- 所有的映射返回结构都使用这个，不要写全字段查询 -->
+    <resultMap id="BaseResultMap" type="com.project.entity.dao.dto.UserDTO">
         <id column="id" property="id"/>
         <result column="account" property="account"/>
         <result column="name" property="name"/>
         <result column="password" property="password"/>
         <result column="email" property="email"/>
-        <result column="enable" property="enable"/>
+        <result column="state" property="state"/>
         <result column="type" property="type"/>
         <result column="create_time" property="createTime"/>
     </resultMap>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into user(
+        account,
+        name,
+        password,
+        email,
+        type,
+        create_time
+        )
+        values(
+        #{account, jdbcType = VARCHAR},
+        #{name, jdbcType = VARCHAR},
+        #{password, jdbcType = VARCHAR},
+        #{email, jdbcType = VARCHAR},
+        #{type,jdbcType = VARCHAR},
+        #{create_time, jdbcType = VARCHAR}
+        )
+    </insert>
+
+    <update id="updateState">
+        update user set state = #{state} where id = #{id}
+    </update>
+
+    <update id="updateUser">
+        update user set
+        account = #{account, jdbcType = VARCHAR},
+        name = #{name, jdbcType = VARCHAR},
+        password = #{password, jdbcType = VARCHAR},
+        type = #{type, jdbcType = VARCHAR}
+        where id = #{id}
+    </update>
+
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select * from user
+    </select>
 
 </mapper>
