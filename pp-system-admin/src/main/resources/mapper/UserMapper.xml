@@ -16,6 +16,7 @@
 
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into user(
+        id,
         account,
         name,
         password,
@@ -24,12 +25,13 @@
         create_time
         )
         values(
+        #{id, jdbcType = VARCHAR},
         #{account, jdbcType = VARCHAR},
         #{name, jdbcType = VARCHAR},
         #{password, jdbcType = VARCHAR},
         #{email, jdbcType = VARCHAR},
         #{type,jdbcType = VARCHAR},
-        #{create_time, jdbcType = VARCHAR}
+        #{createTime, jdbcType = VARCHAR}
         )
     </insert>
 

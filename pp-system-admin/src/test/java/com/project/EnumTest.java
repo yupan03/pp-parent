@@ -1,8 +1,10 @@
 package com.project;
 
 import com.project.constant.status.UserState;
-import com.project.dao.UserDao;
 import com.project.entity.dao.dto.UserDTO;
+import com.project.entity.dao.qo.UserQO;
+import com.project.service.CommonService;
+import common.utils.IdUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +17,26 @@ import java.util.List;
 @SpringBootTest
 public class EnumTest {
     @Autowired
-    private UserDao userDao;
+    private CommonService commonService;
 
     @Test
-    public void userState(){
-        userDao.updateState(1L, UserState.YES);
+    public void userState() {
+        commonService.getUserDao().updateState(1L, UserState.YES);
 
-        List<UserDTO> data = userDao.getAllUser(null);
+        List<UserDTO> data = commonService.getUserDao().getAllUser(null);
         System.out.println(data);
+    }
+
+    @Test
+    public void addUser() {
+        UserQO userQO = new UserQO();
+
+        userQO.setId(IdUtil.getId());
+        userQO.setAccount("yupan8");
+        userQO.setName("吁盼");
+
+        commonService.getUserDao().insertUser(userQO);
+
+        commonService.getUserDao().updateState(userQO.getId(), UserState.NO);
     }
 }

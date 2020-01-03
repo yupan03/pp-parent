@@ -13,4 +13,5 @@ import org.springframework.stereotype.Service;
 public class CommonService {
     @Autowired
     private UserDao userDao;
+
 }
