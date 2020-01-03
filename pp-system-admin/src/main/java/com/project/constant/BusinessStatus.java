@@ -9,9 +9,7 @@ public enum BusinessStatus {
 
     ERROR_SQL(6001, "数据库错误"),
 
-    ERROR_PARAM(6002, "参数错误"),
-
-    LOGIN_FAIL(6003, "登录失败");
+    ERROR_PARAM(6002, "参数错误");
 
     public int status;
     public String message;

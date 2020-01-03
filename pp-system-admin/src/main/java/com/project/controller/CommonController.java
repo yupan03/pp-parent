@@ -1,6 +1,9 @@
 package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
+import common.result.Result;
+import common.result.ResultList;
+import common.result.ResultObj;
 import common.result.ResultPage;
 
 import java.util.List;
@@ -19,9 +22,21 @@ public class CommonController {
      * @param list   列表数据
      * @return 返回分页数据
      */
-    protected <T> ResultPage<T> pageList(int status, List<T> list) {
+    protected <T> ResultPage<T> resultPage(int status, String msg, List<T> list) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
-        return new ResultPage<>(status, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
+        return new ResultPage(status, msg, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
                 pageInfo.getTotal());
+    }
+
+    protected Result result(int status, String msg) {
+        return new Result(status, msg);
+    }
+
+    protected <T> ResultObj<T> resultObj(int status, String msg, T t) {
+        return new ResultObj(status, msg, t);
+    }
+
+    protected <T> ResultList<T> resultList(int status, String msg, List<T> list) {
+        return new ResultList(status, msg, list);
     }
 }

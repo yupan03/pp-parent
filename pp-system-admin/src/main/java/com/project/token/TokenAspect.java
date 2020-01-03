@@ -34,7 +34,6 @@ public class TokenAspect {
      */
     @Pointcut("@annotation(jwt.annotaion.TokenCheck)")
     public void tokenCut() {
-
     }
 
     @Before("tokenCut()")
@@ -44,8 +43,8 @@ public class TokenAspect {
 
         if (method.isAnnotationPresent(TokenCheck.class)) {
 
-            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-                    .getRequest();// 获取request
+            // 获取request
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
             String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 

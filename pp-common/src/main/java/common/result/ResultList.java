@@ -5,8 +5,8 @@ import java.util.List;
 public class ResultList<T> extends Result {
     private List<T> dataList;
 
-    public ResultList(int status, List<T> dataList) {
-        super(status);
+    public ResultList(int status, String msg, List<T> dataList) {
+        super(status, msg);
         this.dataList = dataList;
     }
 

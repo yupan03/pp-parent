@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.validation.ConstraintViolation;
@@ -63,7 +64,22 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = SQLException.class)
     @ResponseBody
     public Result handlerSQLException(SQLException e) {
+
+        if (e instanceof SQLIntegrityConstraintViolationException) {
+            e.printStackTrace();
+            return SQLIntegrityConstraintViolationException(e.getMessage());
+        }
         return new Result(BusinessStatus.ERROR_SQL.status, e.getMessage());
+    }
+
+    // 数据库统一判重处理
+    private Result SQLIntegrityConstraintViolationException(String message) {
+        // 数据库表中索引名称唯一
+        if (message.contains("user_UN")) {
+            return new Result(BusinessStatus.ERROR_SQL.status, "用户账号重复");
+        } else {
+            return new Result(BusinessStatus.ERROR_SQL.status, "主键重复");
+        }
     }
 
     /**

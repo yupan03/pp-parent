@@ -1,16 +1,20 @@
 package com.project;
 
 import com.project.constant.status.UserState;
+import com.project.controller.user.param.UserAdd;
 import com.project.entity.dao.dto.UserDTO;
 import com.project.entity.dao.qo.UserQO;
 import com.project.service.CommonService;
 import common.utils.IdUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -38,5 +42,17 @@ public class EnumTest {
         commonService.getUserDao().insertUser(userQO);
 
         commonService.getUserDao().updateState(userQO.getId(), UserState.NO);
+    }
+
+    @Test
+    public void beanCopy() {
+        List<UserDTO> data = commonService.getUserDao().getAllUser(null);
+
+        List<UserAdd> data2 = new ArrayList<>();
+
+        BeanUtils.copyProperties(data, data2);
+        System.out.println(data2);
+
+//        BeanCopier beanCopier =
     }
 }

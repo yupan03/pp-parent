@@ -2,11 +2,15 @@ package com.project.controller.user;
 
 import com.project.controller.CommonController;
 import com.project.controller.user.param.LoginUser;
-import com.project.dao.UserDao;
-import com.project.token.TokenCheck;
+import com.project.controller.user.param.UserAdd;
+import com.project.service.user.UserService;
+import common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/user")
+@Api(tags = "用户管理")
 public class UserController extends CommonController {
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private UserService userService;
 
     @PostMapping(value = "login")
     public String getToken(@RequestBody LoginUser user) {
@@ -33,8 +40,14 @@ public class UserController extends CommonController {
 
 
     @RequestMapping(value = "/say")
-    @TokenCheck
     public String sayHello() {
         return "Hello world!";
+    }
+
+    @PostMapping(value = "/add")
+    @ApiOperation(value = "/add", tags = "新增用户")
+    public Result add(@RequestBody UserAdd userAdd) {
+        userService.addUser(userAdd);
+        return super.result(HttpStatus.OK.value(), "新增客户成功");
     }
 }

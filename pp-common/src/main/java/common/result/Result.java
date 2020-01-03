@@ -4,10 +4,6 @@ public class Result {
     private int status;
     private String msg;
 
-    public Result(int status) {
-        this.status = status;
-    }
-
     public Result(int status, String msg) {
         this.status = status;
         this.msg = msg;

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserQO {
-    private long id;
+    private Long id;
 
     private String account;
 
