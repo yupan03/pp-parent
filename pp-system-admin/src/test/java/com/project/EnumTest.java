@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
