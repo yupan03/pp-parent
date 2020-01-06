@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class UserAdd {
     private String account;
-    private String username;
+    private String name;
 }

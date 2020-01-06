@@ -5,6 +5,7 @@ import com.project.controller.user.param.UserAdd;
 import com.project.entity.dao.dto.UserDTO;
 import com.project.entity.dao.qo.UserQO;
 import com.project.service.CommonService;
+import com.project.utils.BeanCopyUtil;
 import common.utils.IdUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +53,7 @@ public class EnumTest {
         BeanUtils.copyProperties(data, data2);
         System.out.println(data2);
 
-//        BeanCopier beanCopier =
+        System.out.println(BeanCopyUtil.copyList(data, UserAdd.class));
+
     }
 }
