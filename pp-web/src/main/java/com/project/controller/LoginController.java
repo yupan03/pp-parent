@@ -3,6 +3,7 @@ package com.project.controller;
 import com.project.exception.BusinessException;
 import com.project.exception.BusinessStatus;
 import common.VerificationCode;
+import common.result.Result;
 import common.result.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,12 +26,12 @@ public class LoginController {
 
     @ApiOperation(value = "登录")
     @PostMapping(value = "/login")
-    public ResultObj<String> doLogin(String username, String password) {
+    public Result doLogin(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             throw new BusinessException(BusinessStatus.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
-        return new ResultObj<>(HttpStatus.OK.value());
+        return new Result(HttpStatus.OK.value(), "登录成功");
     }
 
     @ApiOperation(value = "验证码")

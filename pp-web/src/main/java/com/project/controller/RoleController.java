@@ -2,9 +2,9 @@ package com.project.controller;
 
 import com.project.entity.tables.role.Role;
 import com.project.entity.tables.role.RoleResource;
+import com.project.exception.BusinessException;
 import com.project.exception.BusinessStatus;
 import com.project.service.role.RoleService;
-import common.result.ResultObj;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -45,7 +45,7 @@ public class RoleController {
     @PostMapping(value = "/roleResourceList")
     public Object roleResourceList(String roleId) {
         if (StringUtils.isEmpty(roleId)) {
-            return new ResultObj<>(BusinessStatus.ERROR.status, "参数不能为空");
+            throw new BusinessException(BusinessStatus.ERROR, "参数不能为空");
         }
 
         return roleService.roleResourceList(roleId);
