@@ -1,5 +1,7 @@
 package com.project.service;
 
+import com.project.dao.FileRecordDAO;
+import com.project.dao.TableFileDAO;
 import com.project.dao.UserDao;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +15,8 @@ import org.springframework.stereotype.Service;
 public class CommonService {
     @Autowired
     private UserDao userDao;
-
+    @Autowired
+    private TableFileDAO tableFileDAO;
+    @Autowired
+    private FileRecordDAO fileRecordDAO;
 }

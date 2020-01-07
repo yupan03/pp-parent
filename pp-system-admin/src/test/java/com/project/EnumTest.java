@@ -1,13 +1,12 @@
 package com.project;
 
-import com.project.config.DozerCopyUtil;
+import com.project.utils.BeanCopyUtil;
 import com.project.constant.status.UserState;
 import com.project.controller.user.param.UserAdd;
 import com.project.entity.dao.dto.UserDTO;
 import com.project.entity.dao.qo.UserQO;
 import com.project.service.CommonService;
 import common.utils.IdUtil;
-import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ import java.util.List;
 public class EnumTest {
     @Autowired
     private CommonService commonService;
-    @Autowired
-    private DozerCopyUtil dozerCopyUtil;
 
     @Test
     public void userState() {
@@ -49,10 +46,6 @@ public class EnumTest {
     public void beanCopy() {
         List<UserDTO> data = commonService.getUserDao().getAllUser(null);
 
-        System.out.println(dozerCopyUtil.copyList(data, UserAdd.class));
-
-
-
-
+        System.out.println(BeanCopyUtil.copyList(data, UserAdd.class));
     }
 }

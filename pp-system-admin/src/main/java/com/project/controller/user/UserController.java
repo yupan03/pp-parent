@@ -38,7 +38,6 @@ public class UserController extends CommonController {
         return jwtUtil.generateToken(account);
     }
 
-
     @RequestMapping(value = "/say")
     public String sayHello() {
         return "Hello world!";
