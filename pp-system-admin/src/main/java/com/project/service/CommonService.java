@@ -32,4 +32,12 @@ public final class CommonService {
             PageHelper.startPage(pageNum, pageSize);
         }
     }
+
+    /**
+     * @param pageNum  当前页码
+     * @param pageSize 分页大小
+     */
+    public void startPage(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+    }
 }

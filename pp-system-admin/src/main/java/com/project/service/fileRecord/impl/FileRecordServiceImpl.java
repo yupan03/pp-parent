@@ -62,7 +62,7 @@ public class FileRecordServiceImpl implements FileRecordService {
         try {
             File temp = new File(attachmentPath);
             if (!temp.exists()) {
-                temp.mkdir();
+                temp.mkdirs();
             }
             String attachmentName = UUID.randomUUID().toString();
             String fileName = file.getOriginalFilename();

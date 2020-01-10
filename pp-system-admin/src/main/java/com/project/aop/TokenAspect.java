@@ -1,0 +1,65 @@
+package com.project.aop;
+
+import com.project.token.TokenCheck;
+import common.exception.BusinessException;
+import jwt.JwtUtil;
+import jwt.LoginAccount;
+import jwt.constant.TokenType;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.lang.reflect.Method;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Token前置增强
+ *
+ * @author David
+ */
+@Aspect
+public class TokenAspect {
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    /**
+     * * 定义切面
+     */
+    @Pointcut("@annotation(jwt.annotaion.TokenCheck)")
+    public void tokenCut() {
+    }
+
+    @Before("tokenCut()")
+    public void around(JoinPoint point) {
+        MethodSignature signature = (MethodSignature) point.getSignature();
+        Method method = signature.getMethod();
+
+        if (method.isAnnotationPresent(TokenCheck.class)) {
+
+            // 获取request
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+            String token = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+            if (StringUtils.isEmpty(token)) {
+                throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "请登录");
+            }
+
+            // 检验token的失效性
+            LoginAccount account = jwtUtil.getAccountFromToken(token);
+            if (account == null) {
+                throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "非法token");
+            } else if (account.getTokenType() == TokenType.OVERDUE) {
+                throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "token失效，请重新登录");
+            }
+        }
+    }
+}
