@@ -10,7 +10,7 @@ public interface FileRecordService {
     FileRecord getById(Long id);
 
     @Transactional
-    void uploadFile(MultipartFile file, String attachmentPath, Integer type, Long userId);
+    void uploadFile(MultipartFile file, Integer type, Long userId);
 
     void downloadFile(Long id, HttpServletResponse response);
 }

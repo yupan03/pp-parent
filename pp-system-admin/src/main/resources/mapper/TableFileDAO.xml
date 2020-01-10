@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="com.project.entity.dao.dto.TableFileDTO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="file_record_id" jdbcType="BIGINT" property="fileRecordId"/>
-        <result column="file_name" javaType="VARCHAR" property="fileName"/>
+        <result column="file_name" jdbcType="VARCHAR" property="fileName"/>
     </resultMap>
 
     <select id="selectByTable" resultMap="BaseResultMap">

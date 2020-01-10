@@ -1,6 +1,6 @@
 package com.project.controller.user;
 
-import com.project.controller.CommonController;
+import com.project.controller.BaseController;
 import com.project.controller.user.param.LoginUser;
 import com.project.controller.user.param.UserAdd;
 import com.project.service.user.UserService;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/user")
 @Api(tags = "用户管理")
-public class UserController extends CommonController {
+public class UserController extends BaseController {
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired

@@ -1,6 +1,5 @@
 package com.project.controller;
 
-import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.ApiModelProperty;
 
 public class QueryPage {
@@ -23,12 +22,5 @@ public class QueryPage {
 
     public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
-    }
-
-    @ApiModelProperty(hidden = true)
-    public void startPage(boolean flag) {
-        if (flag) {
-            PageHelper.startPage(pageNum, pageSize);
-        }
     }
 }

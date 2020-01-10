@@ -5,8 +5,10 @@ import com.project.entity.dao.table.FileRecord;
 import com.project.service.CommonService;
 import com.project.service.fileRecord.FileRecordService;
 import common.exception.BusinessException;
+import common.utils.IdUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class FileRecordServiceImpl implements FileRecordService {
+    @Value("${file_path}")
+    private String filePath;
     @Autowired
     private CommonService commonService;
 
@@ -29,8 +33,32 @@ public class FileRecordServiceImpl implements FileRecordService {
     }
 
     @Override
+    public void downloadFile(Long id, HttpServletResponse response) {
+        try {
+            FileRecord fileRecord = this.getById(id);
+            FileInputStream fileInput = new FileInputStream(fileRecord.getAttachmentPath() + File.separator
+                    + fileRecord.getAttachmentName());
+            byte[] content = IOUtils.toByteArray(fileInput);
+
+            response.setHeader("Content-Disposition", "attachment;filename="
+                    + new String(fileRecord.getFileName().getBytes("gb2312"), "ISO8859-1"));
+            response.setContentType("application/octet-stream");
+            response.setCharacterEncoding("UTF-8");
+            OutputStream output = response.getOutputStream();
+            output.write(content);
+            output.flush();
+            fileInput.close();
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(BusinessStatus.ERROR_PARAM.status, "下载文件失败");
+        }
+    }
+
+    @Override
     @Transactional
-    public void uploadFile(MultipartFile file, String attachmentPath, Integer type, Long userId) {
+    public void uploadFile(MultipartFile file, Integer type, Long userId) {
+        String attachmentPath = getAttachmentPath(type);
         try {
             File temp = new File(attachmentPath);
             if (!temp.exists()) {
@@ -46,37 +74,32 @@ public class FileRecordServiceImpl implements FileRecordService {
 
             FileRecord fileRecord = new FileRecord();
 
+            fileRecord.setId(IdUtil.getId());
             fileRecord.setAttachmentName(attachmentName);
             fileRecord.setAttachmentPath(attachmentPath);
             fileRecord.setFileName(fileName);
-            fileRecord.setType(type);
+            fileRecord.setType(1);
             fileRecord.setOprId(userId);
             fileRecord.setInsertTime(new Date());
             fileRecord.setUpdateTime(new Date());
+
             commonService.getFileRecordDAO().insert(fileRecord);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BusinessException(BusinessStatus.ERROR_PARAM.status, "上传文件失败");
         }
     }
 
-    @Override
-    public void downloadFile(Long id, HttpServletResponse response) {
-        try {
-            FileRecord fileRecord = this.getById(id);
-            FileInputStream fileInput = new FileInputStream(fileRecord.getAttachmentPath());
-            byte[] content = IOUtils.toByteArray(fileInput);
-
-            response.setHeader("Content-Disposition", "attachment;filename="
-                    + new String(fileRecord.getFileName().getBytes("gb2312"), "ISO8859-1"));
-            response.setContentType("application/octet-stream");
-            response.setCharacterEncoding("UTF-8");
-            OutputStream output = response.getOutputStream();
-            output.write(content);
-            output.flush();
-            fileInput.close();
-            output.close();
-        } catch (Exception e) {
-            throw new BusinessException(BusinessStatus.ERROR_PARAM.status, "下载文件失败");
+    private String getAttachmentPath(Integer type) {
+        String attachmentPath = filePath + File.separator;
+        switch (type) {
+            case 1:
+                attachmentPath += "idCard";
+                break;
+            default:
+                attachmentPath += "temp";
         }
+
+        return attachmentPath;
     }
 }

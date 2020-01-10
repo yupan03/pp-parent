@@ -12,6 +12,7 @@ public class RegisterEnumHandlerConfig implements ConfigurationCustomizer {
     @Override
     public void customize(Configuration configuration) {
         TypeHandlerRegistry registry = configuration.getTypeHandlerRegistry();
+        // 设置默认枚举处理类
         registry.setDefaultEnumTypeHandler(GeneralTypeHandler.class);
     }
 }

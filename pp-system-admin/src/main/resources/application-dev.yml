@@ -32,3 +32,5 @@ spring:
         acknowledge-mode: manual
       simple:
         acknowledge-mode: manual
+
+file_path: C:\file_service\pp
