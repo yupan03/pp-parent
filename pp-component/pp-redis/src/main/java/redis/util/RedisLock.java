@@ -21,11 +21,7 @@ public class RedisLock {
      */
     public boolean lock(String lockKey, String timeStamp) {
         // 设置过期时间防止死锁
-        if (redisUtil.setIfAbsent(lockKey, timeStamp, 10, TimeUnit.SECONDS)) {
-            // 对应setnx命令，可以成功设置,也就是key不存在，获得锁成功
-            return true;
-        }
-        return false;
+        return redisUtil.setIfAbsent(lockKey, timeStamp, 10, TimeUnit.SECONDS);
     }
 
     /**

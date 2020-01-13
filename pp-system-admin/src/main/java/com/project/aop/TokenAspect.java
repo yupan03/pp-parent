@@ -1,9 +1,9 @@
 package com.project.aop;
 
-import com.project.token.TokenCheck;
 import common.exception.BusinessException;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
+import jwt.annotaion.TokenCheck;
 import jwt.constant.TokenType;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
