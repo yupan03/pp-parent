@@ -13,7 +13,7 @@ spring:
       idle-timeout: 50000
       max-lifetime: 540000
   redis:
-    host: 47.95.14.140
+    host: 47.93.219.196
     password: yupan03
     database: 0
     jedis:

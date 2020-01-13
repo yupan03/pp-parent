@@ -199,6 +199,10 @@ public class RedisUtil {
         redisTemplate.opsForValue().set(key, value);
     }
 
+    public void set(String key, String value, long timeout, TimeUnit unit) {
+        redisTemplate.opsForValue().set(key, value, timeout, unit);
+    }
+
     /**
      * 获取指定 key 的值
      *
