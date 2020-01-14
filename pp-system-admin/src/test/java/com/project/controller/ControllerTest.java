@@ -1,5 +1,6 @@
-package com.project;
+package com.project.controller;
 
+import com.project.BaseTest;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,10 +30,5 @@ public class ControllerTest extends BaseTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
         result.getResponse().getContentAsString();// 获取返回值
 
-    }
-
-    @Test
-    public void sayHello() {
-        System.out.println("hello world");
     }
 }
