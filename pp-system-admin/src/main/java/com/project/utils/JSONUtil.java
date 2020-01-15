@@ -2,6 +2,7 @@ package com.project.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -22,11 +23,12 @@ public class JSONUtil {
         return null;
     }
 
-    public static <T> T jsonToObject(String json, Class<T> tClass) {
+    public static <T> T jsonToObject(String json, Class<T> ...tClass) {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            return mapper.readValue(json, tClass);
+            JavaType javaType = mapper.getTypeFactory().constructParametricType(tClass[0], tClass);
+            return mapper.readValue(json, javaType);
         } catch (IOException e) {
             e.printStackTrace();
             // 增加日志记录

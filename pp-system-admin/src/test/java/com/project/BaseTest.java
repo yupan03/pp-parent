@@ -2,6 +2,7 @@ package com.project;
 
 import com.project.utils.JSONUtil;
 import common.result.Result;
+import common.result.ResultList;
 import common.result.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
@@ -35,8 +36,12 @@ public class BaseTest {
         return JSONUtil.jsonToObject(json, Result.class);
     }
 
-    protected <T> ResultObj<T> getResultObj(String json, Class<T> tClass){
+    protected <T> ResultObj<T> getResultObj(String json, Class<T> tClass) {
         return JSONUtil.jsonToObject(json, ResultObj.class);
+    }
+
+    protected <T> ResultList<T> getResultList(String json) {
+        return JSONUtil.jsonToObject(json, ResultList.class);
     }
 
     protected MockHttpServletRequestBuilder get(String uri) {
