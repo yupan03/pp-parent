@@ -2,15 +2,14 @@ package com.project.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.List;
 
-public class JSONUtil {
+public class JSONUtil<T> {
 
-    public static String objectToJson(Object object) {
+    public String objectToJson(Object object) {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
@@ -23,12 +22,12 @@ public class JSONUtil {
         return null;
     }
 
-    public static <T> T jsonToObject(String json, Class<T> ...tClass) {
+    public T jsonToObject(String json) {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            JavaType javaType = mapper.getTypeFactory().constructParametricType(tClass[0], tClass);
-            return mapper.readValue(json, javaType);
+            return mapper.readValue(json, new TypeReference<T>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             // 增加日志记录
@@ -37,7 +36,7 @@ public class JSONUtil {
         return null;
     }
 
-    public static <T> List<T> jsonToList(String json) {
+    public List<T> jsonToList(String json) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(json, new TypeReference<List<T>>() {

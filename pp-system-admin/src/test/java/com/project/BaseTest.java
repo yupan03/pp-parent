@@ -5,6 +5,7 @@ import common.result.Result;
 import common.result.ResultList;
 import common.result.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -19,13 +20,20 @@ public class BaseTest {
     /**
      * 获取token
      */
-    protected String getHeard() {
-        MvcResult result = null;
+    protected String getToken(String account, String password) {
         try {
-            result = mockMvc.perform(get("/user/say"))
+            MvcResult result = mockMvc.perform(get("/user/say")
+                    .param("account", account)
+                    .param("password", password))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print()).andReturn();
-            result.getResponse().getContentAsString();// 获取返回值
+
+            ResultObj<String> resultObj = this.getResultObj(result.getResponse().getContentAsString());
+            if (resultObj.getStatus() == HttpStatus.OK.value()) {
+                return resultObj.getData();
+            } else {
+                System.out.println("获取token失败:" + resultObj.getMsg());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,15 +41,15 @@ public class BaseTest {
     }
 
     protected Result getResult(String json) {
-        return JSONUtil.jsonToObject(json, Result.class);
+        return new JSONUtil<Result>().jsonToObject(json);
     }
 
-    protected <T> ResultObj<T> getResultObj(String json, Class<T> tClass) {
-        return JSONUtil.jsonToObject(json, ResultObj.class);
+    protected <T> ResultObj<T> getResultObj(String json) {
+        return new JSONUtil<ResultObj<T>>().jsonToObject(json);
     }
 
     protected <T> ResultList<T> getResultList(String json) {
-        return JSONUtil.jsonToObject(json, ResultList.class);
+        return new JSONUtil<ResultList<T>>().jsonToObject(json);
     }
 
     protected MockHttpServletRequestBuilder get(String uri) {
