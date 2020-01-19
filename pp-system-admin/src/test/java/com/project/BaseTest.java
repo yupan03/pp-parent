@@ -18,7 +18,10 @@ public class BaseTest {
     protected MockMvc mockMvc;
 
     /**
-     * 获取token
+     *获取登录的凭证
+     * @param account 账号
+     * @param password 密码
+     * @return 返回token
      */
     protected String getToken(String account, String password) {
         try {
