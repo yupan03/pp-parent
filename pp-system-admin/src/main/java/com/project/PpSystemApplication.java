@@ -14,11 +14,19 @@ import java.io.File;
 @MapperScan("com.project.dao")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class PpSystemApplication implements CommandLineRunner {
+    @Value("${path}")
+    private String path;
+
     @Override
     public void run(String... args) throws Exception {
+        // 初始化文件夹
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
         // 对项目做一些初始化动作，比如redis缓存
-    }
 
+    }
 
     public static void main(String[] args) {
 
@@ -27,6 +35,4 @@ public class PpSystemApplication implements CommandLineRunner {
         springApplication.setBannerMode(Banner.Mode.OFF);
         springApplication.run(args);
     }
-
-
 }
