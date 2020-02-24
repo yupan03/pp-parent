@@ -16,11 +16,10 @@ public class RedisLock {
      * 加锁
      *
      * @param lockKey   加锁的Key
-     * @param timeStamp 时间戳：当前时间+超时时间
+     * @param timeStamp 时间戳：当前时间 + 超时时间
      * @return boolean
      */
     public boolean lock(String lockKey, String timeStamp) {
-        redisUtil.setDataBase(15);
         // 设置过期时间防止死锁
         return redisUtil.setIfAbsent(lockKey, timeStamp, 10, TimeUnit.SECONDS);
     }
@@ -29,7 +28,6 @@ public class RedisLock {
      * 释放锁
      */
     public void release(String lockKey) {
-        redisUtil.setDataBase(15);
         try {
             String currentValue = redisUtil.get(lockKey);
             if (!StringUtils.isEmpty(currentValue)) {

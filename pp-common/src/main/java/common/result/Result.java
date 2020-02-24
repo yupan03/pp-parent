@@ -1,8 +1,14 @@
 package common.result;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     private int status;
     private String msg;
+
+    public Result() {
+
+    }
 
     public Result(int status, String msg) {
         this.status = status;

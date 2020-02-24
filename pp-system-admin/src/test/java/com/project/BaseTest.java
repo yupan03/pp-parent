@@ -18,8 +18,9 @@ public class BaseTest {
     protected MockMvc mockMvc;
 
     /**
-     *获取登录的凭证
-     * @param account 账号
+     * 获取登录的凭证
+     *
+     * @param account  账号
      * @param password 密码
      * @return 返回token
      */
@@ -44,15 +45,16 @@ public class BaseTest {
     }
 
     protected Result getResult(String json) {
-        return new JSONUtil<Result>().jsonToObject(json);
+        return JSONUtil.jsonToObject(json, Result.class);
     }
 
     protected <T> ResultObj<T> getResultObj(String json) {
-        return new JSONUtil<ResultObj<T>>().jsonToObject(json);
+        System.out.println(json);
+        return JSONUtil.jsonToObject(json, ResultObj.class);
     }
 
     protected <T> ResultList<T> getResultList(String json) {
-        return new JSONUtil<ResultList<T>>().jsonToObject(json);
+        return JSONUtil.jsonToObject(json, ResultList.class);
     }
 
     protected MockHttpServletRequestBuilder get(String uri) {

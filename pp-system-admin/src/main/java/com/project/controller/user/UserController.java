@@ -5,6 +5,7 @@ import com.project.controller.user.param.LoginUser;
 import com.project.controller.user.param.UserAdd;
 import com.project.service.user.UserService;
 import common.result.Result;
+import common.result.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import jwt.JwtUtil;
@@ -39,8 +40,8 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/say")
-    public String sayHello() {
-        return "Hello world!";
+    public ResultObj<String> sayHello() {
+        return super.resultObj(HttpStatus.OK.value(), "成功", "hello world");
     }
 
     @PostMapping(value = "/add")
