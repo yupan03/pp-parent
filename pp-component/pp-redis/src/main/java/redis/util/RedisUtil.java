@@ -1,7 +1,6 @@
 package redis.util;
 
 import org.springframework.data.redis.connection.DataType;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -16,21 +15,6 @@ public class RedisUtil {
     public RedisUtil(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
-
-    /**
-     * 切换数据库
-     *
-     * @param num 数据库索引
-     */
-    public void setDataBase(int num) {
-        LettuceConnectionFactory connectionFactory = (LettuceConnectionFactory) redisTemplate.getConnectionFactory();
-        if (connectionFactory != null && num != connectionFactory.getDatabase()) {
-            connectionFactory.setDatabase(num);
-            this.redisTemplate.setConnectionFactory(connectionFactory);
-            connectionFactory.resetConnection();
-        }
-    }
-
 
     /** -------------------key相关操作--------------------- */
 
