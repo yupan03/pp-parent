@@ -1,6 +1,8 @@
 package com.project.controller;
 
-import com.project.BaseTest;
+import com.project.BaseControllerTest;
+import common.result.Result;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @AutoConfigureMockMvc
 @FixMethodOrder(MethodSorters.JVM) // 按方法顺序执行
-public class ControllerTest extends BaseTest {
+public class ControllerTest extends BaseControllerTest {
 
     /**
      * 测试一个业务流程
@@ -27,14 +29,13 @@ public class ControllerTest extends BaseTest {
     public void test() throws Exception {
         String token = super.getToken("yupan", "123456");
 
-        if (token == null) {
-            return;
-        }
-        System.out.println(token);
-        MvcResult result = mockMvc.perform(get("/user/say"))
+        Assert.assertNotNull(token);
+
+        MvcResult result = mockMvc.perform(get("/user/say").header("Authorization", "Beare" + token))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print()).andReturn();
-        result.getResponse().getContentAsString();// 获取返回值
 
+        Result result1 = getResult(result.getResponse().getContentAsString());
+        System.out.println(result1.getStatus() + ":" + result1.getMsg());
     }
 }

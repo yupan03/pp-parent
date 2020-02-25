@@ -13,7 +13,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-public class BaseTest {
+/**
+ * Controller测试基础类，封装基础方法
+ */
+public class BaseControllerTest {
     @Autowired
     protected MockMvc mockMvc;
 
@@ -41,6 +44,7 @@ public class BaseTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -49,7 +53,6 @@ public class BaseTest {
     }
 
     protected <T> ResultObj<T> getResultObj(String json) {
-        System.out.println(json);
         return JSONUtil.jsonToObject(json, ResultObj.class);
     }
 
