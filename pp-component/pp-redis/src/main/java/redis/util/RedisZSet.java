@@ -14,8 +14,6 @@ public class RedisZSet extends RedisBase{
 		super(redisTemplate);
 	}
 
-	/** ------------------zSet相关操作-------------------------------- */
-
 	/**
 	 * 添加元素,有序集合是按照元素的score值由小到大排列
 	 *
@@ -24,7 +22,7 @@ public class RedisZSet extends RedisBase{
 	 * @param score
 	 * @return
 	 */
-	public Boolean zSetAdd(String key, String value, double score) {
+	public Boolean add(String key, String value, double score) {
 		return redisTemplate.opsForZSet().add(key, value, score);
 	}
 
@@ -33,7 +31,7 @@ public class RedisZSet extends RedisBase{
 	 * @param values
 	 * @return
 	 */
-	public Long zSetAdd(String key, Set<ZSetOperations.TypedTuple<String>> values) {
+	public Long add(String key, Set<ZSetOperations.TypedTuple<String>> values) {
 		return redisTemplate.opsForZSet().add(key, values);
 	}
 
@@ -42,7 +40,7 @@ public class RedisZSet extends RedisBase{
 	 * @param values
 	 * @return
 	 */
-	public Long zSetRemove(String key, Object... values) {
+	public Long remove(String key, Object... values) {
 		return redisTemplate.opsForZSet().remove(key, values);
 	}
 
@@ -54,7 +52,7 @@ public class RedisZSet extends RedisBase{
 	 * @param delta
 	 * @return
 	 */
-	public Double zSetIncrementScore(String key, String value, double delta) {
+	public Double incrementScore(String key, String value, double delta) {
 		return redisTemplate.opsForZSet().incrementScore(key, value, delta);
 	}
 
@@ -65,7 +63,7 @@ public class RedisZSet extends RedisBase{
 	 * @param value
 	 * @return 0表示第一位
 	 */
-	public Long zSetRank(String key, Object value) {
+	public Long rank(String key, Object value) {
 		return redisTemplate.opsForZSet().rank(key, value);
 	}
 
@@ -76,7 +74,7 @@ public class RedisZSet extends RedisBase{
 	 * @param value
 	 * @return
 	 */
-	public Long zSetReverseRank(String key, Object value) {
+	public Long reverseRank(String key, Object value) {
 		return redisTemplate.opsForZSet().reverseRank(key, value);
 	}
 
@@ -88,7 +86,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end   结束位置, -1查询所有
 	 * @return
 	 */
-	public Set<String> zSetRange(String key, long start, long end) {
+	public Set<String> range(String key, long start, long end) {
 		return redisTemplate.opsForZSet().range(key, start, end);
 	}
 
@@ -100,7 +98,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Set<ZSetOperations.TypedTuple<String>> zSetRangeWithScores(String key, long start, long end) {
+	public Set<ZSetOperations.TypedTuple<String>> rangeWithScores(String key, long start, long end) {
 		return redisTemplate.opsForZSet().rangeWithScores(key, start, end);
 	}
 
@@ -112,7 +110,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max 最大值
 	 * @return
 	 */
-	public Set<String> zSetRangeByScore(String key, double min, double max) {
+	public Set<String> rangeByScore(String key, double min, double max) {
 		return redisTemplate.opsForZSet().rangeByScore(key, min, max);
 	}
 
@@ -124,7 +122,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max 最大值
 	 * @return
 	 */
-	public Set<ZSetOperations.TypedTuple<String>> zSetRangeByScoreWithScores(String key, double min, double max) {
+	public Set<ZSetOperations.TypedTuple<String>> rangeByScoreWithScores(String key, double min, double max) {
 		return redisTemplate.opsForZSet().rangeByScoreWithScores(key, min, max);
 	}
 
@@ -136,7 +134,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Set<ZSetOperations.TypedTuple<String>> zSetRangeByScoreWithScores(String key, double min, double max,
+	public Set<ZSetOperations.TypedTuple<String>> rangeByScoreWithScores(String key, double min, double max,
 			long start, long end) {
 		return redisTemplate.opsForZSet().rangeByScoreWithScores(key, min, max, start, end);
 	}
@@ -149,7 +147,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Set<String> zSetReverseRange(String key, long start, long end) {
+	public Set<String> reverseRange(String key, long start, long end) {
 		return redisTemplate.opsForZSet().reverseRange(key, start, end);
 	}
 
@@ -161,7 +159,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Set<ZSetOperations.TypedTuple<String>> zSetReverseRangeWithScores(String key, long start, long end) {
+	public Set<ZSetOperations.TypedTuple<String>> reverseRangeWithScores(String key, long start, long end) {
 		return redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
 	}
 
@@ -173,7 +171,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max
 	 * @return
 	 */
-	public Set<String> zSetReverseRangeByScore(String key, double min, double max) {
+	public Set<String> reverseRangeByScore(String key, double min, double max) {
 		return redisTemplate.opsForZSet().reverseRangeByScore(key, min, max);
 	}
 
@@ -185,7 +183,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max
 	 * @return
 	 */
-	public Set<ZSetOperations.TypedTuple<String>> zSetReverseRangeByScoreWithScores(String key, double min,
+	public Set<ZSetOperations.TypedTuple<String>> reverseRangeByScoreWithScores(String key, double min,
 			double max) {
 		return redisTemplate.opsForZSet().reverseRangeByScoreWithScores(key, min, max);
 	}
@@ -198,7 +196,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Set<String> zSetReverseRangeByScore(String key, double min, double max, long start, long end) {
+	public Set<String> reverseRangeByScore(String key, double min, double max, long start, long end) {
 		return redisTemplate.opsForZSet().reverseRangeByScore(key, min, max, start, end);
 	}
 
@@ -210,7 +208,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max
 	 * @return
 	 */
-	public Long zSetCount(String key, double min, double max) {
+	public Long count(String key, double min, double max) {
 		return redisTemplate.opsForZSet().count(key, min, max);
 	}
 
@@ -220,7 +218,7 @@ public class RedisZSet extends RedisBase{
 	 * @param key
 	 * @return
 	 */
-	public Long zSetSize(String key) {
+	public Long size(String key) {
 		return redisTemplate.opsForZSet().size(key);
 	}
 
@@ -230,7 +228,7 @@ public class RedisZSet extends RedisBase{
 	 * @param key
 	 * @return
 	 */
-	public Long zSetZCard(String key) {
+	public Long zCard(String key) {
 		return redisTemplate.opsForZSet().zCard(key);
 	}
 
@@ -241,7 +239,7 @@ public class RedisZSet extends RedisBase{
 	 * @param value
 	 * @return
 	 */
-	public Double zSetScore(String key, Object value) {
+	public Double score(String key, Object value) {
 		return redisTemplate.opsForZSet().score(key, value);
 	}
 
@@ -253,7 +251,7 @@ public class RedisZSet extends RedisBase{
 	 * @param end
 	 * @return
 	 */
-	public Long zSetRemoveRange(String key, long start, long end) {
+	public Long removeRange(String key, long start, long end) {
 		return redisTemplate.opsForZSet().removeRange(key, start, end);
 	}
 
@@ -265,7 +263,7 @@ public class RedisZSet extends RedisBase{
 	 * @param max
 	 * @return
 	 */
-	public Long zSetRemoveRangeByScore(String key, double min, double max) {
+	public Long removeRangeByScore(String key, double min, double max) {
 		return redisTemplate.opsForZSet().removeRangeByScore(key, min, max);
 	}
 
@@ -277,7 +275,7 @@ public class RedisZSet extends RedisBase{
 	 * @param destKey
 	 * @return
 	 */
-	public Long zSetUnionAndStore(String key, String otherKey, String destKey) {
+	public Long unionAndStore(String key, String otherKey, String destKey) {
 		return redisTemplate.opsForZSet().unionAndStore(key, otherKey, destKey);
 	}
 
@@ -287,7 +285,7 @@ public class RedisZSet extends RedisBase{
 	 * @param destKey
 	 * @return
 	 */
-	public Long zSetUnionAndStore(String key, Collection<String> otherKeys, String destKey) {
+	public Long unionAndStore(String key, Collection<String> otherKeys, String destKey) {
 		return redisTemplate.opsForZSet().unionAndStore(key, otherKeys, destKey);
 	}
 
@@ -299,7 +297,7 @@ public class RedisZSet extends RedisBase{
 	 * @param destKey
 	 * @return
 	 */
-	public Long zSetIntersectAndStore(String key, String otherKey, String destKey) {
+	public Long intersectAndStore(String key, String otherKey, String destKey) {
 		return redisTemplate.opsForZSet().intersectAndStore(key, otherKey, destKey);
 	}
 
@@ -311,7 +309,7 @@ public class RedisZSet extends RedisBase{
 	 * @param destKey
 	 * @return
 	 */
-	public Long zSetIntersectAndStore(String key, Collection<String> otherKeys, String destKey) {
+	public Long intersectAndStore(String key, Collection<String> otherKeys, String destKey) {
 		return redisTemplate.opsForZSet().intersectAndStore(key, otherKeys, destKey);
 	}
 
@@ -320,7 +318,7 @@ public class RedisZSet extends RedisBase{
 	 * @param options
 	 * @return
 	 */
-	public Cursor<ZSetOperations.TypedTuple<String>> zSetScan(String key, ScanOptions options) {
+	public Cursor<ZSetOperations.TypedTuple<String>> scan(String key, ScanOptions options) {
 		return redisTemplate.opsForZSet().scan(key, options);
 	}
 }

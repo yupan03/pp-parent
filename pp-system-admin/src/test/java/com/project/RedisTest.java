@@ -55,14 +55,14 @@ public class RedisTest {
 	 */
 	@Test
 	public void testZset() {
-		redisZSet.zSetAdd("yupan", "12", 1.0);
-		redisZSet.zSetAdd("yupan", "12", 1.0);
-		redisZSet.zSetAdd("yupan", "11", 1.0);
+		redisZSet.add("yupan", "12", 1.0);
+		redisZSet.add("yupan", "12", 1.0);
+		redisZSet.add("yupan", "11", 1.0);
 
-		Set<String> yuan = redisZSet.zSetRange("yupan", 0, 10);
+		Set<String> yuan = redisZSet.range("yupan", 0, 10);
 		System.out.println(yuan);
 
-		System.out.println("zSet大小" + redisZSet.zSetSize("yupan"));
+		System.out.println("zSet大小" + redisZSet.size("yupan"));
 	}
 
 	/**

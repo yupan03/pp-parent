@@ -14,7 +14,7 @@ spring:
       max-lifetime: 540000
   redis:
     host: 127.0.0.1
-    password: yupan03
+    # password: yupan03
     jedis:
       pool:
         max-idle: 1
