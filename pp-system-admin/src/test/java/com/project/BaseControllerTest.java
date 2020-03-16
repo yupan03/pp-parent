@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 /**
  * Controller测试基础类，封装基础方法
  */
+@SuppressWarnings("unchecked")
 public class BaseControllerTest {
     @Autowired
     protected MockMvc mockMvc;
@@ -55,8 +56,8 @@ public class BaseControllerTest {
     protected <T> ResultObj<T> getResultObj(String json) {
         return JSONUtil.jsonToObject(json, ResultObj.class);
     }
-
-    protected <T> ResultList<T> getResultList(String json) {
+    
+	protected <T> ResultList<T> getResultList(String json) {
         return JSONUtil.jsonToObject(json, ResultList.class);
     }
 

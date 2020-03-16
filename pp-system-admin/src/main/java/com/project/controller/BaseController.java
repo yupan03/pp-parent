@@ -24,7 +24,7 @@ public class BaseController {
      */
     protected <T> ResultPage<T> resultPage(int status, String msg, List<T> list) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
-        return new ResultPage(status, msg, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
+        return new ResultPage<>(status, msg, pageInfo.getList(), pageInfo.getSize(), pageInfo.getPageNum(),
                 pageInfo.getTotal());
     }
 
@@ -33,10 +33,10 @@ public class BaseController {
     }
 
     protected <T> ResultObj<T> resultObj(int status, String msg, T t) {
-        return new ResultObj(status, msg, t);
+        return new ResultObj<>(status, msg, t);
     }
 
     protected <T> ResultList<T> resultList(int status, String msg, List<T> list) {
-        return new ResultList(status, msg, list);
+        return new ResultList<>(status, msg, list);
     }
 }

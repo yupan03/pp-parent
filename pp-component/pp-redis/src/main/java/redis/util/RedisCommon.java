@@ -8,14 +8,17 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class RedisUtil {
-	private StringRedisTemplate redisTemplate;
+/**
+ * redis 基础操作
+ * 
+ * @author david
+ */
+public class RedisCommon {
+	protected StringRedisTemplate redisTemplate;
 
-	public RedisUtil(StringRedisTemplate redisTemplate) {
+	public RedisCommon(StringRedisTemplate redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
-
-	/** -------------------key相关操作--------------------- */
 
 	/**
 	 * 删除key
@@ -169,8 +172,4 @@ public class RedisUtil {
 	public DataType type(String key) {
 		return redisTemplate.type(key);
 	}
-
-	
-
-
 }
