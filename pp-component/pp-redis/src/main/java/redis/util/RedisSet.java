@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class RedisSet extends RedisCommon {
+public class RedisSet extends RedisBase {
 
 	public RedisSet(StringRedisTemplate redisTemplate) {
 		super(redisTemplate);

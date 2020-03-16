@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import redis.util.RedisCommon;
+import redis.util.RedisBase;
 import redis.util.RedisHash;
 import redis.util.RedisList;
 import redis.util.RedisLock;
@@ -15,8 +15,8 @@ import redis.util.RedisZSet;
 @Configuration
 public class RedisConfig {
 	@Bean
-	public RedisCommon RedisCommon(StringRedisTemplate redisTemplate) {
-		return new RedisCommon(redisTemplate);
+	public RedisBase redisBase(StringRedisTemplate redisTemplate) {
+		return new RedisBase(redisTemplate);
 	}
 
 	@Bean

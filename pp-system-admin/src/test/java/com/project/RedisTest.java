@@ -14,6 +14,7 @@ import redis.util.RedisZSet;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Redis测试
@@ -35,6 +36,7 @@ public class RedisTest {
 	@Test
 	public void testString() {
 		redisString.set("String", "hello world");
+		redisString.set("Stringkey", "yupan", 30, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -87,5 +89,4 @@ public class RedisTest {
 
 		System.out.println(redisList.size("list"));
 	}
-
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class RedisList extends RedisCommon {
+public class RedisList extends RedisBase {
 
 	public RedisList(StringRedisTemplate redisTemplate) {
 		super(redisTemplate);

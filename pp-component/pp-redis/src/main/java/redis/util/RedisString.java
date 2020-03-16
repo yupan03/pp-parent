@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * 
  * @author david
  */
-public class RedisString extends RedisCommon {
+public class RedisString extends RedisBase {
 
 	public RedisString(StringRedisTemplate redisTemplate) {
 		super(redisTemplate);

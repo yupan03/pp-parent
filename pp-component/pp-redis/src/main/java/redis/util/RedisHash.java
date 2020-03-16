@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-public class RedisHash extends RedisCommon {
+public class RedisHash extends RedisBase {
 
 	public RedisHash(StringRedisTemplate redisTemplate) {
 		super(redisTemplate);
