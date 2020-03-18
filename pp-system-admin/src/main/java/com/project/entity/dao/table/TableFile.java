@@ -1,9 +1,8 @@
 package com.project.entity.dao.table;
 
-import lombok.Data;
-
-import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Data;
 
 /**
  * table_file
@@ -11,22 +10,21 @@ import java.util.Date;
  * @author
  */
 @Data
-public class TableFile implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class TableFile {
 
-    private Long id;
+	private Long id;
 
-    private String tableName;
+	private String tableName;
 
-    private Long tableId;
+	private Long tableId;
 
-    private Long fileRecordId;
+	private Long fileRecordId;
 
-    private String fileName;
+	private String fileName;
 
-    private Integer type;
+	private Integer type;
 
-    private Integer flag;
+	private Integer flag;
 
-    private Date createTime;
+	private Date createTime;
 }

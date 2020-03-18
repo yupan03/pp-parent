@@ -1,9 +1,8 @@
 package com.project.entity.dao.table;
 
-import lombok.Data;
-
-import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Data;
 
 /**
  * file_record
@@ -11,45 +10,45 @@ import java.util.Date;
  * @author
  */
 @Data
-public class FileRecord implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
+public class FileRecord {
+	/**
+	 * id
+	 */
+	private Long id;
 
-    /**
-     * 文件名称
-     */
-    private String fileName;
+	/**
+	 * 文件名称
+	 */
+	private String fileName;
 
-    /**
-     * 附件uuid
-     */
-    private String attachmentName;
+	/**
+	 * 附件uuid
+	 */
+	private String attachmentName;
 
-    /**
-     * 附件路径
-     */
-    private String attachmentPath;
+	/**
+	 * 附件路径
+	 */
+	private String attachmentPath;
 
-    /**
-     * 类型：0.excel下载  1.文件上传
-     */
-    private Integer type;
+	/**
+	 * 类型：0.excel下载 1.文件上传
+	 */
+	private Integer type;
 
-    /**
-     * 操作人
-     */
-    private Long oprId;
+	/**
+	 * 操作人
+	 */
+	private Long oprId;
 
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
+	/**
+	 * 更新时间
+	 */
+	private Date updateTime;
 
-    /**
-     * 插入时间
-     */
-    private Date insertTime;
+	/**
+	 * 插入时间
+	 */
+	private Date insertTime;
 
 }

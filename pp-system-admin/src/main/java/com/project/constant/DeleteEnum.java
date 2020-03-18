@@ -12,6 +12,4 @@ public enum DeleteEnum {
         this.value = value;
         this.desc = desc;
     }
-
-
 }
