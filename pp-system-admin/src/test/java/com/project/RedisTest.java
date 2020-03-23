@@ -37,8 +37,12 @@ public class RedisTest {
 	public void testString() {
 		redisString.set("String", "hello world");
 		redisString.set("Stringkey", "yupan", 30, TimeUnit.SECONDS);
+		String oldValue = redisString.getAndSet("String", "新值");
+		System.out.println(oldValue);
 	}
 
+	
+	
 	/**
 	 * 测试Set
 	 */
@@ -47,7 +51,6 @@ public class RedisTest {
 		redisSet.add("set", new String[] { "1", "2" });
 		String pop = redisSet.pop("set");
 		System.out.println(pop);
-
 	}
 
 	/**
