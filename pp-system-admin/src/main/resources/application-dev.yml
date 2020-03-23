@@ -22,9 +22,13 @@ spring:
         min-idle: 1
         max-wait: -1
   rabbitmq:
-    host: 47.95.14.140
-    username: server
-    password: server
+    host: 127.0.0.1
+    username: guest
+    password: guest
+    # 消息发送到交换机确认
+    publisher-confirms: true
+    # 消息发送到队列确认
+    publisher-returns: true
     port: 5672
     listener:
       direct:
