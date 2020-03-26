@@ -12,7 +12,6 @@ public class RabbitSender implements RabbitTemplate.ReturnCallback {
 
     public void sendHello() {
         rabbitTemplate.convertAndSend("testQueue", "hello wolrld");
-        rabbitTemplate.convertAndSend
         rabbitTemplate.setReturnCallback(this);
         rabbitTemplate.setConfirmCallback(((correlationData, ack, cause) -> {
             if (!ack) {

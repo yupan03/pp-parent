@@ -15,6 +15,5 @@
         <module>pp-feign</module>
         <module>pp-jwt</module>
         <module>pp-redis</module>
-        <module>pp-swagger2</module>
     </modules>
 </project>

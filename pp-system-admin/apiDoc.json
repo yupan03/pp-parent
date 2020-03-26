@@ -1,0 +1,7 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "这是一个简单的apidoc的demo",
+  "title": "demo",
+  "url": "https://api.github.com/v1"
+}

@@ -32,6 +32,20 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+    /**
+     * @api {POST} /user/login getToken
+     * @apiVersion 1.0.0
+     * @apiGroup UserController
+     * @apiName getToken
+     * @apiDescription 登录接口
+     * @apiParam (请求体) {String} username
+     * @apiParam (请求体) {String} password
+     * @apiParamExample 请求体示例
+     * {"password":"wKgc","username":"qd5ZmLR"}
+     * @apiSuccess (响应结果) {String} response
+     * @apiSuccessExample 响应结果示例
+     * "ii28yrn"
+     */
     @PostMapping(value = "login")
     public String getToken(@RequestBody LoginUser user) {
         LoginAccount account = new LoginAccount();
@@ -39,6 +53,17 @@ public class UserController extends BaseController {
         return jwtUtil.generateToken(account);
     }
 
+    /**
+     * @api {GET} /user/say sayHello
+     * @apiVersion 1.0.0
+     * @apiGroup UserController
+     * @apiName sayHello
+     * @apiSuccess (响应结果) {String} data
+     * @apiSuccess (响应结果) {Number} status
+     * @apiSuccess (响应结果) {String} msg
+     * @apiSuccessExample 响应结果示例
+     * {"msg":"bb","data":"2RA","status":7117}
+     */
     @RequestMapping(value = "/say")
     public ResultObj<String> sayHello() {
         return super.resultObj(HttpStatus.OK.value(), "成功", "hello world");
