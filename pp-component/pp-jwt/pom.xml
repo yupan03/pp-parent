@@ -13,7 +13,7 @@
     <name>pp-jwt</name>
     <dependencies>
         <dependency>
-            <groupId>com.project</groupId>
+            <groupId>com.pp</groupId>
             <artifactId>pp-common</artifactId>
             <version>1.0</version>
         </dependency>

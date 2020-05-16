@@ -1,4 +1,4 @@
-/.settings/
-/.project
-/.idea/
-/pp-component/pp-feign/target/
+.settings/
+.project
+.idea/
+target/

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pp.dao.number.NumberDao">
+    <resultMap type="com.pp.entity.tables.Number" id="number">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="number" property="number"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="java.util.List">
+        insert into t_number
+        (
+        type,
+        number,
+        create_time
+        ) values
+        (
+        #{type},
+        #{number},
+        #{createTime}
+        )
+    </insert>
+
+    <select id="selectLastNumber" resultMap="number">
+        select
+        id,
+        type,
+        number,
+        create_time
+        from t_number where 1 = 1
+        and type = #{type, jdbcType=VARCHAR}
+        order by id desc limit 0,1
+    </select>
+</mapper>

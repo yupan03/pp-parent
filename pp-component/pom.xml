@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>pp-component</artifactId>
     <packaging>pom</packaging>
-    <description>组件库</description>
+    <description>公共组件库</description>
     <parent>
         <groupId>com.pp</groupId>
         <artifactId>pp-parent</artifactId>
