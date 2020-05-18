@@ -5,8 +5,9 @@ import com.pp.common.result.Result;
 import com.pp.common.result.ResultList;
 import com.pp.common.result.ResultObj;
 import com.pp.common.result.ResultPage;
+import org.springframework.beans.BeanUtils;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,13 @@ public class BaseController {
                 pageInfo.getTotal());
     }
 
+    protected <T, E> ResultPage<E> resultPage(int status, String msg, List<T> list, Class<E> targetClass) {
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        List<E> ts = copyList(list, targetClass);
+        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(),
+                pageInfo.getTotal());
+    }
+
     protected Result result(int status, String msg) {
         return new Result(status, msg);
     }
@@ -37,7 +45,44 @@ public class BaseController {
         return new ResultObj<>(status, msg, t);
     }
 
+    protected <T, E> ResultObj<E> resultObj(int status, String msg, T t, Class<E> targetClass) {
+        E e = null;
+        try {
+            e = targetClass.newInstance();
+            this.copy(t, e);
+        } catch (Exception illegalAccessException) {
+            illegalAccessException.printStackTrace();
+        }
+
+        return new ResultObj<>(status, msg, e);
+    }
+
     protected <T> ResultList<T> resultList(int status, String msg, List<T> list) {
         return new ResultList<>(status, msg, list);
+    }
+
+    protected <T, E> ResultList<E> resultList(int status, String msg, List<T> list, Class<E> targetClass) {
+        List<E> ts = copyList(list, targetClass);
+        return new ResultList<>(status, msg, ts);
+    }
+
+    protected void copy(Object source, Object target) {
+        BeanUtils.copyProperties(source, target);
+    }
+
+    protected <T, E> List<T> copyList(List<E> source, Class<T> targetClass) {
+        List<T> target = new ArrayList<>();
+        if (source != null && !source.isEmpty()) {
+            source.forEach(obj -> {
+                try {
+                    T data = targetClass.newInstance();
+                    BeanUtils.copyProperties(obj, data);
+                    target.add(data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        return target;
     }
 }
