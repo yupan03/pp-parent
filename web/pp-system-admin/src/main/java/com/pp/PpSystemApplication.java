@@ -6,13 +6,19 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.io.File;
 
 @SpringBootApplication
-@MapperScan("com.project.dao")
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+@MapperScan("com.pp.dao")
+@ComponentScan("com.pp")
+@EnableDiscoveryClient
+@EnableConfigurationProperties
+@EnableAspectJAutoProxy
 public class PpSystemApplication implements CommandLineRunner {
     @Value("${path}")
     private String path;

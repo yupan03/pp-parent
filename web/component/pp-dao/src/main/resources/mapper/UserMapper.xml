@@ -3,7 +3,7 @@
 <mapper namespace="com.pp.dao.UserDao">
 
     <!-- 所有的映射返回结构都使用这个，不要写全字段查询 -->
-    <resultMap id="BaseResultMap" type="com.pp.entity.dao.dto.UserDTO">
+    <resultMap id="BaseResultMap" type="com.pp.entity.dto.UserDTO">
         <id column="id" property="id"/>
         <result column="account" property="account"/>
         <result column="name" property="name"/>

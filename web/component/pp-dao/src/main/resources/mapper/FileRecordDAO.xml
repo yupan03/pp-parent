@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pp.dao.FileRecordDAO">
-	<resultMap id="BaseResultMap" type="com.pp.entity.dao.table.FileRecord">
+	<resultMap id="BaseResultMap" type="com.pp.entity.table.FileRecord">
 		<id column="id" jdbcType="BIGINT" property="id" />
 		<result column="file_name" jdbcType="VARCHAR" property="fileName" />
 		<result column="attachment_name" jdbcType="VARCHAR" property="attachmentName" />
@@ -25,7 +25,7 @@
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 
-	<insert id="insert" parameterType="com.pp.entity.dao.table.FileRecord">
+	<insert id="insert" parameterType="com.pp.entity.table.FileRecord">
 		insert into file_record (id, file_name, attachment_name,
 		attachment_path, `type`, opr_id,
 		update_time, insert_time)

@@ -14,6 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>com.pp</groupId>
+            <artifactId>pp-jwt</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pp</groupId>
             <artifactId>pp-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
