@@ -1,9 +1,9 @@
 package com.pp.controller;
 
+import com.pp.common.result.Result;
 import com.pp.constant.DeleteEnum;
 import com.pp.service.fileRecord.FileRecordService;
 import com.pp.service.tableFile.TableFileService;
-import common.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

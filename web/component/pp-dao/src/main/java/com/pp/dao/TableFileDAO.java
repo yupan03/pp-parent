@@ -1,7 +1,7 @@
 package com.pp.dao;
 
-import com.pp.entity.dao.dto.TableFileDTO;
-import com.pp.entity.dao.table.TableFile;
+import com.pp.entity.dto.TableFileDTO;
+import com.pp.entity.table.TableFile;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

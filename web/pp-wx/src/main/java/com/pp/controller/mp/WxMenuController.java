@@ -1,6 +1,5 @@
 package com.pp.controller.mp;
 
-import io.swagger.annotations.Api;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author David
  */
-@Api(tags = "微信公众号菜单")
 @RestController
 @RequestMapping(value = "/wx/mp/menu")
 public class WxMenuController {

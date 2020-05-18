@@ -1,7 +1,5 @@
 package com.pp.controller.mp;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
@@ -13,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.http.HttpServletResponse;
 
-@Api(tags = "微信公众号")
 @Controller
 @RequestMapping(value = "/wx/mp/portal")
 public class WxMpController {
@@ -27,7 +24,6 @@ public class WxMpController {
     @Autowired
     private WxMpMessageRouter wxMpMessageRouter;
 
-    @ApiOperation(value = "公众号接入", notes = "公众号接入")
     @GetMapping
     public void authGet(@RequestParam(name = "signature", required = false) String signature,
                         @RequestParam(name = "timestamp", required = false) String timestamp,
@@ -45,7 +41,6 @@ public class WxMpController {
         }
     }
 
-    @ApiOperation(value = "公众号消息", notes = "后台接收消息并处理消息")
     @PostMapping
     public void post(@RequestBody String requestBody, @RequestParam("signature") String signature,
                      @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce,

@@ -1,12 +1,8 @@
 package com.pp.controller.mp;
 
+import com.pp.common.exception.BusinessException;
+import com.pp.common.result.ResultObj;
 import com.pp.constant.BusinessStatus;
-import common.exception.BusinessException;
-import common.result.ResultObj;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
@@ -18,23 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "微信公众号服务")
 @RestController
 @RequestMapping(value = "/wx/mp/service")
 public class WxMpServiceController {
-    @Autowired
-    private WxMpService wxMpService;
-
     /**
      * * 网页授权获取微信用户信息
      *
      * @param code 授权码
      * @return 用户信息
      */
-    @ApiOperation(value = "网页授权获取微信用户信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "code", value = "微信重定位code", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "state", value = "自定义校验参数", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getUserInfoByCode")
     public ResultObj<?> getUserInfoByCode(String code, String state) {
         if (StringUtils.isBlank(code)) {
@@ -61,15 +49,15 @@ public class WxMpServiceController {
 
     }
 
+    @Autowired
+    private WxMpService wxMpService;
+
     /**
      * * 根据openid获取微信用户信息
      *
      * @param openId openid
      * @return 用户信息
      */
-    @ApiOperation(value = "根据openid获取微信用户信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "openId", value = "公众号openId", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getUserInfoByOpenId")
     public ResultObj<?> getUserInfoByOpenId(String openId) {
         if (StringUtils.isBlank(openId)) {
@@ -89,9 +77,6 @@ public class WxMpServiceController {
      *
      * @param url 需要票据的地址
      */
-    @ApiOperation(value = "连接JSSDK的票据")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "url", value = "使用JSSDK的地址", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/createJsapiSignature")
     public ResultObj<?> createJsapiSignature(String url) {
         if (StringUtils.isBlank(url)) {
@@ -109,9 +94,6 @@ public class WxMpServiceController {
      *
      * @param sceneStr 二维码参数
      */
-    @ApiOperation(value = "获取带参数的永久二维码")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "sceneStr", value = "二维码参数", required = true, dataType = "String", paramType = "query")})
     @PostMapping(value = "/getQrCode")
     public WxMpQrCodeTicket getQrCode(String sceneStr) {
         try {

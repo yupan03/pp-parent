@@ -1,6 +1,6 @@
 package com.pp.aop;
 
-import common.exception.BusinessException;
+import com.pp.common.exception.BusinessException;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import jwt.annotaion.TokenCheck;

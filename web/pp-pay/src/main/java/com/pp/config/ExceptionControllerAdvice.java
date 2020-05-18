@@ -1,7 +1,7 @@
 package com.pp.config;
 
-import common.exception.BusinessException;
-import common.result.Result;
+import com.pp.common.exception.BusinessException;
+import com.pp.common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

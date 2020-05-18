@@ -1,12 +1,9 @@
 package com.pp.controller;
 
-import com.pp.exception.BusinessStatus;
-import com.pp.exception.BusinessException;
-import common.VerificationCode;
-import common.result.Result;
-import common.result.ResultObj;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.pp.common.VerificationCode;
+import com.pp.common.exception.BusinessException;
+import com.pp.common.result.Result;
+import com.pp.constant.BusinessStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,22 +16,19 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Api(tags = "登录")
 @RestController
 @RequestMapping(value = "/")
 public class LoginController {
 
-    @ApiOperation(value = "登录")
     @PostMapping(value = "/login")
     public Result doLogin(String username, String password) {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-            throw new BusinessException(BusinessStatus.LOGIN_FAIL, "账号或密码不能为空！");
+//            throw new BusinessException(BusinessStatus.LOGIN_FAIL, "账号或密码不能为空！");
         }
 
         return new Result(HttpStatus.OK.value(), "登录成功");
     }
 
-    @ApiOperation(value = "验证码")
     @RequestMapping(value = "/verificationCode.do", method = {RequestMethod.GET})
     public void verificationCode(HttpServletRequest request, HttpServletResponse response) {
         VerificationCode code = new VerificationCode(4);

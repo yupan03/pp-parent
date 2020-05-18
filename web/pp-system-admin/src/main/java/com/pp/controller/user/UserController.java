@@ -1,13 +1,11 @@
 package com.pp.controller.user;
 
+import com.pp.common.result.Result;
+import com.pp.common.result.ResultObj;
 import com.pp.controller.BaseController;
 import com.pp.controller.user.param.LoginUser;
-import com.pp.controller.user.param.UserAdd;
+import com.pp.entity.table.User;
 import com.pp.service.user.UserService;
-import common.result.Result;
-import common.result.ResultObj;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import jwt.JwtUtil;
 import jwt.LoginAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/user")
-@Api(tags = "用户管理")
 public class UserController extends BaseController {
     @Autowired
     private JwtUtil jwtUtil;
@@ -70,8 +67,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping(value = "/add")
-    @ApiOperation(value = "/add", tags = "新增用户")
-    public Result add(@RequestBody UserAdd userAdd) {
+    public Result add(@RequestBody User userAdd) {
         userService.addUser(userAdd);
         return super.result(HttpStatus.OK.value(), "新增客户成功");
     }

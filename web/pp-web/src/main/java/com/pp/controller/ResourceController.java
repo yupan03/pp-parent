@@ -1,8 +1,8 @@
 package com.pp.controller;
 
+import com.pp.common.result.ResultList;
 import com.pp.entity.tables.resource.Resource;
 import com.pp.service.resource.ResourceService;
-import common.result.ResultList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;

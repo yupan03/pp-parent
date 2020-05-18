@@ -1,13 +1,11 @@
 package com.pp.controller;
 
 import com.pp.entity.tables.user.User;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api(tags = "用户管理")
 @RequestMapping(value = "/user")
 public class UserController {
     @PostMapping(value = "/add")

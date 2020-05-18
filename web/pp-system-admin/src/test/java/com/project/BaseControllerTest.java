@@ -1,9 +1,9 @@
 package com.project;
 
+import com.pp.common.result.Result;
+import com.pp.common.result.ResultList;
+import com.pp.common.result.ResultObj;
 import com.pp.utils.JSONUtil;
-import common.result.Result;
-import common.result.ResultList;
-import common.result.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;

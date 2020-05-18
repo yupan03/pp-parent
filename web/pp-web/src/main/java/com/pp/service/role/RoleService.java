@@ -1,12 +1,12 @@
 package com.pp.service.role;
 
+import com.pp.common.exception.BusinessException;
+import com.pp.common.utils.SysUtils;
+import com.pp.constant.BusinessStatus;
 import com.pp.entity.tables.role.Role;
 import com.pp.entity.tables.role.RoleResource;
 import com.pp.dao.role.RoleDao;
 import com.pp.dao.role.RoleResourceDao;
-import com.pp.exception.BusinessException;
-import com.pp.exception.BusinessStatus;
-import common.utils.SysUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +42,7 @@ public class RoleService {
         // 先判断角色是否存在
         Role role = null;
         if (role == null) {
-            throw new BusinessException(BusinessStatus.ERROR, "角色不存在");
+            throw new BusinessException(BusinessStatus.ERROR.status, "角色不存在");
         }
 
         List<RoleResource> resources = resourceDao.findByRole(role.getId(), role.getName());
