@@ -63,7 +63,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/say")
     public ResultObj<String> sayHello() {
-        return super.resultObj(HttpStatus.OK.value(), "成功", "hello world");
+        return super.resultObj("hello world", String.class);
     }
 
     @PostMapping(value = "/add")

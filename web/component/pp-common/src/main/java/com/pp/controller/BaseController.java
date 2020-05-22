@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * controller层公共类
+ *
  * @author David
  */
 public class BaseController {
@@ -22,6 +23,11 @@ public class BaseController {
      */
     protected String msg = "success";
 
+    protected final <T> ResultPage<T> resultPage(List<T> list) {
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        return new ResultPage<>(HttpStatus.OK.value(), msg, list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+    }
+
     protected final <T, E> ResultPage<E> resultPage(List<T> list, Class<E> targetClass) {
         return this.resultPage(HttpStatus.OK.value(), msg, list, targetClass);
     }
@@ -29,8 +35,7 @@ public class BaseController {
     protected final <T, E> ResultPage<E> resultPage(int status, String msg, List<T> list, Class<E> targetClass) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
         List<E> ts = copyList(list, targetClass);
-        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(),
-                pageInfo.getTotal());
+        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
     }
 
     protected final Result result() {
@@ -39,6 +44,10 @@ public class BaseController {
 
     protected final Result result(int status, String msg) {
         return new Result(status, msg);
+    }
+
+    protected final <T> ResultObj<T> resultObj(T t) {
+        return new ResultObj<>(HttpStatus.OK.value(), msg, t);
     }
 
     protected final <T, E> ResultObj<E> resultObj(T t, Class<E> targetClass) {
@@ -55,6 +64,10 @@ public class BaseController {
         }
 
         return new ResultObj<>(status, msg, e);
+    }
+
+    protected final <T> ResultList<T> resultList(List<T> list) {
+        return new ResultList<>(HttpStatus.OK.value(), msg, list);
     }
 
     protected final <T, E> ResultList<E> resultList(List<T> list, Class<E> targetClass) {

@@ -5,7 +5,7 @@
     <artifactId>pp-common</artifactId>
     <version>1.0</version>
     <parent>
-        <artifactId>web</artifactId>
+        <artifactId>component</artifactId>
         <groupId>com.pp</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
