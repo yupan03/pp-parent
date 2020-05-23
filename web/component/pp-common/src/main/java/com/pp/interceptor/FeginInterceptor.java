@@ -1,4 +1,4 @@
-package fegin.config;
+package com.pp.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -6,10 +6,10 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 解决服务之间请求头传递
