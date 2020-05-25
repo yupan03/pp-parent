@@ -13,6 +13,5 @@
     </parent>
     <modules>
         <module>pp-jwt</module>
-        <module>pp-redis</module>
     </modules>
 </project>

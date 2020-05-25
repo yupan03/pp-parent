@@ -1,10 +1,10 @@
-package redis.util;
+package com.pp.redis;
+
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.springframework.data.redis.core.StringRedisTemplate;
 
 public class RedisList extends RedisBase {
 
@@ -15,9 +15,8 @@ public class RedisList extends RedisBase {
 	/**
 	 * 通过索引获取列表中的元素
 	 *
-	 * @param key
-	 * @param index
-	 * @return
+	 * @param key key
+	 * @param index 索引
 	 */
 	public String index(String key, long index) {
 		return redisTemplate.opsForList().index(key, index);
@@ -26,10 +25,9 @@ public class RedisList extends RedisBase {
 	/**
 	 * 获取列表指定范围内的元素
 	 *
-	 * @param key
+	 * @param key key
 	 * @param start 开始位置, 0是开始位置
 	 * @param end   结束位置, -1返回所有
-	 * @return
 	 */
 	public List<String> range(String key, long start, long end) {
 		return redisTemplate.opsForList().range(key, start, end);
@@ -38,18 +36,16 @@ public class RedisList extends RedisBase {
 	/**
 	 * 存储在list头部
 	 *
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key key
+	 * @param value 存储值
 	 */
 	public Long leftPush(String key, String value) {
 		return redisTemplate.opsForList().leftPush(key, value);
 	}
 
 	/**
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key key
+	 * @param value 存储值(数组)
 	 */
 	public Long leftPushAll(String key, String... value) {
 		return redisTemplate.opsForList().leftPushAll(key, value);
@@ -58,7 +54,6 @@ public class RedisList extends RedisBase {
 	/**
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long leftPushAll(String key, Collection<String> value) {
 		return redisTemplate.opsForList().leftPushAll(key, value);
@@ -69,7 +64,6 @@ public class RedisList extends RedisBase {
 	 *
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long leftPushIfPresent(String key, String value) {
 		return redisTemplate.opsForList().leftPushIfPresent(key, value);
@@ -81,7 +75,6 @@ public class RedisList extends RedisBase {
 	 * @param key
 	 * @param pivot
 	 * @param value
-	 * @return
 	 */
 	public Long leftPush(String key, String pivot, String value) {
 		return redisTemplate.opsForList().leftPush(key, pivot, value);
@@ -90,7 +83,6 @@ public class RedisList extends RedisBase {
 	/**
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long rightPush(String key, String value) {
 		return redisTemplate.opsForList().rightPush(key, value);
@@ -99,7 +91,6 @@ public class RedisList extends RedisBase {
 	/**
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long rightPushAll(String key, String... value) {
 		return redisTemplate.opsForList().rightPushAll(key, value);
@@ -108,7 +99,6 @@ public class RedisList extends RedisBase {
 	/**
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long rightPushAll(String key, Collection<String> value) {
 		return redisTemplate.opsForList().rightPushAll(key, value);
@@ -119,7 +109,6 @@ public class RedisList extends RedisBase {
 	 *
 	 * @param key
 	 * @param value
-	 * @return
 	 */
 	public Long rightPushIfPresent(String key, String value) {
 		return redisTemplate.opsForList().rightPushIfPresent(key, value);
@@ -131,7 +120,6 @@ public class RedisList extends RedisBase {
 	 * @param key
 	 * @param pivot
 	 * @param value
-	 * @return
 	 */
 	public Long rightPush(String key, String pivot, String value) {
 		return redisTemplate.opsForList().rightPush(key, pivot, value);
@@ -152,7 +140,6 @@ public class RedisList extends RedisBase {
 	 * 移出并获取列表的第一个元素
 	 *
 	 * @param key
-	 * @return 删除的元素
 	 */
 	public String leftPop(String key) {
 		return redisTemplate.opsForList().leftPop(key);
@@ -164,7 +151,6 @@ public class RedisList extends RedisBase {
 	 * @param key
 	 * @param timeout 等待时间
 	 * @param unit    时间单位
-	 * @return
 	 */
 	public String leftPop(String key, long timeout, TimeUnit unit) {
 		return redisTemplate.opsForList().leftPop(key, timeout, unit);
@@ -174,7 +160,6 @@ public class RedisList extends RedisBase {
 	 * 移除并获取列表最后一个元素
 	 *
 	 * @param key
-	 * @return 删除的元素
 	 */
 	public String rightPop(String key) {
 		return redisTemplate.opsForList().rightPop(key);
@@ -186,7 +171,6 @@ public class RedisList extends RedisBase {
 	 * @param key
 	 * @param timeout 等待时间
 	 * @param unit    时间单位
-	 * @return
 	 */
 	public String rightPop(String key, long timeout, TimeUnit unit) {
 		return redisTemplate.opsForList().rightPop(key, timeout, unit);
@@ -197,7 +181,6 @@ public class RedisList extends RedisBase {
 	 *
 	 * @param sourceKey
 	 * @param destinationKey
-	 * @return
 	 */
 	public String rightPopAndLeftPush(String sourceKey, String destinationKey) {
 		return redisTemplate.opsForList().rightPopAndLeftPush(sourceKey, destinationKey);
@@ -210,7 +193,6 @@ public class RedisList extends RedisBase {
 	 * @param destinationKey
 	 * @param timeout
 	 * @param unit
-	 * @return
 	 */
 	public String rightPopAndLeftPush(String sourceKey, String destinationKey, long timeout, TimeUnit unit) {
 		return redisTemplate.opsForList().rightPopAndLeftPush(sourceKey, destinationKey, timeout, unit);
@@ -219,11 +201,10 @@ public class RedisList extends RedisBase {
 	/**
 	 * 删除集合中值等于value得元素
 	 *
-	 * @param key
+	 * @param key key
 	 * @param index index=0, 删除所有值等于value的元素; index>0, 从头部开始删除第一个值等于value的元素;
 	 *              index<0, 从尾部开始删除第一个值等于value的元素;
-	 * @param value
-	 * @return
+	 * @param value 元素值
 	 */
 	public Long remove(String key, long index, String value) {
 		return redisTemplate.opsForList().remove(key, index, value);
@@ -232,9 +213,9 @@ public class RedisList extends RedisBase {
 	/**
 	 * 裁剪list
 	 *
-	 * @param key
-	 * @param start
-	 * @param end
+	 * @param key key
+	 * @param start 开始
+	 * @param end 结束
 	 */
 	public void trim(String key, long start, long end) {
 		redisTemplate.opsForList().trim(key, start, end);
@@ -243,8 +224,7 @@ public class RedisList extends RedisBase {
 	/**
 	 * 获取列表长度
 	 *
-	 * @param key
-	 * @return
+	 * @param key key
 	 */
 	public Long size(String key) {
 		return redisTemplate.opsForList().size(key);

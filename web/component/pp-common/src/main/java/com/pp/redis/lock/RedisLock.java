@@ -1,5 +1,6 @@
-package redis.util;
+package com.pp.redis.lock;
 
+import com.pp.redis.RedisString;
 import org.springframework.util.StringUtils;
 
 import java.util.concurrent.TimeUnit;

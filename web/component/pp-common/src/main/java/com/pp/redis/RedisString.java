@@ -1,11 +1,11 @@
-package redis.util;
+package com.pp.redis;
+
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * Redis String字符串操作

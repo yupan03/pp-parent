@@ -1,12 +1,12 @@
-package redis.util;
-
-import java.util.Collection;
-import java.util.Set;
+package com.pp.redis;
 
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class RedisZSet extends RedisBase{
 

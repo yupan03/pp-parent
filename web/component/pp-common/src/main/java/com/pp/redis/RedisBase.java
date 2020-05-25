@@ -1,12 +1,12 @@
-package redis.util;
+package com.pp.redis;
+
+import org.springframework.data.redis.connection.DataType;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import org.springframework.data.redis.connection.DataType;
-import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * redis 基础操作
