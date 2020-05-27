@@ -8,6 +8,8 @@ import org.junit.runners.Suite;
  * 一键启动需要测试的所有类
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ControllerTest.class})
+@Suite.SuiteClasses({
+        ControllerTest.class
+})
 public class AllClassTest {
 }

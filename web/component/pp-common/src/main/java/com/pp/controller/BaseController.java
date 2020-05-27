@@ -5,6 +5,7 @@ import com.pp.common.result.Result;
 import com.pp.common.result.ResultList;
 import com.pp.common.result.ResultObj;
 import com.pp.common.result.ResultPage;
+import com.pp.untils.WebUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 
@@ -22,6 +23,13 @@ public class BaseController {
      * 默认返回提示语为success
      */
     protected String msg = "success";
+
+    /**
+     * 获取当前用户ID
+     */
+    protected final String curUserId() {
+        return WebUtil.getUserId();
+    }
 
     protected final <T> ResultPage<T> resultPage(List<T> list) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
