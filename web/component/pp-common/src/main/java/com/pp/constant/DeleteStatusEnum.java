@@ -1,4 +1,4 @@
-package com.pp.status;
+package com.pp.constant;
 
 /**
  * 删除状态
@@ -14,5 +14,13 @@ public enum DeleteStatusEnum {
     DeleteStatusEnum(byte value, String desc) {
         this.value = value;
         this.desc = desc;
+    }
+
+    public byte getValue() {
+        return value;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }

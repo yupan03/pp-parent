@@ -39,7 +39,7 @@ public class TableFileServiceImpl implements TableFileService {
     }
 
     @Override
-    public void updateTableFile(Long id, Integer flag) {
+    public void updateTableFile(Long id, byte flag) {
         commonService.getTableFileDAO().updateFlag(id, flag);
     }
 }

@@ -16,7 +16,7 @@ public interface TableFileDAO {
      * @param flag 状态 0：删除  1：正常
      * @return 受影响的行
      */
-    int updateFlag(@Param("id") Long id, @Param("flag") Integer flag);
+    int updateFlag(@Param("id") Long id, @Param("flag") byte flag);
 
     /**
      * 根据表查询附件
