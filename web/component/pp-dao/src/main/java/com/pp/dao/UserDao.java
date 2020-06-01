@@ -21,6 +21,5 @@ public interface UserDao {
 
     int updateUser(User user);
 
-
     List<UserDTO> getAllUser();
 }

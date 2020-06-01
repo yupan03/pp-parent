@@ -16,7 +16,7 @@ public class UserDTO {
 
     private Byte state;
 
-    private Integer type;
+    private Byte type;
 
     private String createTime;
 }
