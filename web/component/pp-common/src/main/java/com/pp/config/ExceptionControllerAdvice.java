@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author David
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class ExceptionControllerAdvice {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/wx/mp/service")
 public class WxMpServiceController {
+    @Autowired
+    private WxMpService wxMpService;
+
     /**
      * * 网页授权获取微信用户信息
      *
@@ -49,8 +52,6 @@ public class WxMpServiceController {
 
     }
 
-    @Autowired
-    private WxMpService wxMpService;
 
     /**
      * * 根据openid获取微信用户信息
