@@ -8,13 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.io.File;
 
 @SpringBootApplication
 @MapperScan("com.pp.dao")
-@ComponentScan("com.pp")
 @EnableDiscoveryClient
 @EnableConfigurationProperties
 public class PpSystemApplication implements CommandLineRunner {
