@@ -5,30 +5,54 @@
     <title>首页</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
-<body class="layui-layout-body">
+<style type="text/css">
+    .layui-table-page {
+        background-color: #1AA094;
+        z-index: 99999;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .layui-table-box {
+        margin-bottom: 30px;
+    }
+</style>
+<body class="layui-layout-body" style="margin: 0;">
 <div class="layui-layout">
     <table class="layui-hide" id="test"></table>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
-<script th:inline="javascript">
-    layui.use('table', function () {
+<script th:inline="none">
+    layui.use(['table'], function () {
         var table = layui.table;
 
         table.render({
             elem: '#test',
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            url: '/user/list',
+            cols: [
+                [
+                    {field: 'id', width: 80, title: 'ID', sort: true},
+                    {field: 'account', width: 80, title: '账号'},
+                    {field: 'name', width: 80, title: '姓名', sort: true},
+                    {field: 'city', width: 80, title: '城市'},
+                    {field: 'sign', title: '签名', width: '30%', minWidth: 100}, //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    {field: 'experience', title: '积分', sort: true},
+                    {field: 'score', title: '评分', sort: true},
+                    {field: 'classify', title: '职业'},
+                    {field: 'wealth', width: 137, title: '财富', sort: true}
+                ]
+            ],
             page: true,
-            cols: [[
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'username', width: 80, title: '用户名'},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'city', width: 80, title: '城市'},
-                {field: 'sign', title: '签名', width: '30%', minWidth: 100}, //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                {field: 'experience', title: '积分', sort: true},
-                {field: 'score', title: '评分', sort: true},
-                {field: 'classify', title: '职业'},
-                {field: 'wealth', width: 137, title: '财富', sort: true}
-            ]]
+            limit: 10,
+            limits: [5, 10, 15, 20],
+            response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            },
+            parseData: function (res) {
+                console.log(res);
+                return {"code": res.status, "msg": res.msg, "count": res.total, "data": res.dataList}
+            }
         });
     });
 </script>
