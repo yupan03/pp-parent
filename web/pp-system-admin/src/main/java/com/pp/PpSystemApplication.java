@@ -31,7 +31,6 @@ public class PpSystemApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-
         SpringApplication springApplication = new SpringApplication(PpSystemApplication.class);
 
         springApplication.setBannerMode(Banner.Mode.OFF);
