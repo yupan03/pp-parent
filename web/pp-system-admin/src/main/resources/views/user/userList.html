@@ -50,6 +50,7 @@
                 statusCode: 200
             },
             parseData: function (res) {
+                console.log(res);
                 return {"code": res.status, "msg": res.msg, "count": res.total, "data": res.dataList}
             }
         });
