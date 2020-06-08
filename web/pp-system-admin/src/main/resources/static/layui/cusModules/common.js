@@ -1,36 +1,49 @@
+// 请求头封装
 layui.define(['jquery', 'table'], function (exports) {
     var $ = layui.jquery, table = layui.table;
     var obj = {
-        ajax: function (obj) {
-            if (!obj.headers) {
-                obj.headers = {　　　　　　　　　　　　// 兼容IE9
+        ajax: function (params) {
+            if (!params.headers) {
+                params.headers = {　　　　　　　　　　　　// 兼容IE9
                     'cache-control': 'no-cache',
                     'Pragma': 'no-cache',
                     'Authorization': window.sessionStorage.getItem("token")
                 };
             }
-            if (!obj.type) obj.type = "GET";
-            if (!obj.dataType) obj.dataType = "json";
+            if (!params.type) params.type = "GET";
+            if (!params.dataType) params.dataType = "json";
             // 配置为false时，表示不从浏览器缓存中获取数据，调试时可以看到，发Get请求时，会自动加上时间戳
-            if (!obj.cache) obj.cache = false;
-            if (!obj.async) obj.async = true;
-            obj.crossDomain = true === !(document.all);//这句是关键
+            if (!params.cache) params.cache = false;
+            if (!params.async) params.async = true;
+            params.crossDomain = true === !(document.all);//这句是关键
 
-            if (!obj.error) {
-                obj.error = function (err) {
+            if (!params.error) {
+                params.error = function (err) {
                     layer.msg("网络连接失败!");
                     console.log(err);
                 }
             }
-            $.ajax(obj);
+            $.ajax(params);
         },
-        render: function (obj) {
-            obj.headers = {
+        render: function (params) {
+            params.headers = {
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
                 'Authorization': window.sessionStorage.getItem("token")
             };
-            table.render(obj);
+            params.response = {
+                'statusCode': 200
+            };
+            params.parseData = function (res) {
+                return {
+                    "code": res.status,
+                    "msg": res.msg,
+                    "count": res.total,
+                    "data": res.dataList
+                }
+            }
+            // 全局结果数据封装
+            table.render(params);
         }
     };
     //输出接口
