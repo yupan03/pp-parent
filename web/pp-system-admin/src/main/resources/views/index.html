@@ -50,7 +50,6 @@
                 statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
             },
             parseData: function (res) {
-                console.log(res);
                 return {"code": res.status, "msg": res.msg, "count": res.total, "data": res.dataList}
             }
         });
