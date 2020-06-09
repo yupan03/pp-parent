@@ -5,21 +5,20 @@
     <title>首页</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
-<style type="text/css">
-    .layui-table-page {
-        background-color: #1AA094;
-        z-index: 99999;
-        position: fixed;
-        bottom: 0;
-    }
-
-    .layui-table-box {
-        margin-bottom: 30px;
-    }
-</style>
 <body class="layui-layout-body" style="margin: 0;">
 <div class="layui-layout">
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        </div>
+    </script>
     <table class="layui-hide" id="test"></table>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/js/global.js}"></script>
@@ -31,8 +30,15 @@
             elem: '#test',
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             url: '/user/list',
+            toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
+            defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
             cols: [
                 [
+                    {type: 'checkbox', fixed: 'left'},
                     {field: 'id', width: 80, title: 'ID', sort: true},
                     {field: 'account', width: 80, title: '账号'},
                     {field: 'name', width: 80, title: '姓名', sort: true},
@@ -41,12 +47,11 @@
                     {field: 'experience', title: '积分', sort: true},
                     {field: 'score', title: '评分', sort: true},
                     {field: 'classify', title: '职业'},
-                    {field: 'wealth', width: 137, title: '财富', sort: true}
+                    {field: 'wealth', width: 137, title: '财富', sort: true},
+                    {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
                 ]
             ],
-            page: true,
-            limit: 10,
-            limits: [5, 10, 15, 20]
+            page: true
         });
     });
 </script>

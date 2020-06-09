@@ -26,11 +26,15 @@ layui.define(['jquery', 'table'], function (exports) {
             $.ajax(params);
         },
         render: function (params) {
+            if (!params.page) params.page = false;
+            if (!params.limit) params.limit = 10;
+            if (!params.limits) params.limits = [5, 10, 15, 20];
             params.headers = {
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
                 'Authorization': window.sessionStorage.getItem("token")
             };
+            // 重新定义返回值
             params.response = {
                 'statusCode': 200
             };
