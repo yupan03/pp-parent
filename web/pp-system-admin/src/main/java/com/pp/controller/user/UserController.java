@@ -41,7 +41,7 @@ public class UserController extends BaseController {
         return super.result();
     }
 
-    @GetMapping(value = "/list")
+    @PostMapping(value = "/list")
     public ResultPage<User> userList() {
         List<User> users = new ArrayList<>();
         User user = new User();

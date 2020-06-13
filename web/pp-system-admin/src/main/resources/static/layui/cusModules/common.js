@@ -29,8 +29,10 @@ layui.define(['jquery', 'table'], function (exports) {
             if (!params.page) params.page = false;
             if (!params.limit) params.limit = 10;
             if (!params.limits) params.limits = [5, 10, 15, 20];
-            params.method = 'get';
-            params.contentType = 'application/json           ';
+            if (!params.method) {
+                params.method = 'post';
+                params.contentType = 'application/json';
+            }
             params.headers = {
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
@@ -40,7 +42,7 @@ layui.define(['jquery', 'table'], function (exports) {
             params.request = {
                 pageName: 'pageNum',
                 limitName: 'pageSize'
-            }
+            };
             // 重新定义返回值
             params.response = {
                 statusCode: 200,
@@ -49,15 +51,6 @@ layui.define(['jquery', 'table'], function (exports) {
                 countName: 'total',
                 dataName: 'dataList'
             };
-            // params.parseData = function (res) {
-            //     return {
-            //         "code": res.status,
-            //         "msg": res.msg,
-            //         "count": res.total,
-            //         "data": res.dataList
-            //     }
-            // }
-            // 全局结果数据封装
             table.render(params);
         },
         // 监听表格复选框选择
