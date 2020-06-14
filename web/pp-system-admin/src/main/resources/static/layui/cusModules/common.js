@@ -1,15 +1,13 @@
 // 请求头封装
-layui.define(['jquery', 'table'], function (exports) {
-    var $ = layui.jquery, table = layui.table;
+layui.define(['layer', 'jquery', 'table'], function (exports) {
+    var $ = layui.jquery, table = layui.table, layer = layui.layer;
     var obj = {
-        ajax: function (params) {
-            if (!params.headers) {
-                params.headers = {　　　　　　　　　　　　// 兼容IE9
-                    'cache-control': 'no-cache',
-                    'Pragma': 'no-cache',
-                    'Authorization': window.sessionStorage.getItem("token")
-                };
-            }
+        ajax: function (params, callback) {
+            params.headers = {　　　　　　　　　　　　// 兼容IE9
+                'cache-control': 'no-cache',
+                'Pragma': 'no-cache',
+                'Authorization': window.sessionStorage.getItem("token")
+            };
             if (!params.type) params.type = "GET";
             if (!params.dataType) params.dataType = "json";
             // 配置为false时，表示不从浏览器缓存中获取数据，调试时可以看到，发Get请求时，会自动加上时间戳
@@ -23,16 +21,22 @@ layui.define(['jquery', 'table'], function (exports) {
                     console.log(err);
                 }
             }
+            params.success = function (response) {
+                // 数据统一处理封装
+                if (response.status != 200) {
+                    layer.msg(response.msg);
+                } else {
+                    callback(response.data);
+                }
+            }
             $.ajax(params);
         },
         tableRender: function (params) {
             if (!params.page) params.page = false;
             if (!params.limit) params.limit = 10;
             if (!params.limits) params.limits = [5, 10, 15, 20];
-            if (!params.method) {
-                params.method = 'post';
-                params.contentType = 'application/json';
-            }
+            params.method = 'post';
+            params.contentType = 'application/json';
             params.headers = {
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
@@ -76,10 +80,14 @@ layui.define(['jquery', 'table'], function (exports) {
         tableRowDouble: function (tableId, callback) {
             table.on('rowDouble(' + tableId + ')', callback);
         },
+        // 表格重新加载
         tableReload: function (tableId, params) {
-            params.page.curr = 1; // 重新定位第一页
+            params.page = {
+                curr: 1
+            }; // 重新定位第一页
             table.reload(tableId, params, 'data');
         },
+        // 表格排序
         tableSort: function (tableId, callback) {
             table.on('sort(' + tableId + ')', callback);
         }

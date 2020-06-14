@@ -5,8 +5,18 @@
     <title>首页</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
-<body class="layui-layout-body" style="margin: 0;">
+<body class="layui-layout-body" style="margin: 10px;">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>模板</legend>
+</fieldset>
 <div class="layui-layout">
+    <div class="demoTable">
+        搜索ID：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload" id="search">搜索</button>
+    </div>
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
             <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
@@ -52,6 +62,24 @@
                 ]
             ],
             page: true
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                var demoReload = $('#demoReload');
+                console.log(demoReload.val());
+
+                //执行重载
+                common.tableReload('test', {
+                    where: {
+                        id: demoReload.val()
+                    }
+                });
+            }
+        };
+        $('#search').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
     });
 </script>
