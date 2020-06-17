@@ -23,11 +23,11 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
 
-    @PostMapping(value = "login")
-    public String getToken(@RequestBody LoginUser user) {
+    @PostMapping(value = "/login")
+    public ResultObj<String> getToken(@RequestBody LoginUser user) {
         LoginAccount account = new LoginAccount();
         account.setUsername(user.getUsername());
-        return jwtUtil.generateToken(account);
+        return super.resultObj(jwtUtil.generateToken(account));
     }
 
     @RequestMapping(value = "/say")

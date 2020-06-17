@@ -3,10 +3,14 @@ layui.define(['layer', 'jquery', 'table'], function (exports) {
     var $ = layui.jquery, table = layui.table, layer = layui.layer;
     var obj = {
         ajax: function (params, callback) {
+            var token = window.sessionStorage.getItem("token");
+            if (!token) {
+                top.location.href = '/page/login';
+            }
             params.headers = {　　　　　　　　　　　　// 兼容IE9
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
-                'Authorization': window.sessionStorage.getItem("token")
+                'Authorization': token
             };
             if (!params.type) params.type = "GET";
             if (!params.dataType) params.dataType = "json";
@@ -32,6 +36,10 @@ layui.define(['layer', 'jquery', 'table'], function (exports) {
             $.ajax(params);
         },
         tableRender: function (params) {
+            var token = window.sessionStorage.getItem("token");
+            if (!token) {
+                top.location.href = '/page/login';
+            }
             if (!params.page) params.page = false;
             if (!params.limit) params.limit = 10;
             if (!params.limits) params.limits = [5, 10, 15, 20];
@@ -40,7 +48,7 @@ layui.define(['layer', 'jquery', 'table'], function (exports) {
             params.headers = {
                 'cache-control': 'no-cache',
                 'Pragma': 'no-cache',
-                'Authorization': window.sessionStorage.getItem("token")
+                'Authorization': token
             };
             // 对分页请求参数page, limit重新设定名称
             params.request = {
