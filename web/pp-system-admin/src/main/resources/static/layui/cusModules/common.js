@@ -27,7 +27,7 @@ layui.define(['layer', 'jquery', 'table'], function (exports) {
             }
             params.success = function (response) {
                 // 数据统一处理封装
-                if (response.status != 200) {
+                if (response.status !== 200) {
                     layer.msg(response.msg);
                 } else {
                     callback(response.data);
