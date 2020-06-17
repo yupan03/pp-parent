@@ -108,6 +108,10 @@
 
         form.on('submit(login)', function (data) {
             console.log(data.field); // 打印表单参数
+            $.ajax({
+                uri: "",
+                key: data.field
+            });
             window.location.href = '/page/hmenu/api';
             return false; // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
