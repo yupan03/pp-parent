@@ -10,11 +10,6 @@
     <artifactId>pp-gateway</artifactId>
     <description>统一网关处理</description>
     <dependencies>
-        <dependency>
-            <groupId>com.pp</groupId>
-            <artifactId>pp-jwt</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <!-- 引入spring cloud gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

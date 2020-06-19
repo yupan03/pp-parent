@@ -6,9 +6,10 @@ import com.pp.common.result.ResultPage;
 import com.pp.controller.BaseController;
 import com.pp.controller.user.param.LoginUser;
 import com.pp.entity.table.User;
+import com.pp.jwt.JwtUtil;
+import com.pp.jwt.LoginAccount;
 import com.pp.service.user.UserService;
-import jwt.JwtUtil;
-import jwt.LoginAccount;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

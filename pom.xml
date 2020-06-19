@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>pp-component</module>
         <module>pp-gateway</module>
         <module>web</module>
     </modules>

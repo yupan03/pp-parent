@@ -7,16 +7,32 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
 
 public class WebUtil {
-    public static String getUserId() {
-        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
 
-        String userId = request.getHeader("userId");
-        if (StringUtils.isEmpty(userId)) {
+    public static HttpServletRequest getRequest() {
+        return getServletRequestAttributes().getRequest();
+    }
+
+    public static HttpServletResponse getResponse() {
+        return getServletRequestAttributes().getResponse();
+    }
+
+    private static ServletRequestAttributes getServletRequestAttributes() {
+        return (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    }
+
+    public static String getToken() {
+        HttpServletRequest request = getRequest();
+
+        String token = request.getHeader("Authorization");
+        if (StringUtils.isEmpty(token)) {
             throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "非法请求");
         }
-        return userId;
+        if (token.startsWith("Bearer ")) {
+            token = token.substring("Bearer ".length());
+        }
+        return token;
     }
 }

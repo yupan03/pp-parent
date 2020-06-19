@@ -11,6 +11,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.annotation.Resource;
 
+/**
+ * 自定义redis配置（多库模式）
+ */
 @Configuration
 public class RedisConfig {
     @Resource
@@ -33,8 +36,8 @@ public class RedisConfig {
         return factory;
     }
 
-    @Bean
-    public StringRedisTemplate getStringRedisTemplate() {
+    @Bean("database0")
+    public StringRedisTemplate getStringRedisTemplateDatabase0() {
         return new StringRedisTemplate(lettuceConnectionFactory(0));
     }
 }

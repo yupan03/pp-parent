@@ -28,7 +28,7 @@ public class BaseController {
      * 获取当前用户ID
      */
     protected final String curUserId() {
-        return WebUtil.getUserId();
+        return WebUtil.getToken();
     }
 
     protected final <T> ResultPage<T> resultPage(List<T> list) {
