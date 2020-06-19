@@ -4,6 +4,7 @@ import com.pp.common.result.Result;
 import com.pp.common.result.ResultObj;
 import com.pp.common.result.ResultPage;
 import com.pp.controller.BaseController;
+import com.pp.controller.annontion.ValidToken;
 import com.pp.controller.user.param.LoginUser;
 import com.pp.entity.table.User;
 import com.pp.jwt.JwtUtil;
@@ -32,17 +33,20 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/say")
+    @ValidToken
     public ResultObj<String> sayHello() {
         return super.resultObj("hello world");
     }
 
     @PostMapping(value = "/add")
+    @ValidToken
     public Result add(@RequestBody User userAdd) {
         userService.addUser(userAdd);
         return super.result();
     }
 
     @PostMapping(value = "/list")
+    @ValidToken
     public ResultPage<User> userList() {
         List<User> users = new ArrayList<>();
         User user = new User();
