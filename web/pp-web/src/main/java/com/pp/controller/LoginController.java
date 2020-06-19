@@ -1,9 +1,7 @@
 package com.pp.controller;
 
 import com.pp.common.VerificationCode;
-import com.pp.common.exception.BusinessException;
 import com.pp.common.result.Result;
-import com.pp.constant.BusinessStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;

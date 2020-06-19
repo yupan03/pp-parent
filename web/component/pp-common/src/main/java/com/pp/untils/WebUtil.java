@@ -1,6 +1,6 @@
 package com.pp.untils;
 
-import com.pp.common.exception.BusinessException;
+import com.pp.common.exception.BizException;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -28,7 +28,7 @@ public class WebUtil {
 
         String token = request.getHeader("Authorization");
         if (StringUtils.isEmpty(token)) {
-            throw new BusinessException(HttpStatus.UNAUTHORIZED.value(), "非法请求");
+            throw new BizException(HttpStatus.UNAUTHORIZED.value(), "非法请求");
         }
         if (token.startsWith("Bearer ")) {
             token = token.substring("Bearer ".length());

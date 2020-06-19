@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author David
  */
-public class BusinessException extends RuntimeException {
+public class BizException extends RuntimeException {
     private static final long serialVersionUID = 8900977594896382046L;
 
     private int status;
@@ -15,7 +15,7 @@ public class BusinessException extends RuntimeException {
     private Object data;
     private List<Object> dataList;
 
-    public BusinessException(int status, String msg) {
+    public BizException(int status, String msg) {
         this.status = status;
         this.msg = msg;
     }

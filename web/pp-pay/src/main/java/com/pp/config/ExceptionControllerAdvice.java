@@ -1,6 +1,6 @@
 package com.pp.config;
 
-import com.pp.common.exception.BusinessException;
+import com.pp.common.exception.BizException;
 import com.pp.common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +28,9 @@ public class ExceptionControllerAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler(value = BusinessException.class)
+    @ExceptionHandler(value = BizException.class)
     @ResponseBody
-    public Result handlerProjectException(BusinessException e) {
+    public Result handlerProjectException(BizException e) {
         logger.info(e.getMsg());
         return new Result(e.getStatus(), e.getMsg());
     }

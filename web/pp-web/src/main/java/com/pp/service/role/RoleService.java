@@ -1,6 +1,6 @@
 package com.pp.service.role;
 
-import com.pp.common.exception.BusinessException;
+import com.pp.common.exception.BizException;
 import com.pp.common.utils.SysUtils;
 import com.pp.constant.BusinessStatus;
 import com.pp.entity.tables.role.Role;
@@ -42,7 +42,7 @@ public class RoleService {
         // 先判断角色是否存在
         Role role = null;
         if (role == null) {
-            throw new BusinessException(BusinessStatus.ERROR.status, "角色不存在");
+            throw new BizException(BusinessStatus.ERROR.status, "角色不存在");
         }
 
         List<RoleResource> resources = resourceDao.findByRole(role.getId(), role.getName());

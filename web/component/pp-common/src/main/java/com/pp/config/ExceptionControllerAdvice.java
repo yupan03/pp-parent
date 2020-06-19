@@ -1,6 +1,6 @@
 package com.pp.config;
 
-import com.pp.common.exception.BusinessException;
+import com.pp.common.exception.BizException;
 import com.pp.common.result.Result;
 import com.pp.constant.BusinessStatus;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author David
  */
-//@RestControllerAdvice
+@RestControllerAdvice
 public class ExceptionControllerAdvice {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -41,8 +41,8 @@ public class ExceptionControllerAdvice {
     /**
      * 自定义系统业务异常处理
      */
-    @ExceptionHandler(value = BusinessException.class)
-    public Result handlerProjectException(BusinessException e) {
+    @ExceptionHandler(value = BizException.class)
+    public Result handlerProjectException(BizException e) {
         logger.info(e.getMsg());
         return new Result(e.getStatus(), e.getMsg());
     }

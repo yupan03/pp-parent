@@ -1,6 +1,6 @@
 package com.pp.controller;
 
-import com.pp.common.exception.BusinessException;
+import com.pp.common.exception.BizException;
 import com.pp.constant.BusinessStatus;
 import com.pp.entity.tables.role.Role;
 import com.pp.entity.tables.role.RoleResource;
@@ -43,7 +43,7 @@ public class RoleController {
     @PostMapping(value = "/roleResourceList")
     public Object roleResourceList(String roleId) {
         if (StringUtils.isEmpty(roleId)) {
-            throw new BusinessException(BusinessStatus.ERROR.status, "参数不能为空");
+            throw new BizException(BusinessStatus.ERROR.status, "参数不能为空");
         }
 
         return roleService.roleResourceList(roleId);
