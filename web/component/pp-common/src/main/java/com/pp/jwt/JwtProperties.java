@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class JwtProperties {
     // 秘钥
     private String secret;
-    // token失效时间，默认十五分钟
-    private long expiration = 900L;
+    // token失效时间，默认两小时
+    private long expiration = 7200L;
     //
     private String head = "Bearer ";
 

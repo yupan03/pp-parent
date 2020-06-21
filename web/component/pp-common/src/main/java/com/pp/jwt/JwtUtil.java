@@ -69,7 +69,6 @@ public class JwtUtil {
         try {
             Claims claims = getClaimsFromToken(token);
 
-
             account.setUsername(claims.get(CLAIM_KEY_ACCOUNT).toString());
             account.setLoginTime(claims.get(CLAIM_KEY_LOGIN_TIME).toString());
             account.setType(Byte.valueOf(claims.get(CLAIM_KEY_TYPE).toString()));
@@ -79,7 +78,7 @@ public class JwtUtil {
 
             long now = new Date().getTime();
 
-            if (now - expiration >= 5 * 60 * 1000) {
+            if (now - expiration <= 5 * 60 * 1000) {
                 // token离过期时间五分钟刷新
                 account.setTokenType(TokenType.WILL_EXPIRE);
             } else {
