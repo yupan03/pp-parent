@@ -34,7 +34,6 @@ public class UserController extends BaseController {
         account.setLoginTime(SysUtils.getCurrentTime());
         account.setType((byte) 0);
         response.setHeader("Authorization", jwtUtil.generateToken(account));
-        response.setHeader("Authorization", jwtUtil.generateToken(account));
         return super.result();
     }
 

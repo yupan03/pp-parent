@@ -20,7 +20,7 @@ public class TokenAspect {
     private JwtUtil jwtUtil;
 
     /**
-     * * 定义切面
+     * 定义切面
      */
     @Pointcut("@annotation(com.pp.controller.annontion.ValidToken)")
     public void token() {
@@ -41,7 +41,7 @@ public class TokenAspect {
             // Token已过期
             throw new BizException(401, "Token已过期");
         } else if (loginAccount.getTokenType() == TokenType.WILL_EXPIRE) {
-            // Token将过期
+            // Token将过期,生成新的token返回给前段
             response.setHeader("Authorization", jwtUtil.generateToken(loginAccount));
         }
     }
