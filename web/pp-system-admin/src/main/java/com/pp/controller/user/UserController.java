@@ -3,6 +3,7 @@ package com.pp.controller.user;
 import com.pp.common.result.Result;
 import com.pp.common.result.ResultObj;
 import com.pp.common.result.ResultPage;
+import com.pp.common.utils.SysUtils;
 import com.pp.controller.BaseController;
 import com.pp.controller.annontion.ValidToken;
 import com.pp.controller.user.param.LoginUser;
@@ -14,6 +15,7 @@ import com.pp.service.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +28,14 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @PostMapping(value = "/login")
-    public ResultObj<String> getToken(@RequestBody LoginUser user) {
+    public Result getToken(@RequestBody LoginUser user, HttpServletResponse response) {
         LoginAccount account = new LoginAccount();
-        account.setUsername(user.getUsername());
-        return super.resultObj(jwtUtil.generateToken(account));
+        account.setUsername("yupan");
+        account.setLoginTime(SysUtils.getCurrentTime());
+        account.setType((byte) 0);
+        response.setHeader("Authorization", jwtUtil.generateToken(account));
+        response.setHeader("Authorization", jwtUtil.generateToken(account));
+        return super.result();
     }
 
     @RequestMapping(value = "/say")

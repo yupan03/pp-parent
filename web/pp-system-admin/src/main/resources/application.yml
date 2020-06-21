@@ -18,14 +18,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-  thymeleaf:
-    prefix: classpath:/views/
-    suffix: .html
-    mode: HTML5
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-    cache: false
 # mybatis
 mybatis:
   mapper-locations: classpath:mapper/**/**.xml

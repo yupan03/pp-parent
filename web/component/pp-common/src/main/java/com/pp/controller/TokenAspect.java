@@ -1,7 +1,6 @@
 package com.pp.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.pp.common.result.Result;
+import com.pp.common.exception.BizException;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
 import com.pp.jwt.TokenType;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 @Aspect
 @Component
@@ -35,24 +32,17 @@ public class TokenAspect {
         String token = WebUtil.getToken();
         LoginAccount loginAccount = jwtUtil.getAccountFromToken(token);
         HttpServletResponse response = WebUtil.getResponse();
+        // 响应头增加token
+        response.setHeader("Authorization", token);
         if (loginAccount == null) {
             // 非法Token
-            this.write(response, new Result(401, "非法Token"));
+            throw new BizException(401, "非法Token");
         } else if (loginAccount.getTokenType() == TokenType.OVERDUE) {
             // Token已过期
-            this.write(response, new Result(401, "Token已过期"));
+            throw new BizException(401, "Token已过期");
         } else if (loginAccount.getTokenType() == TokenType.WILL_EXPIRE) {
             // Token将过期
             response.setHeader("Authorization", jwtUtil.generateToken(loginAccount));
-        }
-    }
-
-    private void write(HttpServletResponse response, Result result) {
-        try {
-            PrintWriter writer = response.getWriter();
-            writer.println(JSONObject.toJSONString(result));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

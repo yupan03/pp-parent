@@ -25,8 +25,6 @@ spring:
     host: 127.0.0.1
     username: guest
     password: guest
-    # 消息发送到交换机确认
-    publisher-confirms: true
     # 消息发送到队列确认
     publisher-returns: true
     port: 5672

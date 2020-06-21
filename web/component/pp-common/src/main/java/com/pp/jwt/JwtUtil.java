@@ -1,6 +1,7 @@
 package com.pp.jwt;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -60,6 +61,7 @@ public class JwtUtil {
      */
     public LoginAccount getAccountFromToken(String token) {
         String bearer = jwtProperties.getHead();
+        LoginAccount account = new LoginAccount();
         if (token.startsWith(bearer)) {
             token = token.substring(bearer.length());
         }
@@ -67,32 +69,30 @@ public class JwtUtil {
         try {
             Claims claims = getClaimsFromToken(token);
 
-            LoginAccount account = new LoginAccount();
 
             account.setUsername(claims.get(CLAIM_KEY_ACCOUNT).toString());
             account.setLoginTime(claims.get(CLAIM_KEY_LOGIN_TIME).toString());
-            account.setType(claims.get(CLAIM_KEY_TYPE).toString());
+            account.setType(Byte.valueOf(claims.get(CLAIM_KEY_TYPE).toString()));
 
             // 比较过期时间和当前时间的差
             long expiration = getClaimsFromToken(token).getExpiration().getTime();
 
             long now = new Date().getTime();
 
-            if (now >= expiration) {
-                account.setTokenType(TokenType.OVERDUE);
-            } else if (now - expiration >= 5 * 60 * 1000) {
+            if (now - expiration >= 5 * 60 * 1000) {
                 // token离过期时间五分钟刷新
                 account.setTokenType(TokenType.WILL_EXPIRE);
             } else {
                 account.setTokenType(TokenType.NORMAL);
             }
-
-            return account;
+        } catch (ExpiredJwtException e) {
+            account.setTokenType(TokenType.OVERDUE);
         } catch (Exception e) {
             e.printStackTrace();
             // 非法token
             return null;
         }
+        return account;
     }
 
     private Claims getClaimsFromToken(String token) {

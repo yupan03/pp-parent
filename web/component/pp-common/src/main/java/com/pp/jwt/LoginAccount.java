@@ -1,12 +1,13 @@
 package com.pp.jwt;
 
 public class LoginAccount {
+    private Long id;
     // 账号
     private String username;
     // 登录时间
     private String loginTime;
     // 登录类型
-    private String type;
+    private byte type;
 
     // token类型 0：正常 1：将过期 2：已过期
     private TokenType tokenType;
@@ -27,11 +28,11 @@ public class LoginAccount {
         this.loginTime = loginTime;
     }
 
-    public String getType() {
+    public byte getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(byte type) {
         this.type = type;
     }
 
@@ -41,5 +42,13 @@ public class LoginAccount {
 
     public void setTokenType(TokenType tokenType) {
         this.tokenType = tokenType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
