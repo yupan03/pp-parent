@@ -1,4 +1,4 @@
-package com.pp.config;
+package com.pp.controller;
 
 import com.pp.exception.BizException;
 import com.pp.result.Result;

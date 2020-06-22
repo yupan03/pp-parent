@@ -1,10 +1,8 @@
 package com.pp.interceptor;
 
+import com.pp.untils.WebUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -17,26 +15,13 @@ import java.util.Map;
 public class FeginInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        HttpServletRequest httpServletRequest = getHttpServletRequest();
+        HttpServletRequest request = WebUtil.getRequest();
         // 异步处理
-        if (httpServletRequest == null)
+        if (request == null)
             return;
-        Map<String, String> headers = getHeaders(httpServletRequest);
+        Map<String, String> headers = getHeaders(request);
         for (String headerName : headers.keySet()) {
-            requestTemplate.header(headerName, getHeaders(getHttpServletRequest()).get(headerName));
-        }
-    }
-
-    private HttpServletRequest getHttpServletRequest() {
-        try {
-            RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-            if (requestAttributes == null) {
-                return null;
-            }
-            return ((ServletRequestAttributes) requestAttributes).getRequest();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            requestTemplate.header(headerName, getHeaders(request).get(headerName));
         }
     }
 

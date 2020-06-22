@@ -1,6 +1,9 @@
 package com.pp.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.pp.exception.BizException;
+import com.pp.jwt.JwtUtil;
+import com.pp.jwt.LoginAccount;
 import com.pp.result.Result;
 import com.pp.result.ResultList;
 import com.pp.result.ResultObj;
@@ -9,6 +12,7 @@ import com.pp.untils.WebUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +27,19 @@ public class BaseController {
      * 默认返回提示语为success
      */
     protected String msg = "success";
+    @Resource
+    private JwtUtil jwtUtil;
 
     /**
      * 获取当前用户ID
      */
-    protected final String curUserId() {
-        return WebUtil.getToken();
+    protected final Long curUserId() {
+        String token = WebUtil.getToken();
+        LoginAccount account = jwtUtil.getAccountFromToken(token);
+        if (account == null) {
+            throw new BizException(401, "非法请求");
+        }
+        return account.getId();
     }
 
     protected final <T> ResultPage<T> resultPage(List<T> list) {
