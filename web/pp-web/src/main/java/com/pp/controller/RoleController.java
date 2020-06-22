@@ -1,6 +1,6 @@
 package com.pp.controller;
 
-import com.pp.common.exception.BizException;
+import com.pp.exception.BizException;
 import com.pp.constant.BusinessStatus;
 import com.pp.entity.tables.role.Role;
 import com.pp.entity.tables.role.RoleResource;

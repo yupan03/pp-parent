@@ -1,4 +1,4 @@
-package com.pp.common.result;
+package com.pp.result;
 
 public class ResultObj<T> extends Result {
     private T data;

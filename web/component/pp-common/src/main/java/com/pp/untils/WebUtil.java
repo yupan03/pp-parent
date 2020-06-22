@@ -1,6 +1,6 @@
 package com.pp.untils;
 
-import com.pp.common.exception.BizException;
+import com.pp.exception.BizException;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;

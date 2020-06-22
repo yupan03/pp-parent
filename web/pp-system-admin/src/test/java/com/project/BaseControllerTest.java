@@ -1,8 +1,8 @@
 package com.project;
 
-import com.pp.common.result.Result;
-import com.pp.common.result.ResultList;
-import com.pp.common.result.ResultObj;
+import com.pp.result.Result;
+import com.pp.result.ResultList;
+import com.pp.result.ResultObj;
 import com.pp.utils.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

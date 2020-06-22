@@ -1,7 +1,7 @@
 package com.pp.controller.mp;
 
-import com.pp.common.exception.BizException;
-import com.pp.common.result.ResultObj;
+import com.pp.exception.BizException;
+import com.pp.result.ResultObj;
 import com.pp.constant.BusinessStatus;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;

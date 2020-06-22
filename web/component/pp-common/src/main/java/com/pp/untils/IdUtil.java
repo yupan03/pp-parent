@@ -1,4 +1,4 @@
-package com.pp.common.utils;
+package com.pp.untils;
 
 public class IdUtil {
     /**

@@ -1,4 +1,4 @@
-package com.pp.common.result;
+package com.pp.result;
 
 import java.util.List;
 

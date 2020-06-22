@@ -1,9 +1,9 @@
 package com.pp.controller.user;
 
-import com.pp.common.result.Result;
-import com.pp.common.result.ResultObj;
-import com.pp.common.result.ResultPage;
-import com.pp.common.utils.SysUtils;
+import com.pp.result.Result;
+import com.pp.result.ResultObj;
+import com.pp.result.ResultPage;
+import com.pp.untils.SysUtils;
 import com.pp.controller.BaseController;
 import com.pp.controller.annontion.ValidToken;
 import com.pp.controller.user.param.LoginUser;

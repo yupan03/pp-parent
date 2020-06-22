@@ -1,6 +1,6 @@
 package com.pp.controller;
 
-import com.pp.common.result.ResultList;
+import com.pp.result.ResultList;
 import com.pp.entity.tables.resource.Resource;
 import com.pp.service.resource.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;

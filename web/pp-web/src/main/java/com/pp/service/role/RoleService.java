@@ -1,7 +1,7 @@
 package com.pp.service.role;
 
-import com.pp.common.exception.BizException;
-import com.pp.common.utils.SysUtils;
+import com.pp.exception.BizException;
+import com.pp.untils.SysUtils;
 import com.pp.constant.BusinessStatus;
 import com.pp.entity.tables.role.Role;
 import com.pp.entity.tables.role.RoleResource;

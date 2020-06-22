@@ -1,6 +1,6 @@
 package com.pp.service.user.impl;
 
-import com.pp.common.utils.IdUtil;
+import com.pp.untils.IdUtil;
 import com.pp.entity.table.User;
 import com.pp.service.CommonService;
 import com.pp.service.user.UserService;

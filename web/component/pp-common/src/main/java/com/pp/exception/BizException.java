@@ -1,4 +1,4 @@
-package com.pp.common.exception;
+package com.pp.exception;
 
 import java.util.List;
 

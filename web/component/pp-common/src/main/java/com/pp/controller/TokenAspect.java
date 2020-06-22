@@ -1,6 +1,6 @@
 package com.pp.controller;
 
-import com.pp.common.exception.BizException;
+import com.pp.exception.BizException;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
 import com.pp.jwt.TokenType;

@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import com.pp.common.result.Result;
+import com.pp.result.Result;
 import com.project.BaseControllerTest;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

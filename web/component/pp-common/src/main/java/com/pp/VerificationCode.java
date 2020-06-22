@@ -1,4 +1,4 @@
-package com.pp.common;
+package com.pp;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
