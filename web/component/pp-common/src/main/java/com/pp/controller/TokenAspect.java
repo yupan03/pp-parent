@@ -32,7 +32,6 @@ public class TokenAspect {
         String token = WebUtil.getToken();
         LoginAccount loginAccount = jwtUtil.getAccountFromToken(token);
         HttpServletResponse response = WebUtil.getResponse();
-        response.setHeader("Authorization", token);
         // 响应头增加token
         response.setHeader("Authorization", token);
         if (loginAccount == null) {

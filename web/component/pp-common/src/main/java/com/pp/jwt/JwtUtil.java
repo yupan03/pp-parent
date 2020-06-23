@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtil {
+    private final String CLAIM_KEY_ID = "id";
     private final String CLAIM_KEY_ACCOUNT = "account";
     private final String CLAIM_KEY_LOGIN_TIME = "loginTime";
     private final String CLAIM_KEY_TYPE = "type";
@@ -38,6 +39,7 @@ public class JwtUtil {
     public String generateToken(LoginAccount account) {
         Map<String, Object> claims = new HashMap<>();
 
+        claims.put(CLAIM_KEY_ID, account.getId());
         claims.put(CLAIM_KEY_ACCOUNT, account.getUsername());
         claims.put(CLAIM_KEY_LOGIN_TIME, account.getLoginTime());
         claims.put(CLAIM_KEY_TYPE, account.getType());
@@ -69,9 +71,11 @@ public class JwtUtil {
         try {
             Claims claims = getClaimsFromToken(token);
 
+            account.setId(Long.valueOf(claims.get(CLAIM_KEY_ID).toString()));
             account.setUsername(claims.get(CLAIM_KEY_ACCOUNT).toString());
             account.setLoginTime(claims.get(CLAIM_KEY_LOGIN_TIME).toString());
-            account.setType(Byte.valueOf(claims.get(CLAIM_KEY_TYPE).toString()));
+            account.setType(Byte.parseByte(claims.get(CLAIM_KEY_TYPE).toString()));
+
 
             // 比较过期时间和当前时间的差
             long expiration = getClaimsFromToken(token).getExpiration().getTime();
