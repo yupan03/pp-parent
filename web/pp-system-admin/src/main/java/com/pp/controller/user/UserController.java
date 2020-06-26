@@ -52,7 +52,7 @@ public class UserController extends BaseController {
     }
 
     @Data
-    public class UserAdd {
+    static class UserAdd {
         private String account;
         private String name;
     }
