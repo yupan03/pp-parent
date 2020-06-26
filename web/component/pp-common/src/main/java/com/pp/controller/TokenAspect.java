@@ -8,6 +8,7 @@ import com.pp.untils.WebUtil;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Aspect
 @Component
+@Order(1)
 public class TokenAspect {
     @Resource
     private JwtUtil jwtUtil;
