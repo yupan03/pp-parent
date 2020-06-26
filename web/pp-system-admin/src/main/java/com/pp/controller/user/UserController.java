@@ -1,18 +1,20 @@
 package com.pp.controller.user;
 
-import com.pp.result.Result;
-import com.pp.result.ResultObj;
-import com.pp.result.ResultPage;
-import com.pp.untils.SysUtils;
 import com.pp.controller.BaseController;
 import com.pp.controller.annontion.ValidToken;
-import com.pp.controller.user.param.LoginUser;
 import com.pp.entity.table.User;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
+import com.pp.result.Result;
+import com.pp.result.ResultObj;
+import com.pp.result.ResultPage;
 import com.pp.service.user.UserService;
-
-import org.springframework.web.bind.annotation.*;
+import com.pp.untils.SysUtils;
+import lombok.Data;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +43,18 @@ public class UserController extends BaseController {
     @ValidToken
     public ResultObj<String> sayHello() {
         return super.resultObj("hello world");
+    }
+
+    @Data
+    static class LoginUser {
+        private String username;
+        private String password;
+    }
+
+    @Data
+    public class UserAdd {
+        private String account;
+        private String name;
     }
 
     @PostMapping(value = "/add")
