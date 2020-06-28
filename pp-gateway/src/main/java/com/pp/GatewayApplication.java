@@ -22,9 +22,9 @@ import java.util.concurrent.Executor;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GatewaySecurityApplication implements CommandLineRunner {
+public class GatewayApplication implements CommandLineRunner {
     public static void main(String[] args) {
-        SpringApplication springApplication = new SpringApplication(GatewaySecurityApplication.class);
+        SpringApplication springApplication = new SpringApplication(GatewayApplication.class);
 
         springApplication.setBannerMode(Banner.Mode.OFF);
         springApplication.run(args);

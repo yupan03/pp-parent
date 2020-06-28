@@ -64,7 +64,7 @@ public class UserController extends BaseController {
         return super.result();
     }
 
-    @PostMapping(value = "/list")
+    @RequestMapping(value = "/list")
     @ValidToken
     public ResultPage<User> userList() {
         List<User> users = new ArrayList<>();
