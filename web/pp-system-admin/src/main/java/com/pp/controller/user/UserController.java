@@ -40,8 +40,8 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/say")
-    @ValidToken
-    public ResultObj<String> sayHello() {
+    public ResultObj<String> sayHello() throws InterruptedException {
+        Thread.sleep(500);
         return super.resultObj("hello world");
     }
 
