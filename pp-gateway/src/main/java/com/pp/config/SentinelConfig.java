@@ -1,14 +1,7 @@
 package com.pp.config;
 
-import com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants;
-import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition;
-import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPathPredicateItem;
-import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPredicateItem;
-import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionManager;
-import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
-import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
-import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.pp.service.JsonBlockExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +10,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+/**
+ * sentinel配置
+ */
 @Configuration
 public class SentinelConfig {
     private final List<ViewResolver> viewResolvers;
@@ -38,37 +31,6 @@ public class SentinelConfig {
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SentinelGatewayBlockExceptionHandler sentinelGatewayBlockExceptionHandler() {
         // Register the block exception handler for Spring Cloud Gateway.
-        return new SentinelGatewayBlockExceptionHandler(viewResolvers, serverCodecConfigurer);
-    }
-
-
-    @PostConstruct
-    public void doInit() {
-        initCustomizedApis();
-        initGatewayRules();
-    }
-
-    private void initCustomizedApis() {
-        Set<ApiDefinition> definitions = new HashSet<>();
-        ApiDefinition api1 = new ApiDefinition("system")
-                .setPredicateItems(new HashSet<ApiPredicateItem>() {{
-                    add(new ApiPathPredicateItem().setPattern("/system/**")
-                            .setMatchStrategy(SentinelGatewayConstants.URL_MATCH_STRATEGY_PREFIX));
-                }});
-        definitions.add(api1);
-        GatewayApiDefinitionManager.loadApiDefinitions(definitions);
-    }
-
-    private void initGatewayRules() {
-        Set<GatewayFlowRule> rules = new HashSet<>();
-
-        rules.add(new GatewayFlowRule("system")
-                .setResourceMode(SentinelGatewayConstants.RESOURCE_MODE_CUSTOM_API_NAME)
-                .setCount(1)
-                .setIntervalSec(1)
-        );
-
-
-        GatewayRuleManager.loadRules(rules);
+        return new JsonBlockExceptionHandler(viewResolvers, serverCodecConfigurer);
     }
 }

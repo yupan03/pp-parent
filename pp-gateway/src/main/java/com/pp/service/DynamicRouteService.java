@@ -1,56 +1,74 @@
 package com.pp.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.nacos.api.NacosFactory;
+import com.alibaba.nacos.api.PropertyKeyConst;
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.config.listener.Listener;
+import com.alibaba.nacos.api.exception.NacosException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.cloud.gateway.route.RouteDefinitionWriter;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 
 /**
- * 动态路由处理类
- *
- * @author David
+ * nacos动态路由处理
  */
 @Service
-public class DynamicRouteService implements ApplicationEventPublisherAware {
+public class DynamicRouteService {
+    @Value("${spring.cloud.nacos.discovery.server-addr}")
+    private String serverAddr;
     @Autowired
-    private RouteDefinitionWriter routeDefinitionWriter;
+    private DynamicRouteHandler dynamicRouteHandler;
 
-    private ApplicationEventPublisher applicationEventPublisher;
+    public void dyRoutes() {
+        final String dataId = "gateway-routes";
 
-    private static final List<String> ROUTE_LIST = new ArrayList<>();
+        final String group = "DEFAULT_GROUP";
 
-    @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-        this.applicationEventPublisher = applicationEventPublisher;
-    }
-
-
-    public void clearRoute() {
-        // 先删除所有的路由
-        for (String id : ROUTE_LIST) {
-            this.routeDefinitionWriter.delete(Mono.just(id)).subscribe();
-        }
-        ROUTE_LIST.clear();
-    }
-
-    public void addRoute(RouteDefinition definition) {
-        // 加载路由
         try {
-            routeDefinitionWriter.save(Mono.just(definition)).subscribe();
-            ROUTE_LIST.add(definition.getId());
-        } catch (Exception e) {
+            Properties properties = new Properties();
+
+            properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
+
+            // nacos动态路由监听
+            ConfigService configService = NacosFactory.createConfigService(properties);
+
+            String config = configService.getConfig(dataId, group, 1000);
+
+            dyRoutes(config);
+
+            configService.addListener(dataId, group, new Listener() {
+                @Override
+                public void receiveConfigInfo(String configInfo) {
+                    dyRoutes(configInfo);
+                }
+
+                @Override
+                public Executor getExecutor() {
+                    return null;
+                }
+            });
+        } catch (NacosException e) {
             e.printStackTrace();
         }
     }
 
-    public void publish() {
-        this.applicationEventPublisher.publishEvent(new RefreshRoutesEvent(this.routeDefinitionWriter));
+    private void dyRoutes(String config) {
+        dynamicRouteHandler.clearRoute();
+        dynamicRouteHandler.clearRoute();
+        try {
+            List<RouteDefinition> gatewayRouteDefinitions = JSONObject.parseArray(config, RouteDefinition.class);
+            for (RouteDefinition routeDefinition : gatewayRouteDefinitions) {
+                dynamicRouteHandler.addRoute(routeDefinition);
+            }
+            dynamicRouteHandler.publish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
