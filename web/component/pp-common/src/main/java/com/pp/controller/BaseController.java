@@ -44,7 +44,8 @@ public class BaseController {
 
     protected final <T> ResultPage<T> resultPage(List<T> list) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
-        return new ResultPage<>(HttpStatus.OK.value(), msg, list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+        return new ResultPage<>(HttpStatus.OK.value(), msg,
+                list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
     }
 
     protected final <T, E> ResultPage<E> resultPage(List<T> list, Class<E> targetClass) {
@@ -54,7 +55,8 @@ public class BaseController {
     protected final <T, E> ResultPage<E> resultPage(int status, String msg, List<T> list, Class<E> targetClass) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
         List<E> ts = copyList(list, targetClass);
-        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+        return new ResultPage<>(status, msg, ts,
+                pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
     }
 
     protected final Result result() {
