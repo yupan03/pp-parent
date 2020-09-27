@@ -36,7 +36,7 @@ public class RedisConfig {
         return factory;
     }
 
-    @Bean("database0")
+    @Bean("database(0)")
     public StringRedisTemplate getStringRedisTemplateDatabase0() {
         return new StringRedisTemplate(lettuceConnectionFactory(0));
     }
