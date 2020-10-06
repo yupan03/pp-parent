@@ -16,6 +16,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.pp</groupId>
+            <artifactId>pp-common</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- 微信公众号第三方jar包 -->
         <dependency>
             <groupId>com.github.binarywang</groupId>
@@ -33,5 +39,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
     </dependencies>
 </project>
