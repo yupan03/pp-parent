@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 /**
  * 自定义redis配置（多库模式）
+ * 每个库建立一个连接
  */
 @Configuration
 public class RedisConfig {
@@ -20,16 +21,16 @@ public class RedisConfig {
     private RedisProperties redisProperties;
 
     private LettuceConnectionFactory lettuceConnectionFactory(int database) {
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
 
-        redisStandaloneConfiguration.setDatabase(database);
-        redisStandaloneConfiguration.setHostName(redisProperties.getHost());
-        redisStandaloneConfiguration.setPort(redisProperties.getPort());
-        redisStandaloneConfiguration.setPassword(RedisPassword.of(redisProperties.getPassword()));
+        configuration.setDatabase(database);
+        configuration.setHostName(redisProperties.getHost());
+        configuration.setPort(redisProperties.getPort());
+        configuration.setPassword(RedisPassword.of(redisProperties.getPassword()));
 
         LettuceClientConfiguration.LettuceClientConfigurationBuilder configurationBuilder = LettuceClientConfiguration.builder();
 
-        LettuceConnectionFactory factory = new LettuceConnectionFactory(redisStandaloneConfiguration, configurationBuilder.build());
+        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration, configurationBuilder.build());
 
         factory.afterPropertiesSet();
 
@@ -39,5 +40,10 @@ public class RedisConfig {
     @Bean("database(0)")
     public StringRedisTemplate getStringRedisTemplateDatabase0() {
         return new StringRedisTemplate(lettuceConnectionFactory(0));
+    }
+
+    @Bean("database(1)")
+    public StringRedisTemplate getStringRedisTemplateDatabase1() {
+        return new StringRedisTemplate(lettuceConnectionFactory(1));
     }
 }

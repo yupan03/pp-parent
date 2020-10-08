@@ -6,8 +6,8 @@ import java.util.Random;
 
 public final class VerificationCode {
     private String code;
-    private int singleWidth = 15;
-    private int singleHeight = 30;
+    private final int singleWidth = 15;
+    private final int singleHeight = 30;
     private int width;
     private int height;
 
