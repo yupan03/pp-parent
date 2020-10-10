@@ -22,6 +22,10 @@ import java.util.List;
  * @author David
  */
 public class BaseController {
+    /**
+     * 默认返回成功状态(200)
+     */
+    protected int status = HttpStatus.OK.value();
 
     /**
      * 默认返回提示语为success
@@ -44,23 +48,21 @@ public class BaseController {
 
     protected final <T> ResultPage<T> resultPage(List<T> list) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
-        return new ResultPage<>(HttpStatus.OK.value(), msg,
-                list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+        return new ResultPage<>(status, msg, list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
     }
 
     protected final <T, E> ResultPage<E> resultPage(List<T> list, Class<E> targetClass) {
-        return this.resultPage(HttpStatus.OK.value(), msg, list, targetClass);
+        return this.resultPage(status, msg, list, targetClass);
     }
 
     protected final <T, E> ResultPage<E> resultPage(int status, String msg, List<T> list, Class<E> targetClass) {
         PageInfo<T> pageInfo = new PageInfo<>(list);
         List<E> ts = copyList(list, targetClass);
-        return new ResultPage<>(status, msg, ts,
-                pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
     }
 
     protected final Result result() {
-        return this.result(HttpStatus.OK.value(), msg);
+        return this.result(status, msg);
     }
 
     protected final Result result(int status, String msg) {
@@ -68,11 +70,11 @@ public class BaseController {
     }
 
     protected final <T> ResultObj<T> resultObj(T t) {
-        return new ResultObj<>(HttpStatus.OK.value(), msg, t);
+        return new ResultObj<>(status, msg, t);
     }
 
     protected final <T, E> ResultObj<E> resultObj(T t, Class<E> targetClass) {
-        return this.resultObj(HttpStatus.OK.value(), msg, t, targetClass);
+        return this.resultObj(status, msg, t, targetClass);
     }
 
     protected final <T, E> ResultObj<E> resultObj(int status, String msg, T t, Class<E> targetClass) {
@@ -88,11 +90,11 @@ public class BaseController {
     }
 
     protected final <T> ResultList<T> resultList(List<T> list) {
-        return new ResultList<>(HttpStatus.OK.value(), msg, list);
+        return new ResultList<>(status, msg, list);
     }
 
     protected final <T, E> ResultList<E> resultList(List<T> list, Class<E> targetClass) {
-        return this.resultList(HttpStatus.OK.value(), msg, list, targetClass);
+        return this.resultList(status, msg, list, targetClass);
     }
 
     protected final <T, E> ResultList<E> resultList(int status, String msg, List<T> list, Class<E> targetClass) {

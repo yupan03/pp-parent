@@ -5,7 +5,7 @@ package com.pp.constant;
  *
  * @author David
  */
-public enum BusinessStatus {
+public enum BizStatus {
 
     ERROR(500, "数据库错误"),
 
@@ -13,11 +13,10 @@ public enum BusinessStatus {
 
     ERROR_PARAM(6002, "参数错误");
 
-
     public int status;
     public String message;
 
-    BusinessStatus(int status, String message) {
+    BizStatus(int status, String message) {
         this.status = status;
         this.message = message;
     }

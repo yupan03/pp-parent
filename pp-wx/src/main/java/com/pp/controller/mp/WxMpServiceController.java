@@ -2,7 +2,7 @@ package com.pp.controller.mp;
 
 import com.pp.exception.BizException;
 import com.pp.result.ResultObj;
-import com.pp.constant.BusinessStatus;
+import com.pp.constant.BizStatus;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
@@ -29,10 +29,10 @@ public class WxMpServiceController {
     @PostMapping(value = "/getUserInfoByCode")
     public ResultObj<?> getUserInfoByCode(String code, String state) {
         if (StringUtils.isBlank(code)) {
-            throw new BizException(BusinessStatus.ERROR_PARAM.status, "code不能为空");
+            throw new BizException(BizStatus.ERROR_PARAM.status, "code不能为空");
         }
         if (StringUtils.isBlank(state) && !"true".equals(state)) {
-            throw new BizException(BusinessStatus.ERROR_PARAM.status, "非法请求");
+            throw new BizException(BizStatus.ERROR_PARAM.status, "非法请求");
         }
 
         WxMpUser userInfo;
@@ -42,12 +42,12 @@ public class WxMpServiceController {
             // 获取微信用户基本信息
             userInfo = wxMpService.getUserService().userInfo(oauth2getAccessToken.getOpenId());
             if (userInfo == null) {
-                throw new BizException(BusinessStatus.ERROR.status, "获取微信用户信息为空");
+                throw new BizException(BizStatus.ERROR.status, "获取微信用户信息为空");
             }
-            return new ResultObj<>(BusinessStatus.SUCCESS.status, "", userInfo);
+            return new ResultObj<>(BizStatus.SUCCESS.status, "", userInfo);
         } catch (WxErrorException e) {
             e.printStackTrace();
-            throw new BizException(BusinessStatus.ERROR.status, "获取微信用户信息错误");
+            throw new BizException(BizStatus.ERROR.status, "获取微信用户信息错误");
         }
 
     }
@@ -62,14 +62,14 @@ public class WxMpServiceController {
     @PostMapping(value = "/getUserInfoByOpenId")
     public ResultObj<?> getUserInfoByOpenId(String openId) {
         if (StringUtils.isBlank(openId)) {
-            throw new BizException(BusinessStatus.ERROR_PARAM.status, "openId不能为空");
+            throw new BizException(BizStatus.ERROR_PARAM.status, "openId不能为空");
         }
         try {
             // 获取微信用户基本信息
-            return new ResultObj<>(BusinessStatus.SUCCESS.status, "", wxMpService.getUserService().userInfo(openId));
+            return new ResultObj<>(BizStatus.SUCCESS.status, "", wxMpService.getUserService().userInfo(openId));
         } catch (WxErrorException e) {
             e.printStackTrace();
-            throw new BizException(BusinessStatus.ERROR.status, "获取微信用户信息错误");
+            throw new BizException(BizStatus.ERROR.status, "获取微信用户信息错误");
         }
     }
 
@@ -81,12 +81,12 @@ public class WxMpServiceController {
     @PostMapping(value = "/createJsapiSignature")
     public ResultObj<?> createJsapiSignature(String url) {
         if (StringUtils.isBlank(url)) {
-            throw new BizException(BusinessStatus.ERROR_PARAM.status, "url不能为空");
+            throw new BizException(BizStatus.ERROR_PARAM.status, "url不能为空");
         }
         try {
-            return new ResultObj<>(BusinessStatus.SUCCESS.status, "", wxMpService.createJsapiSignature(url));
+            return new ResultObj<>(BizStatus.SUCCESS.status, "", wxMpService.createJsapiSignature(url));
         } catch (WxErrorException e) {
-            throw new BizException(BusinessStatus.ERROR.status, e.getMessage());
+            throw new BizException(BizStatus.ERROR.status, e.getMessage());
         }
     }
 
@@ -101,7 +101,7 @@ public class WxMpServiceController {
             return wxMpService.getQrcodeService().qrCodeCreateLastTicket(sceneStr);
         } catch (WxErrorException e) {
             e.printStackTrace();
-            throw new BizException(BusinessStatus.ERROR.status, "获取二维码失败");
+            throw new BizException(BizStatus.ERROR.status, "获取二维码失败");
         }
     }
 }

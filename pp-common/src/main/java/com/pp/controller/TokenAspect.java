@@ -26,7 +26,6 @@ public class TokenAspect {
      */
     @Pointcut("@annotation(com.pp.controller.annontion.ValidToken)")
     public void token() {
-
     }
 
     @Before("token()")

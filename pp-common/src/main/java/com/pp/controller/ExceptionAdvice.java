@@ -2,7 +2,7 @@ package com.pp.controller;
 
 import com.pp.exception.BizException;
 import com.pp.result.Result;
-import com.pp.constant.BusinessStatus;
+import com.pp.constant.BizStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -35,6 +35,7 @@ public class ExceptionAdvice {
      */
     @ExceptionHandler(value = Exception.class)
     public Result handlerException(Exception e) {
+        logger.info(e.getMessage());
         return new Result(HttpStatus.SERVICE_UNAVAILABLE.value(), e.getMessage());
     }
 
@@ -68,21 +69,20 @@ public class ExceptionAdvice {
      */
     @ExceptionHandler(value = SQLException.class)
     public Result handlerSQLException(SQLException e) {
-
         if (e instanceof SQLIntegrityConstraintViolationException) {
             e.printStackTrace();
             return SQLIntegrityConstraintViolationException(e.getMessage());
         }
-        return new Result(BusinessStatus.ERROR_SQL.status, e.getMessage());
+        return new Result(BizStatus.ERROR_SQL.status, e.getMessage());
     }
 
     // 数据库统一判重处理
     private Result SQLIntegrityConstraintViolationException(String message) {
         // 数据库表中索引名称唯一
         if (message.contains("user_UN")) {
-            return new Result(BusinessStatus.ERROR_SQL.status, "用户账号重复");
+            return new Result(BizStatus.ERROR_SQL.status, "用户账号重复");
         } else {
-            return new Result(BusinessStatus.ERROR_SQL.status, "主键重复");
+            return new Result(BizStatus.ERROR_SQL.status, "主键重复");
         }
     }
 
@@ -94,9 +94,9 @@ public class ExceptionAdvice {
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         StringBuilder strBuilder = new StringBuilder();
         for (ConstraintViolation<?> violation : violations) {
-            strBuilder.append(violation.getMessage() + "\n");
+            strBuilder.append(violation.getMessage()).append("\n");
         }
-        return new Result(BusinessStatus.ERROR_PARAM.status, strBuilder.toString());
+        return new Result(BizStatus.ERROR_PARAM.status, strBuilder.toString());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -108,6 +108,6 @@ public class ExceptionAdvice {
         String code = error.getDefaultMessage();
         String message = String.format("%s %s", field, code);
 
-        return new Result(BusinessStatus.ERROR_PARAM.status, message);
+        return new Result(BizStatus.ERROR_PARAM.status, message);
     }
 }
