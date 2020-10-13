@@ -1,5 +1,16 @@
+.DS_Store
 .settings/
 .project
 .idea/
 target/
 *.iml
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache

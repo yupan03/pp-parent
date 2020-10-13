@@ -4,7 +4,8 @@ import com.pp.exception.BizException;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
 import com.pp.jwt.TokenType;
-import com.pp.untils.WebUtil;
+import com.pp.utils.WebUtil;
+
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;

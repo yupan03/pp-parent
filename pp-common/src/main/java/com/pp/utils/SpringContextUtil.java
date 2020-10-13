@@ -1,4 +1,4 @@
-package com.pp.untils;
+package com.pp.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

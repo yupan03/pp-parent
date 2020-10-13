@@ -44,7 +44,7 @@ public class WxMpServiceController {
             if (userInfo == null) {
                 throw new BizException(BizStatus.ERROR.status, "获取微信用户信息为空");
             }
-            return new ResultObj<>(BizStatus.SUCCESS.status, "", userInfo);
+            return new ResultObj<>(200, "", userInfo);
         } catch (WxErrorException e) {
             e.printStackTrace();
             throw new BizException(BizStatus.ERROR.status, "获取微信用户信息错误");
@@ -66,7 +66,7 @@ public class WxMpServiceController {
         }
         try {
             // 获取微信用户基本信息
-            return new ResultObj<>(BizStatus.SUCCESS.status, "", wxMpService.getUserService().userInfo(openId));
+            return new ResultObj<>(200, "", wxMpService.getUserService().userInfo(openId));
         } catch (WxErrorException e) {
             e.printStackTrace();
             throw new BizException(BizStatus.ERROR.status, "获取微信用户信息错误");
@@ -84,7 +84,7 @@ public class WxMpServiceController {
             throw new BizException(BizStatus.ERROR_PARAM.status, "url不能为空");
         }
         try {
-            return new ResultObj<>(BizStatus.SUCCESS.status, "", wxMpService.createJsapiSignature(url));
+            return new ResultObj<>(200, "", wxMpService.createJsapiSignature(url));
         } catch (WxErrorException e) {
             throw new BizException(BizStatus.ERROR.status, e.getMessage());
         }

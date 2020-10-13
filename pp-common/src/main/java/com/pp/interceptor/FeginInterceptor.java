@@ -1,10 +1,12 @@
 package com.pp.interceptor;
 
-import com.pp.untils.WebUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.pp.utils.WebUtil;
+
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;

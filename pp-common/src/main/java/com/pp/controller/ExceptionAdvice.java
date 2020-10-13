@@ -76,10 +76,12 @@ public class ExceptionAdvice {
         return new Result(BizStatus.ERROR_SQL.status, e.getMessage());
     }
 
-    // 数据库统一判重处理
+    /**
+     * 数据库统一判重处理
+     */
     private Result SQLIntegrityConstraintViolationException(String message) {
-        // 数据库表中索引名称唯一
-        if (message.contains("user_UN")) {
+        // 数据库表中索引名称唯一(规则UK_TABLENAME_COLUMNNAME)
+        if (message.contains("UK_tableName_name")) {
             return new Result(BizStatus.ERROR_SQL.status, "用户账号重复");
         } else {
             return new Result(BizStatus.ERROR_SQL.status, "主键重复");

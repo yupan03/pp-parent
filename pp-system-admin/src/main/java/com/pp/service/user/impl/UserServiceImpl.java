@@ -3,7 +3,8 @@ package com.pp.service.user.impl;
 import com.pp.entity.table.User;
 import com.pp.service.CommonService;
 import com.pp.service.user.UserService;
-import com.pp.untils.IdUtil;
+import com.pp.utils.IdUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -8,7 +8,8 @@ import com.pp.result.Result;
 import com.pp.result.ResultList;
 import com.pp.result.ResultObj;
 import com.pp.result.ResultPage;
-import com.pp.untils.WebUtil;
+import com.pp.utils.WebUtil;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 

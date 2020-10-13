@@ -9,7 +9,8 @@ import com.pp.result.Result;
 import com.pp.result.ResultObj;
 import com.pp.result.ResultPage;
 import com.pp.service.user.UserService;
-import com.pp.untils.SysUtils;
+import com.pp.utils.SysUtils;
+
 import lombok.Data;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
