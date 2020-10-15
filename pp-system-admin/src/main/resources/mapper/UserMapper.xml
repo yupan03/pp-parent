@@ -51,5 +51,4 @@
     <select id="getAllUser" resultMap="BaseResultMap">
         select * from user
     </select>
-
 </mapper>

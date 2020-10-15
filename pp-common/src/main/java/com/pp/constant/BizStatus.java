@@ -7,17 +7,17 @@ package com.pp.constant;
  */
 public enum BizStatus {
 
-    ERROR(500, "数据库错误"),
+	ERROR(500, "数据库错误"),
 
-    ERROR_SQL(6001, "数据库错误"),
+	ERROR_SQL(6001, "数据库错误"),
 
-    ERROR_PARAM(6002, "参数错误");
+	ERROR_PARAM(6002, "参数错误");
 
-    public int status;
-    public String message;
+	public int status;
+	public String message;
 
-    BizStatus(int status, String message) {
-        this.status = status;
-        this.message = message;
-    }
+	BizStatus(int status, String message) {
+		this.status = status;
+		this.message = message;
+	}
 }

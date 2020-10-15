@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 用户管理
+ */
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {
@@ -30,6 +33,10 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
 
+    /**
+     *
+     * @param user 用户信息
+     */
     @PostMapping(value = "/login")
     public Result getToken(@RequestBody LoginUser user, HttpServletResponse response) {
         LoginAccount account = new LoginAccount();
@@ -48,7 +55,13 @@ public class UserController extends BaseController {
 
     @Data
     static class LoginUser {
+        /**
+         * 用户名称
+         */
         private String username;
+        /**
+         * 密码
+         */
         private String password;
     }
 
