@@ -25,11 +25,6 @@
             <version>3.4.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>com.pp</groupId>
             <artifactId>pp-common</artifactId>
             <version>1.0</version>

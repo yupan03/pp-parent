@@ -1,8 +1,8 @@
 package com.pp.controller;
 
+import com.pp.constant.BizStatus;
 import com.pp.exception.BizException;
 import com.pp.result.Result;
-import com.pp.constant.BizStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
