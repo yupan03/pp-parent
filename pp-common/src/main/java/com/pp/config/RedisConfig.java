@@ -46,4 +46,9 @@ public class RedisConfig {
     public StringRedisTemplate getStringRedisTemplateDatabase1() {
         return new StringRedisTemplate(lettuceConnectionFactory(1));
     }
+
+    @Bean("database(2)")
+    public StringRedisTemplate getStringRedisTemplateDatabase2() {
+        return new StringRedisTemplate(lettuceConnectionFactory(2));
+    }
 }
