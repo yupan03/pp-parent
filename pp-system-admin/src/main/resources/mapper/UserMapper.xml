@@ -14,27 +14,6 @@
         <result column="create_time" property="createTime"/>
     </resultMap>
 
-    <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        insert into user(
-        id,
-        account,
-        name,
-        password,
-        email,
-        type,
-        create_time
-        )
-        values(
-        #{id, jdbcType = VARCHAR},
-        #{account, jdbcType = VARCHAR},
-        #{name, jdbcType = VARCHAR},
-        #{password, jdbcType = VARCHAR},
-        #{email, jdbcType = VARCHAR},
-        #{type,jdbcType = VARCHAR},
-        #{createTime, jdbcType = VARCHAR}
-        )
-    </insert>
-
     <update id="updateState">
         update user set state = #{state} where id = #{id}
     </update>

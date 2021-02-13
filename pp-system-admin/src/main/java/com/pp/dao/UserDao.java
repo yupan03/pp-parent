@@ -1,15 +1,14 @@
 package com.pp.dao;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pp.entity.dto.UserDTO;
 import com.pp.entity.table.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UserDao {
-
-    int insertUser(User user);
+public interface UserDao extends BaseMapper<User> {
 
     /**
      * 更新用户状态

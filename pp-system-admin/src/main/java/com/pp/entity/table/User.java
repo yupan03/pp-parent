@@ -1,5 +1,6 @@
 package com.pp.entity.table;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class User {
-
+	@TableId
 	private Long id;
 
 	private String account;
