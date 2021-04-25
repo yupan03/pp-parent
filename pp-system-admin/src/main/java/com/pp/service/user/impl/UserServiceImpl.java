@@ -19,6 +19,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addUser(User userAdd) {
         userAdd.setId(IdUtil.getId());
-        return commonService.getUserDao().insertUser(userAdd);
+        return commonService.getUserDao().insert(userAdd);
     }
 }

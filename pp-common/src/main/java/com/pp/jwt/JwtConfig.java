@@ -1,9 +1,10 @@
 package com.pp.jwt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 /**
  * JWT配置
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({JwtProperties.class})
 public class JwtConfig {
-    @Autowired
+    @Resource
     private JwtProperties jwtProperties;
 
     @Bean
