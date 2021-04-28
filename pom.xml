@@ -25,7 +25,6 @@
 		<module>pp-common</module>
 		<module>pp-pay</module>
 		<module>pp-web</module>
-		<module>pp-wx</module>
 		<module>pp-system-admin</module>
 	</modules>
 
