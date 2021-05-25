@@ -4,17 +4,13 @@ import com.github.pagehelper.PageInfo;
 import com.pp.exception.BizException;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
+import com.pp.result.Page;
 import com.pp.result.Result;
-import com.pp.result.ResultList;
-import com.pp.result.ResultObj;
-import com.pp.result.ResultPage;
+import com.pp.utils.BeanCopyUtil;
 import com.pp.utils.WebUtil;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,79 +43,60 @@ public class BaseController {
         return account.getId();
     }
 
-    protected final <T> ResultPage<T> resultPage(List<T> list) {
-        PageInfo<T> pageInfo = new PageInfo<>(list);
-        return new ResultPage<>(status, msg, list, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
+    protected final Result<Void> result(int status, String msg) {
+        return new Result<>(status, msg);
     }
 
-    protected final <T, E> ResultPage<E> resultPage(List<T> list, Class<E> targetClass) {
-        return this.resultPage(status, msg, list, targetClass);
+    public final <T> Result<T> result(int status, String msg, T t) {
+        return new Result<>(status, msg, t);
     }
 
-    protected final <T, E> ResultPage<E> resultPage(int status, String msg, List<T> list, Class<E> targetClass) {
-        PageInfo<T> pageInfo = new PageInfo<>(list);
-        List<E> ts = copyList(list, targetClass);
-        return new ResultPage<>(status, msg, ts, pageInfo.getPageSize(), pageInfo.getPageNum(), pageInfo.getTotal());
-    }
-
-    protected final Result result() {
+    protected final Result<Void> result() {
         return this.result(status, msg);
     }
 
-    protected final Result result(int status, String msg) {
-        return new Result(status, msg);
+    protected final <T> Result<T> result(T t) {
+        return this.result(status, msg, t);
     }
 
-    protected final <T> ResultObj<T> resultObj(T t) {
-        return new ResultObj<>(status, msg, t);
+    protected final <T> Result<List<T>> result(List<T> list) {
+        return this.result(status, msg, list);
     }
 
-    protected final <T, E> ResultObj<E> resultObj(T t, Class<E> targetClass) {
-        return this.resultObj(status, msg, t, targetClass);
+    protected final <T, E> Result<E> result(T t, Class<E> targetClass) {
+        return this.result(status, msg, BeanCopyUtil.copyObject(t, targetClass));
     }
 
-    protected final <T, E> ResultObj<E> resultObj(int status, String msg, T t, Class<E> targetClass) {
-        E e = null;
-        try {
-            e = targetClass.newInstance();
-            this.copy(t, e);
-        } catch (Exception illegalAccessException) {
-            illegalAccessException.printStackTrace();
-        }
-
-        return new ResultObj<>(status, msg, e);
+    protected final <T, E> Result<List<E>> result(List<T> list, Class<E> targetClass) {
+        return this.result(status, msg, BeanCopyUtil.copyList(list, targetClass));
     }
 
-    protected final <T> ResultList<T> resultList(List<T> list) {
-        return new ResultList<>(status, msg, list);
+    /**
+     * 分页数据
+     */
+    protected final <T> Result<Page<T>> resultPage(List<T> list) {
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+
+        Page<T> page = new Page<>();
+
+        page.setPageList(list);
+        page.setPageNum(pageInfo.getPageNum());
+        page.setPageSize(pageInfo.getPageSize());
+        page.setTotal(pageInfo.getTotal());
+
+        return this.result(page);
     }
 
-    protected final <T, E> ResultList<E> resultList(List<T> list, Class<E> targetClass) {
-        return this.resultList(status, msg, list, targetClass);
-    }
+    protected final <T, E> Result<Page<E>> resultPage(List<T> list, Class<E> targetClass) {
+        PageInfo<T> pageInfo = new PageInfo<>(list);
 
-    protected final <T, E> ResultList<E> resultList(int status, String msg, List<T> list, Class<E> targetClass) {
-        List<E> ts = copyList(list, targetClass);
-        return new ResultList<>(status, msg, ts);
-    }
+        Page<E> page = new Page<>();
 
-    protected final void copy(Object source, Object target) {
-        BeanUtils.copyProperties(source, target);
-    }
+        page.setPageList(BeanCopyUtil.copyList(list, targetClass));
+        page.setPageNum(pageInfo.getPageNum());
+        page.setPageSize(pageInfo.getPageSize());
+        page.setTotal(pageInfo.getTotal());
 
-    protected final <T, E> List<T> copyList(List<E> source, Class<T> targetClass) {
-        List<T> target = new ArrayList<>();
-        if (source != null && !source.isEmpty()) {
-            source.forEach(obj -> {
-                try {
-                    T data = targetClass.newInstance();
-                    BeanUtils.copyProperties(obj, data);
-                    target.add(data);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-        return target;
+        return this.result(page);
     }
 }

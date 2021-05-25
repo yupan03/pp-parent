@@ -6,11 +6,8 @@ import com.pp.entity.table.User;
 import com.pp.jwt.JwtUtil;
 import com.pp.jwt.LoginAccount;
 import com.pp.result.Result;
-import com.pp.result.ResultObj;
-import com.pp.result.ResultPage;
 import com.pp.service.user.UserService;
 import com.pp.utils.SysUtils;
-
 import lombok.Data;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,11 +31,10 @@ public class UserController extends BaseController {
     private UserService userService;
 
     /**
-     *
      * @param user 用户信息
      */
     @PostMapping(value = "/login")
-    public Result getToken(@RequestBody LoginUser user, HttpServletResponse response) {
+    public Result<Void> getToken(@RequestBody LoginUser user, HttpServletResponse response) {
         LoginAccount account = new LoginAccount();
         account.setUsername("yupan");
         account.setLoginTime(SysUtils.getCurrentTime());
@@ -48,9 +44,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/say")
-    public ResultObj<String> sayHello() throws InterruptedException {
+    public Result<String> sayHello() throws InterruptedException {
         Thread.sleep(500);
-        return super.resultObj("hello world");
+        return super.result("hello world");
     }
 
     @Data
@@ -80,13 +76,13 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/list")
     @ValidToken
-    public ResultPage<User> userList() {
+    public Result<List<User>> userList() {
         List<User> users = new ArrayList<>();
         User user = new User();
         user.setId(1L);
         user.setAccount("yupan");
         user.setName("吁盼");
         users.add(user);
-        return new ResultPage<>(200, "success", users, 20, 1, 100L);
+        return super.result(users);
     }
 }

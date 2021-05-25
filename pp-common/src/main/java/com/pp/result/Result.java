@@ -1,16 +1,20 @@
 package com.pp.result;
 
-public class Result {
+public class Result<T> {
 	private int status;
 	private String msg;
 
-	public Result() {
-
-	}
+	private T data;
 
 	public Result(int status, String msg) {
 		this.status = status;
 		this.msg = msg;
+	}
+
+	public Result(int status, String msg, T data){
+		this.status = status;
+		this.msg = msg;
+		this.data = data;
 	}
 
 	public int getStatus() {
@@ -27,5 +31,13 @@ public class Result {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
 	}
 }

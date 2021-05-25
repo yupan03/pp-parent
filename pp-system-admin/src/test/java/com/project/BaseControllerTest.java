@@ -1,8 +1,6 @@
 package com.project;
 
 import com.pp.result.Result;
-import com.pp.result.ResultList;
-import com.pp.result.ResultObj;
 import com.pp.utils.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +10,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
 
 /**
  * Controller测试基础类，封装基础方法
@@ -36,7 +36,7 @@ public class BaseControllerTest {
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print()).andReturn();
 
-            ResultObj<String> resultObj = this.getResultObj(result.getResponse().getContentAsString());
+            Result<String> resultObj = this.getResultObj(result.getResponse().getContentAsString());
             if (resultObj.getStatus() == HttpStatus.OK.value()) {
                 return resultObj.getData();
             } else {
@@ -53,12 +53,12 @@ public class BaseControllerTest {
         return JSONUtil.jsonToObject(json, Result.class);
     }
 
-    protected <T> ResultObj<T> getResultObj(String json) {
-        return JSONUtil.jsonToObject(json, ResultObj.class);
+    protected <T> Result<T> getResultObj(String json) {
+        return JSONUtil.jsonToObject(json, Result.class);
     }
     
-	protected <T> ResultList<T> getResultList(String json) {
-        return JSONUtil.jsonToObject(json, ResultList.class);
+	protected <T> Result<List<T>> getResultList(String json) {
+        return JSONUtil.jsonToObject(json, Result.class);
     }
 
     protected MockHttpServletRequestBuilder get(String uri) {
